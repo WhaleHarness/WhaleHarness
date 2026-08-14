@@ -4,6 +4,8 @@ A plugin store for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-ha
 
 **Site: https://whaleharness.com** — bilingual (EN/中文), every plugin verified in a real DSH session before shipping.
 
+[![site](https://img.shields.io/badge/site-whaleharness.com-4fc3f7)](https://whaleharness.com) [![plugins](https://img.shields.io/badge/plugins-6-4fc3f7)](https://whaleharness.com/plugins.json)
+
 ## Pod members (5)
 
 | Plugin | Tool | What it does |
