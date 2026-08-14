@@ -1,0 +1,28 @@
+{
+  "name": "whale-status",
+  "version": "0.1.0",
+  "description": "Check the WhaleHarness site health from inside a DSH session: HTTPS, DNS, TLS expiry, and manifest/tarball integrity.",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "whaleharness",
+    "status",
+    "monitoring"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

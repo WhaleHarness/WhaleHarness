@@ -1,0 +1,4 @@
+# WhaleHarness bundle patch: inserts the whale_status tool into any profile.
+- insert:
+    - id: whale-status
+      name: whale-status

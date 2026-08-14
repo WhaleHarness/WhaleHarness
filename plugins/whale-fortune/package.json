@@ -1,0 +1,27 @@
+{
+  "name": "whale-fortune",
+  "version": "0.1.0",
+  "description": "WhaleHarness fortune tool: deep-sea aphorisms on demand.",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "whaleharness",
+    "fortune"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# WhaleHarness bundle patch: inserts the whale_fortune tool into any profile.
+- insert:
+    - id: whale-fortune
+      name: whale-fortune

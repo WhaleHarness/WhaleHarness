@@ -1,0 +1,44 @@
+server {
+    server_name whaleharness.store whaleharness.com www.whaleharness.com www.whaleharness.store;
+
+    root /srv/whaleharness;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ "^/submit/([A-Za-z0-9]{8,32})/([^/]+\.(tgz|tar\.gz))$" {
+        client_max_body_size 5m;
+        dav_methods PUT;
+        create_full_put_path on;
+        root /srv/whaleharness-submissions;
+        dav_access all:r;
+    }
+
+    location = /healthz {
+        return 200 "ok";
+        add_header Content-Type text/plain;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/whaleharness.store/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/whaleharness.store/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = whaleharness.store) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    listen [::]:80;
+    server_name whaleharness.store whaleharness.com www.whaleharness.com www.whaleharness.store;
+    return 404; # managed by Certbot
+
+
+}

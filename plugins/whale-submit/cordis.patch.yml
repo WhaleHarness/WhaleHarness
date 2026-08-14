@@ -1,0 +1,4 @@
+# WhaleHarness bundle patch: inserts the whale_submit tool into any profile.
+- insert:
+    - id: whale-submit
+      name: whale-submit

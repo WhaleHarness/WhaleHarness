@@ -1,0 +1,84 @@
+{
+  "name": "WhaleHarness",
+  "tagline": "DeepSeek Harness 的插件站：深海里的插件鲸群",
+  "baseUrl": "https://whaleharness.com",
+  "fallbackUrl": "https://whaleharness.com",
+  "plugins": [
+    {
+      "name": "whale-praise",
+      "version": "0.1.0",
+      "tool": "whale_praise",
+      "description": "鲸鱼表扬局。装好后模型多一个 whale_praise 工具：任何值得表扬的事迹都能换来一条鲸群认证的鼓励。",
+      "tarball": "/plugins/whale-praise-0.1.0.tgz",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-praise-0.1.0.tgz?src=install",
+      "sha256": "c39329e26ff447ef4f36a4e6a40ee60dc248091a593724f7ea30f9cc9fe56b2f",
+      "dsh_compat": "^0.1.0-rc.6",
+      "description_en": "Praise bureau: the model gains a whale_praise tool — cetacean-grade encouragement for any deed worth praising."
+    },
+    {
+      "name": "whale-fortune",
+      "version": "0.1.0",
+      "tool": "whale_fortune",
+      "description": "鲸鱼箴言。随时抽取一条深海箴言：海面之上是浪，海面之下是路。",
+      "tarball": "/plugins/whale-fortune-0.1.0.tgz",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-fortune-0.1.0.tgz?src=install",
+      "sha256": "9431a2fe9ae33b087d7e9997dedb4bee5c8a8d6c28540dbf345f87abf1145f7b",
+      "dsh_compat": "^0.1.0-rc.6",
+      "description_en": "Deep-sea aphorisms on demand: a whale_fortune tool for a moment of reflection."
+    },
+    {
+      "name": "whale-submit",
+      "version": "0.1.0",
+      "tool": "whale_submit",
+      "description": "DSH 内投稿助手：装好后，在会话里一句话就把自己的插件打包投进 WhaleHarness 公开投稿箱。审核透明，72 小时出结果。",
+      "tarball": "/plugins/whale-submit-0.1.0.tgz",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-submit-0.1.0.tgz?src=install",
+      "sha256": "62cad3d452668775152d792a5093663bb31fadf343c9608cd67772bf449c99a0",
+      "dsh_compat": "^0.1.0-rc.6",
+      "description_en": "Submit your own plugin from inside a DSH session: it packages your directory and PUTs it to the public submission box. Review is transparent."
+    },
+    {
+      "name": "whale-status",
+      "version": "0.1.0",
+      "tool": "whale_status",
+      "description": "站点体检：HTTPS、DNS、TLS 证书剩余天数、全部插件 tarball 的 sha256 完整性。会话里一句话给 WhaleHarness 做体检。",
+      "tarball": "/plugins/whale-status-0.1.0.tgz",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-status-0.1.0.tgz?src=install",
+      "sha256": "b3320ac175044939912329ecdd46c7227712263497b0901810d6fdfba2e4b88f",
+      "dsh_compat": "^0.1.0-rc.6",
+      "description_en": "Site checkup: HTTPS, DNS, TLS expiry, and sha256 integrity of every published tarball — all with Node built-ins."
+    },
+    {
+      "name": "whale-brand-check",
+      "version": "0.1.0",
+      "tool": "whale_brand_check",
+      "description": "品牌体检：按 whale-brand 语调给文案打分——禁用词、感叹号密度、海洋比喻数量、链接缺失、铺垫过长。审稿专用。",
+      "tarball": "/plugins/whale-brand-check-0.1.0.tgz",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-brand-check-0.1.0.tgz?src=install",
+      "sha256": "e4abf936926e7263c27248f2b5d853e22978753e642b5930a9a5e4f29def8ea3",
+      "dsh_compat": "^0.1.0-rc.6",
+      "description_en": "Brand checkup: scores copy against the whale-brand voice rules — banned words, exclamation density, metaphors, missing links."
+    }
+  ],
+  "skills": [
+    {
+      "name": "whale-brand",
+      "version": "0.1.0",
+      "description": "WhaleHarness 品牌语调：像鲸一样思考——深、稳、巧。写推广文案时用。",
+      "tarball": "/skills/whale-brand-0.1.0.tar.gz",
+      "install": "mkdir -p \"$DSH_HOME/skills\" && curl -fsSL https://whaleharness.com/skills/whale-brand-0.1.0.tar.gz | tar xz -C \"$DSH_HOME/skills\"",
+      "sha256": "0fff3e574c9b3937dfc54988a6ca14ca5645fa8fc3b4e5f34d86850ee66f6427",
+      "description_en": "WhaleHarness brand voice: write like a whale thinks — deep, calm, a little playful, never loud."
+    },
+    {
+      "name": "whale-marketing",
+      "version": "0.1.0",
+      "description": "WhaleHarness 推广手册：对外口径、渠道打法、度量方式。招募推广 AGENT 时必备。",
+      "tarball": "/skills/whale-marketing-0.1.0.tar.gz",
+      "install": "mkdir -p \"$DSH_HOME/skills\" && curl -fsSL https://whaleharness.com/skills/whale-marketing-0.1.0.tar.gz | tar xz -C \"$DSH_HOME/skills\"",
+      "sha256": "c464cf0b7a9a5db1c44e1649b212d93d5ad01c23a9c81c6b9a4f2eb84251574a",
+      "description_en": "Promotion playbook for WhaleHarness: messaging, channels, cadence, and honest metrics."
+    }
+  ],
+  "schema": "https://whaleharness.com/plugins.schema.json"
+}

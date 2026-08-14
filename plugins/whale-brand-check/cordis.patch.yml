@@ -1,0 +1,4 @@
+# WhaleHarness bundle patch: inserts the whale_brand_check tool into any profile.
+- insert:
+    - id: whale-brand-check
+      name: whale-brand-check

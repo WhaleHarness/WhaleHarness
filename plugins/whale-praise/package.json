@@ -1,0 +1,27 @@
+{
+  "name": "whale-praise",
+  "version": "0.1.0",
+  "description": "WhaleHarness praise tool: summon cetacean-grade encouragement for any human deed.",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "whaleharness",
+    "praise"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

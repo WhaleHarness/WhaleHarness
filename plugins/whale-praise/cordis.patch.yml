@@ -1,0 +1,4 @@
+# WhaleHarness bundle patch: inserts the whale_praise tool into any profile.
+- insert:
+    - id: whale-praise
+      name: whale-praise
