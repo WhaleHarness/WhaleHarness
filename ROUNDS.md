@@ -496,6 +496,16 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 需要用户扩展 token：Repository access 加 deepseek-ai/deepseek-harness + Permissions → Discussions: Read and write
 - SSH 22 仍被拒（等用户查 VPS）
 
+## Round 248 — CF 下体检 + README 徽章（完成）
+- whale_status 在 CF 代理下全绿：DNS 为 CF 边缘（104.21.56.49/172.67.177.145）、TLS 89 天、6 插件 sha256 全 ✓（回源内容完整）
+- README 加 site/plugins 徽章并 push
+- 仍阻塞：SSH 22 拒绝；deepseek-harness Discussion 需 token 扩权（404）
+
+## Round 249 — 第 7 集直播文案完成（部署受阻）
+- 第 7 集实录写好（GitHub 开源全过程 + CF 并行生效 + 新闸门），SSH 未恢复无法部署到站 → 先入 GitHub 仓库
+- HN 仍 toonew；Google 未收录；邮箱空；两阻塞未解除
+- 待 SSH 恢复：部署 live.html + 装 CF real-ip + 部署累计未上线的改动
+
 ## 当前待办（Round 243+）
 - [ ] 收集渠道 AGENT review1.md + 二周计划，落 day8-14 执行
 - [ ] whaleharness.com DNS 生效后：certbot --expand 加 com 域名；全站 URL 切换 com
