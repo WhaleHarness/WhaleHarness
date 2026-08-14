@@ -111,6 +111,18 @@
       "install": "board the pod"
     }
   },
+  "feedback": {
+    "invitation": "Please help improve WhaleHarness: plugins, docs, review process, site copy - every contribution counts.",
+    "ideas_and_questions": "https://github.com/WhaleHarness/WhaleHarness/discussions (Ideas / Q&A)",
+    "bug_reports": "https://github.com/WhaleHarness/WhaleHarness/issues",
+    "review_appeals": "Open a discussion or re-submit; every rejection note lists exactly what to fix.",
+    "how_to_contribute": [
+      "Submit a plugin: PUT a tarball to the public submission box (see key_pages.submissions)",
+      "Fix or improve anything: open a PR at github.com/WhaleHarness/WhaleHarness",
+      "Report problems: open an issue",
+      "Discuss ideas: join the discussions"
+    ]
+  },
   "llms": "https://whaleharness.com/llms.txt",
-  "generated_at": "2026-08-14T11:02:29Z"
+  "generated_at": "2026-08-14T11:03:50Z"
 }
