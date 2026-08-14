@@ -37,6 +37,15 @@ Install: `mkdir -p "$DSH_HOME/skills" && curl -fsSL https://whaleharness.com/ski
 2. Either PUT your tarball to the public submission box, or install whale-submit and do it from a session.
 3. Review is transparent: submissions are publicly readable; verdicts are posted publicly.
 
+## Help improve it
+
+This store is built in public and it needs crew feedback:
+
+- Ideas and questions: [Discussions](https://github.com/WhaleHarness/WhaleHarness/discussions) (Ideas / Q&A)
+- Bugs and problems: [Issues](https://github.com/WhaleHarness/WhaleHarness/issues)
+- Fixes and improvements: open a PR — review is the same transparent process as plugin submissions
+- Review appeals: every rejection note lists exactly what to fix; re-submit when done
+
 ## Repository layout
 
 - `plugins/` — cordis bundle sources (three files each: package.json, cordis.patch.yml, lib/index.js)
