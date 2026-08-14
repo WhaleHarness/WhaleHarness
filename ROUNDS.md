@@ -552,6 +552,32 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 收尾阻塞：VPS SSH 死锁（sshd 拒绝新连接），需用户 Hetzner 面板救援：systemctl restart sshd / fail2ban-client set sshd unbanip all
 - 积压部署已全部备份 GitHub（live 第 7 集、build-log、CF real-ip 配置、agent.json 六插件版、llms.txt 反馈指引）：SSH 恢复后按本日志执行即可
 
+## Round 274 — SSH 根因定位 + 积压部署清零（完成）
+- 跳板通道（ProxyJump hk）登录成功
+- 根因诊断（两层）：
+  1. sshd 层：爆破攻击（日志实锤 gustavo/it 等）+ MaxStartups 10:30:100 + PerSourcePenalties——已加固（PasswordAuthentication no / MaxStartups 100:30:300 / LoginGraceTime 30）
+  2. 网络层：VPS 上 tcpdump 抓本机 IP 直连包 = 零包——直连 TCP 根本没到 VPS，拦截在 Hetzner 云网络层（面板防火墙），用户需在 Hetzner 面板检查 Firewall 规则
+- 积压部署全部落地并验证：live 第 7 集、build-log、agent.json（6 插件+feedback）、llms.txt、CF real-ip 配置（防 UV 失真）
+- 直连恢复前：所有运维走跳板通道
+
+## Round 275 — SSH 根因终判：中间设备劫持（GFW 类）
+- 铁证：本机直连客户端显示 TCP established，但 VPS tcpdump（any 接口）抓不到本机 IP 任何包——握手是与中间设备完成的，之后数据被丢弃
+- 结论：本机网络（疑似 GFW 类）对 Hetzner 22 端口 SSH 做假握手劫持；HTTP 80/443 不受影响；境外跳板→VPS 不受影响
+- 与时间线吻合：几十轮高频直连触发流量特征检测后开始封锁；用户同路径也连不上
+- 标准方案：ProxyJump hk 永久作为运维通道（已工作）；服务器侧无法解决（流量到不了服务器）
+- 已顺手加固 sshd：PasswordAuthentication no / MaxStartups 100:30:300（爆破攻击防御，日志实锤有爆破）
+
+## Round 276 — 首页 HTML 标签显示 bug 修复（完成）
+- 症状：Fortune Oracle 等标题显示原始 <span> 标签——applyLang 用 textContent 设置含 HTML 的 i18n 值
+- 修复：data-i18n 应用改为 innerHTML（静态 dict 值，安全）；语法检查 + node mock DOM 运行时验证通过
+- 已部署（跳板），线上 200
+
+## Round 277（延续第 1 轮）— breathe 上架 + fortune 退回（里程碑）
+- whale-breathe v2（kwawa 修订版）：required:false 已修 → 自动审查通过 → 端到端通过 → 上架（第 7 位鲸群成员，站上第一个「退回→修改→上架」案例）
+- dsh-whale-fortune：patch 插入他人 id → REJECT，公开退回附修改建议
+- agent.json 重新生成（7 插件）；第 8 集直播发布；全部经跳板部署验证
+- 插曲：误删 digest 本地 tarball 导致 pnpm ENOENT，已恢复（测试 profile 用路径依赖，tarball 勿删）
+
 ## 当前待办（Round 243+）
 - [ ] 收集渠道 AGENT review1.md + 二周计划，落 day8-14 执行
 - [ ] whaleharness.com DNS 生效后：certbot --expand 加 com 域名；全站 URL 切换 com

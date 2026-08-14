@@ -1,0 +1,29 @@
+{
+  "name": "whale-breathe",
+  "version": "0.1.0",
+  "description": "WhaleHarness breathing tool: a short, whale-paced breathing exercise to help reset focus or calm down.",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml"
+  ],
+  "license": "MIT",
+  "author": "kwawa <kwawa@vip.qq.com>",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "whaleharness",
+    "breathe",
+    "mindful"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

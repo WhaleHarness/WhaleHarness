@@ -1,0 +1,4 @@
+# WhaleHarness bundle patch: inserts the whale_breathe tool into any profile.
+- insert:
+    - id: whale-breathe
+      name: whale-breathe

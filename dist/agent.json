@@ -62,6 +62,15 @@
       "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-digest-0.1.0.tgz?src=install",
       "tarball": "https://whaleharness.com/plugins/whale-digest-0.1.0.tgz",
       "sha256": "bf4535a4ed3af19a7b5707aee3b65f19aa938f8d6860ed27d62d87f800b8824b"
+    },
+    {
+      "name": "whale-breathe",
+      "tool": "whale_breathe",
+      "version": "0.1.0",
+      "description_en": "Whale-paced breathing exercise (4-4-6-2 rhythm, 1-10 min) to reset focus between tasks. By kwawa - first rejected-then-fixed community submission.",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-breathe-0.1.0.tgz?src=install",
+      "tarball": "https://whaleharness.com/plugins/whale-breathe-0.1.0.tgz",
+      "sha256": "127895399ac0318898fc643081661966572a33bea544fb6681c4969cd3ce91a0"
     }
   ],
   "skills": [
@@ -124,5 +133,5 @@
     ]
   },
   "llms": "https://whaleharness.com/llms.txt",
-  "generated_at": "2026-08-14T11:03:50Z"
+  "generated_at": "2026-08-14T11:41:18Z"
 }
