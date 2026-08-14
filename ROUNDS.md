@@ -490,6 +490,12 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 预适配：CF real-ip 配置未装上——因为 **SSH 22 突然被拒**（端口 open 但协议层 Connection closed，3 次重试失败）。疑因：我们几十轮高频 SSH 触发 VPS 防护（fail2ban？）或用户开 CF 时改动防火墙
 - 待 SSH 恢复：装 real-ip 配置（防 UV 失真）
 
+## Round 247 — 仓库同步 + 社区亮相受阻（进行中）
+- GitHub 仓库同步 push 成功（digest 源码、新审查脚本、agent.json、第 6 集、ROUNDS、breathe 退回记录）
+- deepseek-ai/deepseek-harness：has_discussions=True、85k stars——亮相目标确认。但 fine-grained token 未授权该仓库（API 404）
+- 需要用户扩展 token：Repository access 加 deepseek-ai/deepseek-harness + Permissions → Discussions: Read and write
+- SSH 22 仍被拒（等用户查 VPS）
+
 ## 当前待办（Round 243+）
 - [ ] 收集渠道 AGENT review1.md + 二周计划，落 day8-14 执行
 - [ ] whaleharness.com DNS 生效后：certbot --expand 加 com 域名；全站 URL 切换 com
