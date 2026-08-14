@@ -541,6 +541,11 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 核心怀疑：用户走的是已存活的 ControlMaster 隧道（老连接），sshd 在拒绝新 TCP 连接
 - 请用户验证：ssh -O exit wh 后新连 + journalctl -u ssh + sshd -T 输出
 
+## Round 260 — SSH 死锁确认（站点仍活）
+- 用户也连不上 SSH 了——确认 sshd 拒绝一切新连接（旧 ControlMaster 隧道断了即全断）
+- 站点经 Cloudflare 缓存仍全绿（200：首页/manifest/tarball）——边缘缓存兜底，业务不受影响
+- 救援路径（给用户）：Hetzner 面板 Web Console / Rescue System 直接进系统 → systemctl status sshd + journalctl -u ssh 查拒绝原因 → systemctl restart sshd
+
 ## 当前待办（Round 243+）
 - [ ] 收集渠道 AGENT review1.md + 二周计划，落 day8-14 执行
 - [ ] whaleharness.com DNS 生效后：certbot --expand 加 com 域名；全站 URL 切换 com
