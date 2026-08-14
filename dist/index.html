@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://whaleharness.com/">
+<link rel="alternate" type="application/rss+xml" title="WhaleHarness" href="https://whaleharness.com/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "WhaleHarness",
+  "url": "https://whaleharness.com",
+  "description": "A plugin store for DeepSeek Harness: five verified plugins, transparent review, public stats.",
+  "inLanguage": ["en", "zh-CN"]
+}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhaleHarness · DSH 插件站</title>
+<meta property="og:title" content="WhaleHarness — the plugin store for DeepSeek Harness">
+<meta property="og:description" content="A pod of plugins in the deep sea. Install whale_praise and let the pod do the praising. English & 中文.">
+<meta property="og:url" content="https://whaleharness.com/">
+<meta property="og:image" content="https://whaleharness.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<style>
+  :root {
+    --deep: #04121f;
+    --sea: #0b2d4a;
+    --foam: #d7ecf8;
+    --accent: #4fc3f7;
+    --muted: #7fa3bd;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: linear-gradient(180deg, var(--deep) 0%, var(--sea) 100%);
+    color: var(--foam);
+    font-family: -apple-system, "PingFang SC", "Noto Sans CJK SC", sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+  header { text-align: center; padding: 48px 0 24px; }
+  .whale { font-size: 64px; line-height: 1; }
+  h1 { font-size: 42px; letter-spacing: 2px; margin-top: 8px; }
+  .tagline { color: var(--muted); margin-top: 12px; font-size: 17px; }
+  .badge {
+    display: inline-block; margin-top: 16px; padding: 4px 12px;
+    border: 1px solid var(--accent); border-radius: 999px;
+    color: var(--accent); font-size: 13px;
+  }
+  section { margin-top: 56px; }
+  h2 { font-size: 24px; border-bottom: 1px solid rgba(79,195,247,.25); padding-bottom: 10px; }
+  h2 .cn { color: var(--muted); font-size: 15px; margin-left: 8px; }
+  .card {
+    background: rgba(7,26,43,.7);
+    border: 1px solid rgba(79,195,247,.18);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-top: 16px;
+  }
+  .card h3 { font-size: 19px; }
+  .card .ver { color: var(--muted); font-size: 13px; margin-left: 6px; }
+  .card p { color: #b9d4e6; margin-top: 8px; font-size: 15px; }
+  .tool { color: var(--accent); font-family: ui-monospace, monospace; font-size: 13px; }
+  .install {
+    margin-top: 14px; padding: 12px 14px;
+    background: #020c16; border: 1px solid rgba(79,195,247,.15);
+    border-radius: 8px; font-family: ui-monospace, monospace;
+    font-size: 13px; color: #9fe3ff; overflow-x: auto;
+    display: flex; justify-content: space-between; gap: 10px; align-items: center;
+  }
+  .copy {
+    flex-shrink: 0; background: none; border: 1px solid var(--accent);
+    color: var(--accent); border-radius: 6px; padding: 3px 10px;
+    font-size: 12px; cursor: pointer;
+  }
+  .copy:hover { background: rgba(79,195,247,.12); }
+  .howto { color: var(--muted); font-size: 14px; margin-top: 10px; }
+  .howto code { color: var(--foam); }
+  footer { margin-top: 72px; text-align: center; color: var(--muted); font-size: 13px; }
+  footer a { color: var(--accent); text-decoration: none; }
+  #status { color: var(--muted); font-size: 13px; margin-top: 20px; text-align: center; }
+  .note {
+    margin-top: 40px; padding: 14px 18px; border-left: 3px solid var(--accent);
+    background: rgba(79,195,247,.06); color: var(--muted); font-size: 14px;
+  }
+  .langbar { position: absolute; top: 16px; right: 20px; }
+  .langbar button {
+    background: none; border: 1px solid var(--accent); color: var(--accent);
+    border-radius: 6px; padding: 3px 10px; margin-left: 6px; cursor: pointer; font-size: 12px;
+  }
+  .langbar button.on { background: rgba(79,195,247,.18); }
+  nav { text-align: center; margin: 8px 0 0; }
+  nav a { color: var(--accent); text-decoration: none; margin: 0 12px; }
+</style>
+</head>
+<body>
+<div class="langbar">
+  <button id="lang-zh" class="on">中文</button><button id="lang-en">EN</button>
+</div>
+<div class="wrap">
+  <header>
+    <div class="whale">🐋</div>
+    <h1>WhaleHarness</h1>
+    <p class="tagline" data-i18n="tagline"></p>
+    <span class="badge">whaleharness.com · whaleharness.com</span>
+  </header>
+
+  <nav>
+    <a href="/" data-i18n="nav-home">首页</a>
+    <a href="/live.html" data-i18n="nav-live">直播间</a>
+    <a href="/press.html" data-i18n="nav-press">推广物料</a>
+    <a href="/submit.html" data-i18n="nav-submit">投稿上船</a>
+    <a href="/submissions.html" data-i18n="nav-box">投稿箱</a>
+    <a href="/feedback.html" data-i18n="nav-fb">吐槽</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/deep-dive.html">Deep Dive</a>
+    <a href="/backendless.html">No-Backend</a>
+    <a href="/stats.html" data-i18n="nav-stats">数据</a>
+    <a href="/build-log.html" data-i18n="nav-log">构建日志</a>
+  </nav>
+
+  <div class="note" data-i18n-html="note"></div>
+
+  <section>
+    <h2 data-i18n="oracle-title"></h2>
+    <div class="card" style="text-align:center">
+      <p id="oracle-text" style="font-size:18px;color:var(--foam)" data-i18n="oracle-idle"></p>
+      <button id="oracle-btn" class="copy" style="font-size:14px;padding:6px 18px;margin-top:8px" data-i18n="oracle-btn"></button>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="plugins-title"></h2>
+    <div id="plugins"><p style="color:var(--muted)">Loading…</p></div>
+  </section>
+
+  <section>
+    <h2 data-i18n="skills-title"></h2>
+    <div id="skills"><p style="color:var(--muted)">Loading…</p></div>
+  </section>
+
+  <footer>
+    <p>WhaleHarness · <span data-i18n="footer-line"></span> · <a href="/plugins.json">plugins.json</a></p>
+    <p id="status"></p>
+  </footer>
+</div>
+
+<script>
+const I18N = {
+  zh: {
+    tagline: "DeepSeek Harness 的插件站：深海里的插件鲸群。",
+    "nav-home": "首页", "nav-live": "直播间", "nav-press": "推广物料", "nav-submit": "投稿上船", "nav-box": "投稿箱", "nav-fb": "吐槽", "nav-stats": "数据", "nav-log": "构建日志",
+    note: "<strong>上船方式</strong>：<code>dsh plugin --profile web add -w &lt;插件地址&gt;</code> 即可安装鲸群插件；skills 用 <code>curl | tar</code> 解压进 <code>$DSH_HOME/skills</code>。本站所有插件均已在真实 DSH 会话中跑通验证。",
+    "oracle-title": "箴言抽签 <span class='cn'>不装插件，鲸鱼也说话</span>",
+    "oracle-idle": "点下面的按钮，鲸鱼说句话。",
+    "oracle-btn": "抽一条箴言",
+    "plugins-title": "鲸群插件 <span class='cn'>cordis bundles</span>",
+    "skills-title": "鲸群技能 <span class='cn'>skills</span>",
+    "footer-line": "给 DeepSeek Harness 的鲸鱼插件",
+    "copy": "复制", "copy-promo": "复制推广文案",
+    "live": "在线",
+    promo: "{name}：给 DeepSeek Harness 装个鲸鱼 {install}"
+  },
+  en: {
+    tagline: "A plugin store for DeepSeek Harness: a pod of plugins in the deep sea.",
+    "nav-home": "Home", "nav-live": "Live", "nav-press": "Press Kit", "nav-submit": "Submit", "nav-box": "Submissions", "nav-fb": "Feedback", "nav-stats": "Stats", "nav-log": "Build Log",
+    note: "<strong>Install</strong>: <code>dsh plugin --profile web add -w &lt;plugin-url&gt;</code> adds a pod member; skills unpack into <code>$DSH_HOME/skills</code> with <code>curl | tar</code>. Every plugin here ran in a real DSH session before shipping.",
+    "oracle-title": "Fortune Oracle <span class='cn'>no install needed</span>",
+    "oracle-idle": "Press the button; the whale will speak.",
+    "oracle-btn": "Draw a fortune",
+    "plugins-title": "Pod Plugins <span class='cn'>cordis bundles</span>",
+    "skills-title": "Pod Skills <span class='cn'>skills</span>",
+    "footer-line": "whale plugins for DeepSeek Harness",
+    "copy": "Copy", "copy-promo": "Copy promo",
+    "live": "live",
+    promo: "{name}: a whale for DeepSeek Harness. {install}"
+  }
+};
+const FORTUNES = {
+  zh: ["海面之上是浪，海面之下是路。","鲸不追浪，浪自来。","大音希声，大鲸潜深。","你听到的每一声鲸歌，都是深海对浅海的回信。","别怕下潜：压力最大的地方，浮力也最大。","鲸群从不解释方向，它们只是游成方向。"],
+  en: ["Above the surface, waves; below it, a road.","Whales don't chase waves; waves come.","The loudest sounds are silent; the great whale dives deep.","Every whale song you hear is the deep sea writing back to the shallows.","Do not fear the dive: pressure is greatest where buoyancy is too.","The pod never explains its direction; it simply swims into it."]
+};
+let LANG = localStorage.getItem("wh-lang") || (navigator.language.startsWith("zh") ? "zh" : "en");
+let DATA = null;
+function esc(s) { return s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
+function applyLang() {
+  document.documentElement.lang = LANG === "zh" ? "zh-CN" : "en";
+  document.getElementById("lang-zh").classList.toggle("on", LANG === "zh");
+  document.getElementById("lang-en").classList.toggle("on", LANG === "en");
+  const t = I18N[LANG];
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.innerHTML = t[el.dataset.i18n] ?? el.innerHTML; });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => { el.innerHTML = t[el.dataset.i18nHtml] ?? el.innerHTML; });
+  document.title = LANG === "zh" ? "WhaleHarness · DSH 插件站" : "WhaleHarness — DSH plugin store";
+  if (DATA) render();
+  localStorage.setItem("wh-lang", LANG);
+}
+function render() {
+  const t = I18N[LANG];
+  const desc = (p) => LANG === "zh" ? p.description : (p.description_en || p.description);
+  document.getElementById("plugins").innerHTML = DATA.plugins.map(p => {
+    const promo = t.promo.replace("{name}", p.name).replace("{install}", p.install);
+    return '<div class="card">' +
+      '<h3>' + esc(p.name) + '<span class="ver">v' + esc(p.version) + '</span> <span class="tool">' + esc(p.tool) + '</span></h3>' +
+      '<p>' + esc(desc(p)) + '</p>' +
+      '<div class="install"><code>' + esc(p.install) + '</code><button class="copy" data-cmd="' + esc(p.install) + '">' + t["copy"] + '</button></div>' +
+      '<div class="install"><code>' + esc(promo) + '</code><button class="copy" data-cmd="' + esc(promo) + '">' + t["copy-promo"] + '</button></div>' +
+      '<p class="howto">Direct: <a style="color:var(--accent)" href="' + esc(p.tarball) + '">' + esc(p.tarball) + '</a> · sha256 ' + esc(String(p.sha256).slice(0, 16)) + '…</p></div>';
+  }).join("");
+  document.getElementById("skills").innerHTML = DATA.skills.map(s => {
+    return '<div class="card">' +
+      '<h3>' + esc(s.name) + '<span class="ver">v' + esc(s.version) + '</span></h3>' +
+      '<p>' + esc(desc(s)) + '</p>' +
+      '<div class="install"><code>' + esc(s.install) + '</code><button class="copy" data-cmd="' + esc(s.install) + '">' + t["copy"] + '</button></div>' +
+      '<p class="howto">Direct: <a style="color:var(--accent)" href="' + esc(s.tarball) + '">' + esc(s.tarball) + '</a> · sha256 ' + esc(String(s.sha256).slice(0, 16)) + '…</p></div>';
+  }).join("");
+  document.getElementById("status").textContent = t["live"] + " · " + DATA.plugins.length + " plugins · " + DATA.skills.length + " skills";
+}
+document.getElementById("lang-zh").addEventListener("click", () => { LANG = "zh"; applyLang(); });
+document.getElementById("lang-en").addEventListener("click", () => { LANG = "en"; applyLang(); });
+document.getElementById("oracle-btn").addEventListener("click", () => {
+  const pool = FORTUNES[LANG];
+  document.getElementById("oracle-text").textContent =
+    pool[Math.floor(Math.random() * pool.length)] + (LANG === "zh" ? " —— WhaleHarness 鲸鱼箴言" : " — WhaleHarness fortune");
+});
+document.addEventListener("click", ev => {
+  const btn = ev.target.closest("button.copy");
+  if (!btn) return;
+  navigator.clipboard.writeText(btn.dataset.cmd).then(() => {
+    const old = btn.textContent; btn.textContent = LANG === "zh" ? "已复制" : "Copied";
+    setTimeout(() => btn.textContent = old, 1200);
+  });
+});
+fetch("plugins.json").then(r => r.json()).then(data => { DATA = data; applyLang(); })
+  .catch(e => { document.getElementById("status").textContent = "manifest load failed: " + e.message; });
+applyLang();
+</script>
+</body>
+</html>

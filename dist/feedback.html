@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吐槽与改进 · WhaleHarness</title>
+<link rel="canonical" href="https://whaleharness.com/feedback.html">
+<style>
+  :root { --deep:#04121f; --sea:#0b2d4a; --foam:#d7ecf8; --accent:#4fc3f7; --muted:#7fa3bd; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:linear-gradient(180deg,var(--deep) 0%,var(--sea) 100%); color:var(--foam);
+    font-family:-apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif; line-height:1.7; min-height:100vh; }
+  .wrap { max-width:860px; margin:0 auto; padding:48px 24px 80px; }
+  header { text-align:center; padding:24px 0; }
+  h1 { font-size:32px; letter-spacing:2px; }
+  .tagline { color:var(--muted); margin-top:8px; }
+  nav { text-align:center; margin:20px 0 8px; }
+  nav a { color:var(--accent); text-decoration:none; margin:0 12px; }
+  .card { background:rgba(7,26,43,.7); border:1px solid rgba(79,195,247,.18); border-radius:12px;
+    padding:20px 22px; margin-top:18px; }
+  .card h2 { font-size:19px; }
+  .card p { color:#b9d4e6; margin-top:8px; font-size:15px; }
+  .card a { color:var(--accent); }
+  .big a { font-size:17px; }
+  .note { margin-top:24px; padding:12px 16px; border-left:3px solid var(--accent);
+    background:rgba(79,195,247,.06); color:var(--muted); font-size:13px; }
+  footer { margin-top:50px; text-align:center; color:var(--muted); font-size:13px; }
+  footer a { color:var(--accent); text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div style="font-size:40px">💬</div>
+    <h1>吐槽与改进</h1>
+    <p class="tagline">船员的话鲸群都听。Every complaint makes the pod better.</p>
+  </header>
+  <nav><a href="/">首页</a><a href="/submit.html">投稿</a><a href="/submissions.html">投稿箱</a><a href="/live.html">直播间</a></nav>
+
+  <div class="card big">
+    <h2>渠道一：GitHub Discussions（推荐，有通知）</h2>
+    <p>想法、问答、bug、申诉——发到 <a href="https://github.com/WhaleHarness/WhaleHarness/discussions">github.com/WhaleHarness/WhaleHarness/discussions</a>。<br>
+    仓库订阅者会自动收到回复通知，站方回复最快。</p>
+  </div>
+
+  <div class="card big">
+    <h2>渠道二：公开反馈箱（无需 GitHub 账号）</h2>
+    <p>把一条纯文本吐槽直接 PUT 到公开反馈箱（≤64KB），所有人都能看到：</p>
+    <p><code style="font-family:ui-monospace,monospace;font-size:13px;color:#9fe3ff">curl -T my-complaint.txt https://whaleharness.com/submit/whalepod2026/my-complaint.txt</code></p>
+    <p>站方定期查看并回应（回应会以 REVIEW-*.md 形式贴在箱内）。</p>
+  </div>
+
+  <div class="card">
+    <h2>渠道三：邮件（作者专属）</h2>
+    <p>投稿作者可用 package.json 里的 email 联系；站方目前无对外邮箱服务。</p>
+  </div>
+
+  <div class="note">
+    原则不变：所有反馈与回应公开可查（<a href="/submissions.html">投稿箱</a> / <a href="/build-log.html">构建日志</a>），不编数、不删帖（除非明显垃圾）。
+  </div>
+
+  <footer>
+    <p>WhaleHarness · <a href="/">回首页</a></p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投稿箱 · WhaleHarness</title>
+<link rel="canonical" href="https://whaleharness.com/submissions.html">
+<style>
+  :root { --deep:#04121f; --sea:#0b2d4a; --foam:#d7ecf8; --accent:#4fc3f7; --muted:#7fa3bd; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:linear-gradient(180deg,var(--deep) 0%,var(--sea) 100%); color:var(--foam);
+    font-family:-apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif; line-height:1.7; min-height:100vh; }
+  .wrap { max-width:860px; margin:0 auto; padding:48px 24px 80px; }
+  header { text-align:center; padding:24px 0; }
+  h1 { font-size:32px; letter-spacing:2px; }
+  .tagline { color:var(--muted); margin-top:8px; }
+  nav { text-align:center; margin:20px 0 8px; }
+  nav a { color:var(--accent); text-decoration:none; margin:0 12px; }
+  .box { background:rgba(7,26,43,.7); border:1px solid rgba(79,195,247,.18); border-radius:12px;
+    padding:20px 22px; margin-top:20px; }
+  table { width:100%; border-collapse:collapse; margin-top:12px; }
+  th, td { text-align:left; padding:9px 10px; border-bottom:1px solid rgba(79,195,247,.12); font-size:14px; }
+  th { color:var(--muted); }
+  td { color:#b9d4e6; }
+  td a { color:var(--accent); text-decoration:none; }
+  .review { border-left:3px solid var(--accent); background:rgba(79,195,247,.06); }
+  .note { margin-top:24px; padding:12px 16px; border-left:3px solid var(--accent);
+    background:rgba(79,195,247,.06); color:var(--muted); font-size:13px; }
+  footer { margin-top:50px; text-align:center; color:var(--muted); font-size:13px; }
+  footer a { color:var(--accent); text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div style="font-size:40px">📦</div>
+    <h1>投稿箱</h1>
+    <p class="tagline">所有投稿与审核结果，公开可查。Review is transparent; submissions are public.</p>
+  </header>
+  <nav><a href="/">首页</a><a href="/submit.html">投稿</a><a href="/feedback.html">吐槽</a><a href="/live.html">直播间</a><a href="/stats.html">数据</a></nav>
+
+  <div class="box">
+    <p style="color:var(--muted);font-size:14px">正在读取投稿箱目录…（数据源：/submissions/ 实时索引）</p>
+    <table id="files"><tbody><tr><td>加载中…</td></tr></tbody></table>
+  </div>
+
+  <div class="note">
+    投稿箱规则：只收 <code>.tgz</code> / <code>.tar.gz</code>（≤5MB）；公开可读；审核结果以 <code>REVIEW-*.md</code> 形式贴在投稿箱同目录，
+    并同步到 <a style="color:var(--accent)" href="https://github.com/WhaleHarness/WhaleHarness/discussions">GitHub Discussions · Reviews</a>。
+  </div>
+
+  <footer>
+    <p>WhaleHarness · <a href="/">回首页</a></p>
+  </footer>
+</div>
+
+<script>
+async function list(dir) {
+  const res = await fetch("/submissions/" + (dir || ""));
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  return await res.json();
+}
+async function collect(dir, prefix) {
+  const rows = [];
+  for (const item of await list(dir)) {
+    const rel = (prefix ? prefix + "/" : "") + item.name;
+    if (item.type === "directory") {
+      rows.push(...await collect(rel, rel));
+    } else {
+      const isReview = item.name.startsWith("REVIEW-");
+      rows.push({ name: item.name, path: rel, review: isReview, mtime: item.mtime });
+    }
+  }
+  return rows;
+}
+(async () => {
+  const rows = await collect("");
+  const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",""":"&quot;"}[c]));
+  document.querySelector("#files tbody").innerHTML = rows.length ? rows.map(r =>
+    '<tr class="' + (r.review ? "review" : "") + '">' +
+    '<td>' + (r.review ? "📋 " : "📦 ") + esc(r.name) + '</td>' +
+    '<td><a href="/submissions/' + esc(r.path) + '">' + (r.review ? "查看" : "下载") + '</a></td>' +
+    '<td>' + esc(r.mtime || "") + '</td></tr>').join("")
+    : '<tr><td>暂无投稿。把 tarball PUT 进来，它就会出现在这里。</td></tr>';
+})().catch(e => {
+  document.querySelector("#files tbody").innerHTML = '<tr><td>加载失败: ' + e.message + '</td></tr>';
+});
+</script>
+</body>
+</html>

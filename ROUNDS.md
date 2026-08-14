@@ -578,6 +578,14 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - agent.json 重新生成（7 插件）；第 8 集直播发布；全部经跳板部署验证
 - 插曲：误删 digest 本地 tarball 导致 pnpm ENOENT，已恢复（测试 profile 用路径依赖，tarball 勿删）
 
+## Round 278（延续第 2 轮）— 反馈渠道三连（完成）
+- 用户三问：投稿反馈及时性 / 更好渠道 / 投稿箱不可见 / 中英混杂
+- 新增 /submissions.html：投稿箱网页版（递归列出文件、REVIEW 高亮、下载链接），修复裸 JSON 体验
+- 新增 /feedback.html：三渠道——GitHub Discussions（推荐，有通知）/ 公开反馈箱（PUT .txt，复用投稿箱端点，实测 201）/ 邮件（暂无服务）
+- 投稿箱正则扩展接受 .txt（反馈与投稿同一公开箱）；首页导航加「投稿箱」「吐槽」双语入口
+- GitHub：审核汇总帖 discussions/2（breathe 上架 + fortune 退回），订阅者得通知——解决反馈及时性
+- 中英混杂：首页为纯语言切换；子页为并置设计（面向国际作者）——待用户定夺是否改切换
+
 ## 当前待办（Round 243+）
 - [ ] 收集渠道 AGENT review1.md + 二周计划，落 day8-14 执行
 - [ ] whaleharness.com DNS 生效后：certbot --expand 加 com 域名；全站 URL 切换 com
