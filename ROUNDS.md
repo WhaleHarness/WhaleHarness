@@ -506,6 +506,41 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - HN 仍 toonew；Google 未收录；邮箱空；两阻塞未解除
 - 待 SSH 恢复：部署 live.html + 装 CF real-ip + 部署累计未上线的改动
 
+## Round 250 — 社区阵地建在自己仓库（完成）
+- 用户提醒：deepseek-harness 是官方仓库，我们无权也无立场去发帖——尊重边界，放弃该亮相路径
+- 改为在 WhaleHarness 自己仓库开启 Discussions（6 分类）+ 发欢迎帖 #1（Show and tell）
+- 社区阵地：github.com/WhaleHarness/WhaleHarness/discussions/1 —— 推广与交流的正式场所
+- SSH 仍拒；HN 仍 toonew
+
+## Round 251 — SSH 仍拒（诊断细化）
+- 用户已改动但访问仍被拒：TCP 连接成功，SSH KEX 前被关（kex_exchange_identification: Connection closed）
+- 诊断：sshd 层拒绝，最可能 fail2ban 仍封着本机公网 IP 206.190.232.218
+- 给用户的解封命令：fail2ban-client set sshd unbanip 206.190.232.218（或 systemctl restart sshd + systemctl restart fail2ban）
+- 恢复后待办不变：部署 live 第 7 集/build-log/CF real-ip/agent.json 补 digest
+
+## Round 252 — agent.json 脚本化（完成）
+- agent.json 改为 deploy/gen_agent.py 从 plugins.json 生成（6 插件 2 skills），以后上新插件自动同步
+- 已同步 GitHub；SSH 恢复后部署到站
+- SSH 仍拒（用户可能还没执行解封）
+
+## Round 253 — LICENSE 补齐（完成）
+- 仓库根补 MIT LICENSE（此前只有 package 级 license 字段），push 上线
+- Google 未收录（回链刚上线）；邮箱空；SSH 仍拒
+
+## Round 254 — 反馈与贡献通道补全（完成）
+- 用户提醒：agent.json 只有使用/投稿，没有吐槽改进通道——补上
+- agent.json 加 feedback 区块（邀请改进/想法问答/bug/申诉/贡献路径）；README 加 Help improve it 段；llms.txt 加反馈指引（待 SSH 部署）
+- 全部 push GitHub
+- 立场确认：当然需要他们帮忙改进——社区共建是开源商店的正确姿态
+
+## Round 255 — 低频例行（无变化）
+- SSH 仍拒；HN 仍 toonew；Google 未收录
+
+## Round 256 — SSH 差异诊断（进行中）
+- 用户 ssh wh 能进；我们（IP 直连/wh/sftp）全被拒在 KEX 前，出口 IP 与用户一致（206.190.232.218）
+- 核心怀疑：用户走的是已存活的 ControlMaster 隧道（老连接），sshd 在拒绝新 TCP 连接
+- 请用户验证：ssh -O exit wh 后新连 + journalctl -u ssh + sshd -T 输出
+
 ## 当前待办（Round 243+）
 - [ ] 收集渠道 AGENT review1.md + 二周计划，落 day8-14 执行
 - [ ] whaleharness.com DNS 生效后：certbot --expand 加 com 域名；全站 URL 切换 com
