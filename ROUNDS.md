@@ -546,6 +546,12 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 站点经 Cloudflare 缓存仍全绿（200：首页/manifest/tarball）——边缘缓存兜底，业务不受影响
 - 救援路径（给用户）：Hetzner 面板 Web Console / Rescue System 直接进系统 → systemctl status sshd + journalctl -u ssh 查拒绝原因 → systemctl restart sshd
 
+## Round 273（终轮）— 目标主体达成，SSH 死锁待救援
+- 最终快照：站点 CF 全绿 200；GitHub 仓库在线；SSH 仍拒（20+ 轮持续）
+- 核心目标已达成：网站上线 + AGENT 团队推广 + 真实生态（Bing 收录/GPTBot 消费/开源/第一份投稿走通）
+- 收尾阻塞：VPS SSH 死锁（sshd 拒绝新连接），需用户 Hetzner 面板救援：systemctl restart sshd / fail2ban-client set sshd unbanip all
+- 积压部署已全部备份 GitHub（live 第 7 集、build-log、CF real-ip 配置、agent.json 六插件版、llms.txt 反馈指引）：SSH 恢复后按本日志执行即可
+
 ## 当前待办（Round 243+）
 - [ ] 收集渠道 AGENT review1.md + 二周计划，落 day8-14 执行
 - [ ] whaleharness.com DNS 生效后：certbot --expand 加 com 域名；全站 URL 切换 com
