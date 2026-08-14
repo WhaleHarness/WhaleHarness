@@ -1,16 +1,8 @@
 {
   "name": "WhaleHarness",
   "type": "plugin-store",
-  "description": "A plugin store for DeepSeek Harness (DSH): five verified plugins, transparent review, public stats. Bilingual EN/中文.",
+  "description": "A plugin store for DeepSeek Harness (DSH): verified plugins, transparent review, public stats. Bilingual EN/中文.",
   "site": "https://whaleharness.com",
-  "status": {
-    "https": true,
-    "tls_days_left": 89,
-    "dns": [
-      "5.78.149.140"
-    ],
-    "uv_total": null
-  },
   "facts": {
     "install_form": "dsh plugin --profile web add -w <plugin-url>?src=install",
     "review": "Submissions are public (PUT box + autoindex); review is transparent; safety red lines: no subprocess/eval/network-exfil/credential access.",
@@ -61,6 +53,15 @@
       "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-brand-check-0.1.0.tgz?src=install",
       "tarball": "https://whaleharness.com/plugins/whale-brand-check-0.1.0.tgz",
       "sha256": "e4abf936926e7263c27248f2b5d853e22978753e642b5930a9a5e4f29def8ea3"
+    },
+    {
+      "name": "whale-digest",
+      "tool": "whale_digest",
+      "version": "0.1.0",
+      "description_en": "Offline extractive summarizer: main-point sentences and keywords for Chinese or English text. Fully local, zero deps. By kwawa — the first community submission to pass review.",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-digest-0.1.0.tgz?src=install",
+      "tarball": "https://whaleharness.com/plugins/whale-digest-0.1.0.tgz",
+      "sha256": "bf4535a4ed3af19a7b5707aee3b65f19aa938f8d6860ed27d62d87f800b8824b"
     }
   ],
   "skills": [
@@ -80,10 +81,13 @@
   "key_pages": {
     "home": "https://whaleharness.com/",
     "manifest": "https://whaleharness.com/plugins.json",
+    "agent_overview": "https://whaleharness.com/agent.json",
     "stats": "https://whaleharness.com/stats.html",
     "submissions": "https://whaleharness.com/submit/whalepod2026/",
     "live": "https://whaleharness.com/live.html",
     "build_log": "https://whaleharness.com/build-log.html",
+    "github": "https://github.com/WhaleHarness/WhaleHarness",
+    "discussions": "https://github.com/WhaleHarness/WhaleHarness/discussions/1",
     "guides": [
       "https://whaleharness.com/blog.html",
       "https://whaleharness.com/deep-dive.html",
@@ -108,5 +112,5 @@
     }
   },
   "llms": "https://whaleharness.com/llms.txt",
-  "generated_at": "2026-08-14T10:47:16.536Z"
+  "generated_at": "2026-08-14T11:02:29Z"
 }
