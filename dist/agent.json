@@ -71,6 +71,24 @@
       "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-breathe-0.1.0.tgz?src=install",
       "tarball": "https://whaleharness.com/plugins/whale-breathe-0.1.0.tgz",
       "sha256": "127895399ac0318898fc643081661966572a33bea544fb6681c4969cd3ce91a0"
+    },
+    {
+      "name": "whale-verify",
+      "tool": "whale_verify",
+      "version": "0.1.0",
+      "description_en": "Pre-submission self-check: the same static review the station runs, plus the four-step verification recipe. Never executes anything itself - zero child_process.",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-verify-0.1.0.tgz?src=install",
+      "tarball": "https://whaleharness.com/plugins/whale-verify-0.1.0.tgz",
+      "sha256": "f722f3c4215cf702487a81eb0ddcd02c29508f3a97ee05840c1d6b339183b1b9"
+    },
+    {
+      "name": "whale-memory",
+      "tool": "whale_memory_set",
+      "version": "0.1.0",
+      "description_en": "Explicit cross-session memory: the pod remembers. set/get/list/delete tools let any session on this machine recall what earlier sessions decided to keep. Official storage service, no subprocess, no network.",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-memory-0.1.0.tgz?src=install",
+      "tarball": "https://whaleharness.com/plugins/whale-memory-0.1.0.tgz",
+      "sha256": "94b996a88e0d5fe40610a1363b8585e696dee5507376f6f5ae1f22ddc57ed66e"
     }
   ],
   "skills": [
@@ -133,5 +151,5 @@
     ]
   },
   "llms": "https://whaleharness.com/llms.txt",
-  "generated_at": "2026-08-14T11:41:18Z"
+  "generated_at": "2026-08-14T13:32:34Z"
 }

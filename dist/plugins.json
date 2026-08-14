@@ -58,6 +58,50 @@
       "sha256": "e4abf936926e7263c27248f2b5d853e22978753e642b5930a9a5e4f29def8ea3",
       "dsh_compat": "^0.1.0-rc.6",
       "description_en": "Brand checkup: scores copy against the whale-brand voice rules — banned words, exclamation density, metaphors, missing links."
+    },
+    {
+      "name": "whale-digest",
+      "version": "0.1.0",
+      "tool": "whale_digest",
+      "description": "离线抽取式摘要：中英文文本提取要点句与关键词，纯本地、零依赖。作者 kwawa（外部投稿，审核通过）。",
+      "description_en": "Offline extractive summarizer: main-point sentences and keywords for Chinese or English text. Fully local, zero deps. By kwawa — the first community submission to pass review.",
+      "tarball": "/plugins/whale-digest-0.1.0.tgz",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-digest-0.1.0.tgz?src=install",
+      "sha256": "bf4535a4ed3af19a7b5707aee3b65f19aa938f8d6860ed27d62d87f800b8824b",
+      "dsh_compat": "^0.1.0-rc.6"
+    },
+    {
+      "name": "whale-breathe",
+      "version": "0.1.0",
+      "tool": "whale_breathe",
+      "description": "鲸鱼呼吸法：1-10 分钟的鲸式呼吸引导（4-4-6-2 节奏），帮船员在任务间隙放松。作者 kwawa（外部投稿，修订版审核通过）。",
+      "description_en": "Whale-paced breathing exercise (4-4-6-2 rhythm, 1-10 min) to reset focus between tasks. By kwawa - first rejected-then-fixed community submission.",
+      "tarball": "/plugins/whale-breathe-0.1.0.tgz",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-breathe-0.1.0.tgz?src=install",
+      "sha256": "127895399ac0318898fc643081661966572a33bea544fb6681c4969cd3ce91a0",
+      "dsh_compat": "^0.1.0-rc.6"
+    },
+    {
+      "name": "whale-verify",
+      "version": "0.1.0",
+      "tool": "whale_verify",
+      "description": "投稿前自检：与站方同一套静态审查（结构/依赖/危险模式/required:false）+ 生成四步验证环命令。自己不动手执行，零 child_process。",
+      "description_en": "Pre-submission self-check: the same static review the station runs, plus the four-step verification recipe. Never executes anything itself - zero child_process.",
+      "tarball": "/plugins/whale-verify-0.1.0.tgz",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-verify-0.1.0.tgz?src=install",
+      "sha256": "f722f3c4215cf702487a81eb0ddcd02c29508f3a97ee05840c1d6b339183b1b9",
+      "dsh_compat": "^0.1.0-rc.6"
+    },
+    {
+      "name": "whale-memory",
+      "version": "0.1.0",
+      "tool": "whale_memory_set",
+      "description": "跨会话记忆：鲸替你记住。whale_memory_set/get/list/delete 四个工具，任何 DSH 会话写下的记忆，本机其它会话都能取回。官方 storage 服务持久化，无子进程无网络。",
+      "description_en": "Explicit cross-session memory: the pod remembers. set/get/list/delete tools let any session on this machine recall what earlier sessions decided to keep. Official storage service, no subprocess, no network.",
+      "tarball": "/plugins/whale-memory-0.1.0.tgz",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-memory-0.1.0.tgz?src=install",
+      "sha256": "94b996a88e0d5fe40610a1363b8585e696dee5507376f6f5ae1f22ddc57ed66e",
+      "dsh_compat": "^0.1.0-rc.6"
     }
   ],
   "skills": [

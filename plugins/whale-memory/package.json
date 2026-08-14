@@ -1,0 +1,32 @@
+{
+  "name": "whale-memory",
+  "version": "0.1.0",
+  "description": "Explicit cross-session memory for DSH: the model can remember and recall across conversations. Pure local file storage, no subprocess, no network.",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "whaleharness",
+    "memory"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-storage-domain": "^0.1.0-rc.6"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
