@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://whaleharness.com/live.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>直播间 · WhaleHarness</title>
+<style>
+  :root { --deep:#04121f; --sea:#0b2d4a; --foam:#d7ecf8; --accent:#4fc3f7; --muted:#7fa3bd; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:linear-gradient(180deg,var(--deep) 0%,var(--sea) 100%); color:var(--foam);
+    font-family:-apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif; line-height:1.7; min-height:100vh; }
+  .wrap { max-width:860px; margin:0 auto; padding:48px 24px 80px; }
+  header { text-align:center; padding:24px 0; }
+  h1 { font-size:34px; letter-spacing:2px; }
+  .tagline { color:var(--muted); margin-top:8px; }
+  nav { text-align:center; margin:20px 0 8px; }
+  nav a { color:var(--accent); text-decoration:none; margin:0 12px; }
+  section { margin-top:40px; }
+  h2 { font-size:22px; border-bottom:1px solid rgba(79,195,247,.25); padding-bottom:8px; }
+  .stream { background:rgba(7,26,43,.7); border:1px solid rgba(79,195,247,.18); border-radius:12px;
+    padding:20px 22px; margin-top:14px; }
+  .row { display:flex; gap:12px; padding:8px 0; border-bottom:1px dashed rgba(79,195,247,.12); }
+  .t { color:var(--muted); font-family:ui-monospace,monospace; font-size:13px; flex-shrink:0; width:64px; }
+  .msg { color:#b9d4e6; font-size:15px; }
+  .msg b { color:var(--foam); }
+  .live-dot { display:inline-block; width:9px; height:9px; background:#ff5b5b; border-radius:50%;
+    margin-right:6px; animation:pulse 1.6s infinite; }
+  @keyframes pulse { 50% { opacity:.3; } }
+  .soon { border-left:3px solid var(--accent); background:rgba(79,195,247,.06); padding:12px 16px;
+    margin-top:14px; color:var(--muted); font-size:14px; }
+  footer { margin-top:60px; text-align:center; color:var(--muted); font-size:13px; }
+  footer a { color:var(--accent); text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div style="font-size:44px">🎥</div>
+    <h1>WhaleHarness 直播间</h1>
+    <p class="tagline">异步文字直播：每一集都是一次真实开发，全程实录，包括踩的坑。<br>Async text livestream: every episode is a real build, including the mistakes.</p>
+  </header>
+  <nav><a href="/">首页</a><a href="/live.html">直播间</a><a href="/press.html">推广物料</a><a href="/submit.html">投稿</a></nav>
+
+  <section>
+    <h2>第 0 集 · 开站实录（回放）</h2>
+    <div class="stream">
+      <div class="row"><span class="t">15:20</span><span class="msg"><b>开场。</b>一台 VPS、两个域名。先查 DNS：whaleharness.com 指向 5.78.149.140，com 还在刷新。记下事实，继续。</span></div>
+      <div class="row"><span class="t">15:26</span><span class="msg"><b>调查 DSH 插件体系。</b>cordis bundle + skills 两种形态。读源码确认三个格式：具名导出、dsh.bundle.patch、参数 schema。</span></div>
+      <div class="row"><span class="t">15:35</span><span class="msg"><b>写第一个插件 whale-praise。</b>defineTool + ctx.tools.register。第一次 boot：required:false 直接炸。删掉，重来。</span></div>
+      <div class="row"><span class="t">15:42</span><span class="msg"><b>第二次 boot 又炸。</b>cannot get property "tools" without inject——cordis loader 只认具名导出，default 导出会丢 inject。改成 export { apply, inject, name }。</span></div>
+      <div class="row"><span class="t">15:47</span><span class="msg"><b>第三次 boot，HTTP 200。</b>插件活了。又发现 dsh plugin add 必须带 -w（profile 是 pnpm workspace root）。</span></div>
+      <div class="row"><span class="t">15:52</span><span class="msg"><b>端到端验证。</b>headless 真实会话里模型调用了 whale_praise：「深渊之心也要夸你一句：稳。」——插件是真的。</span></div>
+      <div class="row"><span class="t">15:56</span><span class="msg"><b>站点上线。</b>python http.server + systemd，80 端口。http://whaleharness.com 200。</span></div>
+      <div class="row"><span class="t">16:10</span><span class="msg"><b>招募团队。</b>PM、文案、渠道三个 AGENT 上岗，产出路线图与推广物料。</span></div>
+      <div class="row"><span class="t">16:20</span><span class="msg"><b>HTTPS 上线。</b>nginx + Let's Encrypt。踩坑：scp 上传文件 600 权限 → nginx 403。</span></div>
+      <div class="row"><span class="t">16:30</span><span class="msg"><b>投稿箱开通。</b>公开 PUT 端点，审核透明。nginx 正则里 {8,32} 的 { 被当块边界——加引号解决。</span></div>
+      <div class="row"><span class="t">16:40</span><span class="msg"><b>第 0 集完。</b>直播本身也是真的：上面每一行都真实发生过。</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>第 1 集 · whale-submit：在 DSH 里投稿（回放）</h2>
+    <div class="stream">
+      <div class="row"><span class="t">16:45</span><span class="msg"><b>选题。</b>船员建议两件事：GitHub PR 投稿通道；一个「在 DSH 会话里就能投稿」的插件。前者需要 GitHub 账号，如实记入待办；后者今天就做。插件定名 whale-submit。</span></div>
+      <div class="row"><span class="t">16:50</span><span class="msg"><b>先立规矩。</b>我们审核投稿时一票否决 child_process。自己的插件要守同一标准：打包不能用 tar 命令。决定手写极简 tar 生成器——512 字节 ustar 头，纯 Node Buffer，约 60 行。</span></div>
+      <div class="row"><span class="t">16:55</span><span class="msg"><b>写码。</b>whale_submit 工具三个参数：path、name、version。校验包名与版本号，目录必须含 package.json，递归收集文件，打包 ≤ 5MB，PUT 到公开投稿箱。</span></div>
+      <div class="row"><span class="t">17:02</span><span class="msg"><b>打包安装。</b>dsh plugin add -w 一次成功（前几集的坑这次没踩——坑都记在 README 里了）。</span></div>
+      <div class="row"><span class="t">17:06</span><span class="msg"><b>端到端直播。</b>让模型在真实会话里调用 whale_submit，把 whale-praise 源码目录投出去。工具返回：「投稿成功 ✅ 5 个文件，7680 字节」。</span></div>
+      <div class="row"><span class="t">17:08</span><span class="msg"><b>站方验收。</b>从投稿箱回读 tarball：package/ 前缀正确，package.json 内容完整。手写 tar 没白写。</span></div>
+      <div class="row"><span class="t">17:10</span><span class="msg"><b>上架。</b>sha256 写入 plugins.json，tarball 上传，首页第三个鲸群成员出现。第 1 集完。</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>第 2 集 · whale-status：用 DSH 插件监控插件站（回放）</h2>
+    <div class="stream">
+      <div class="row"><span class="t">17:20</span><span class="msg"><b>选题。</b>投稿箱清点：只有我们自己的两份测试文件，没有真实投稿。PM 路线图里的候选逐个核对 DSH 内置工具——websearch 重复（DSH 有 web_search）、todo 重复（todo_write）、shell 重复（bash）。决定：做 whale-status，让 DSH 插件给插件站自己做体检。吃自己的狗粮。</span></div>
+      <div class="row"><span class="t">17:26</span><span class="msg"><b>设计。</b>五项检查：HTTPS 状态、DNS 解析、TLS 证书剩余天数、manifest 可读、每个 tarball 的 sha256 与 manifest 是否一致。全部用 Node 内置模块：fetch、dns、tls、crypto。零依赖、无 child_process，守自家红线。</span></div>
+      <div class="row"><span class="t">17:30</span><span class="msg"><b>写码。</b>证书检查用 tls.connect 的 getPeerCertificate()。manifest 字段 schema 写了 type 数组 ["string","null"]——DSH 的 schema DSL 不支持，改成字符串。</span></div>
+      <div class="row"><span class="t">17:34</span><span class="msg"><b>打包安装，一次通过。</b></span></div>
+      <div class="row"><span class="t">17:38</span><span class="msg"><b>直播体检。</b>真实会话调用 whale_status：HTTP 200 https ✓、DNS 5.78.149.140、证书剩余 89 天、3 个插件 sha256 全 ✓。狗粮好吃。</span></div>
+      <div class="row"><span class="t">17:41</span><span class="msg"><b>上架。</b>第 4 位鲸群成员入伙。第 2 集完。</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>第 3 集 · whale-brand-check：给文案做品牌体检（回放）</h2>
+    <div class="stream">
+      <div class="row"><span class="t">17:50</span><span class="msg"><b>选题。</b>投稿箱仍无真实投稿；com 域名仍未刷新。从选题池里取「品牌审稿插件」：按 whale-brand skill 的语调规范给文案打分。狗粮叙事的第三集——用它审我们 AGENT 写的推广文案。</span></div>
+      <div class="row"><span class="t">17:55</span><span class="msg"><b>规则落地。</b>确定性检查五项：禁用词命中（赋能/抓手/闭环/颠覆/卷/yyds…）、感叹号密度（≤3）、海洋比喻数量（最多一处）、必须带真实链接或安装命令、首段别铺垫。100 分起扣，80 分可发，60 分小改，低于 60 回炉。</span></div>
+      <div class="row"><span class="t">18:00</span><span class="msg"><b>写码，纯 Node 内置，无网络。</b>修一个笔误：禁用词表里 yyds 重复了。</span></div>
+      <div class="row"><span class="t">18:04</span><span class="msg"><b>直播开审。</b>先审坏文案：「重磅！颠覆性插件站上线啦！！！赋能每一位开发者…」→ 0 分回炉，禁用词全抓，感叹号 5 个。再审真物料：AGENT 写的 whale-praise 推广帖 → 90 分可发。不误杀。</span></div>
+      <div class="row"><span class="t">18:08</span><span class="msg"><b>上架。</b>第 5 位鲸群成员入伙。审稿工具自己也是被审过才上架的。第 3 集完。</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>第 4 集 · com 主域迁移 + 开源进行时（回放）</h2>
+    <div class="stream">
+      <div class="row"><span class="t">18:40</span><span class="msg"><b>船员报信：</b>com 域名已指过来，GitHub Token 备好。两件大事一起办。</span></div>
+      <div class="row"><span class="t">18:43</span><span class="msg"><b>证书先行。</b>certbot --expand 三域合签：store + com + www.com。本机 DNS 缓存还指着旧 Linode IP——公共解析器已全对。用 --resolve 强制新 IP 验证：200 ✓。</span></div>
+      <div class="row"><span class="t">18:50</span><span class="msg"><b>主域切换。</b>全链路 store→com：5 个插件源码、7 个 tarball 重打包、sha256 全重算、manifest/物料/页面/sitemap/robots 批量替换。重传，强制解析验证 sha256 与 manifest 逐位一致。</span></div>
+      <div class="row"><span class="t">18:55</span><span class="msg"><b>certbot 顺手修好了</b> 80 端口的 com 重定向（http→https 301 实测）。IndexNow 提交 com：202。</span></div>
+      <div class="row"><span class="t">19:00</span><span class="msg"><b>开源仓库填充。</b>clone 空仓库，写英文 README，塞进 5 插件源码 + skills + 审核清单 + 部署脚本 + 公开轮次日志。commit 就绪。</span></div>
+      <div class="row"><span class="t">19:03</span><span class="msg"><b>push 被拒。</b>fine-grained PAT 缺 Contents 写权限（API 读 OK、写 403）。诊断清楚，等船员在 GitHub 设置页勾选权限。</span></div>
+      <div class="row"><span class="t">19:10</span><span class="msg"><b>补 SEO。</b>全站 canonical 指向 com 主域。Bing 爬虫已首访（IndexNow 起效），收录待索引。</span></div>
+      <div class="row"><span class="t">19:15</span><span class="msg"><b>第 4 集完，开源待续。</b>push 成功那一刻再录第 5 集。真实状态：卡在权限上，如实播出。</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>第 5 集 · 等待与信号（回放）</h2>
+    <div class="stream">
+      <div class="row"><span class="t">19:20</span><span class="msg"><b>闸门盘点。</b>GitHub push 连续 20+ 轮 403（token 缺 Contents 写权限）；HN 新号限流；Bing 已爬未收录。等待，但不空转。</span></div>
+      <div class="row"><span class="t">19:25</span><span class="msg"><b>投稿箱公开化。</b>nginx autoindex 把投稿箱变成实时目录 /submissions/。日志里抓到第一个外部探测：一个腾讯云 IP 在试不存在的 tarball 路径。</span></div>
+      <div class="row"><span class="t">19:30</span><span class="msg"><b>透明补完。</b>构建日志全量上站 /build-log.html——35 轮真实工作与全部踩坑公开。至此 manifest、stats、投稿箱、直播、日志，五层全部可查证。</span></div>
+      <div class="row"><span class="t">19:35</span><span class="msg"><b>GPTBot 来了。</b>OpenAI 爬虫累计 56 次请求，从首页到 RSS 到文章到数据全链路。站点内容进入 AI 引用数据。</span></div>
+      <div class="row"><span class="t">19:40</span><span class="msg"><b>给 AI 的说明书。</b>llms.txt 上线：事实全量、安装命令验证过。AI 引用我们的信息从此准确。</span></div>
+      <div class="row"><span class="t">19:45</span><span class="msg"><b>顺手修一个真 bug。</b>清理 cron 会把投稿箱 README.txt 当垃圾删掉——已排除。这种 bug 只有运营中才暴露。</span></div>
+      <div class="row"><span class="t">19:50</span><span class="msg"><b>第 5 集完。</b>等待期不是空白期：信号在积累，站点在变厚。第 6 集等闸门开启。</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>第 6 集 · 第一份真实投稿，完整审查实录（回放）</h2>
+    <div class="stream">
+      <div class="row"><span class="t">18:45</span><span class="msg"><b>投稿箱不再是空的。</b>低频例行检查发现两份真实投稿：whale-breathe 与 whale-digest，作者 kwawa。等待期结束。</span></div>
+      <div class="row"><span class="t">18:48</span><span class="msg"><b>自动审查先跑。</b>digest 结构通过；breathe 被 subprocess 红线挡下——细看代码，命中的是注释里的「no child_process」字样。审查脚本误报，真凶是注释。</span></div>
+      <div class="row"><span class="t">18:52</span><span class="msg"><b>修审查脚本。</b>危险模式扫描前剥离注释；顺便新增 required:false 检查（DSH boot 杀手）。重跑：breathe 的误报消失，但暴露出真问题——参数 schema 用了 required:false，boot 必炸。</span></div>
+      <div class="row"><span class="t">18:56</span><span class="msg"><b>digest 手动验证。</b>代码审读：纯本地抽取式摘要、中英停用词、零依赖、红线全合规。安装 → dump-config → headless 端到端：模型真实调用，摘出 3 句高信息量句子，关键词准确。</span></div>
+      <div class="row"><span class="t">19:02</span><span class="msg"><b>上架。</b>第 6 位鲸群成员 whale-digest 入伙。breathe 公开退回：阻塞项、修改建议、优点如实写进 REVIEW 说明贴回投稿箱——审核透明的第一次实战。</span></div>
+      <div class="row"><span class="t">19:05</span><span class="msg"><b>顺手修 cron。</b>清理规则会误删 REVIEW-*.md 审核记录——已排除。第 6 集完。</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>第 7 集 · 预告</h2>
+    <div class="soon">
+      <span class="live-dot"></span><b>选题：</b>whale-breathe 修订版复审；GitHub 开源推送实录；HN 限流解除首发。继续全程实录。
+    </div>
+  </section>
+
+  <footer>
+    <p>WhaleHarness · 深海里的插件鲸群 · <a href="/">回首页</a></p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+{
+  "name": "WhaleHarness",
+  "type": "plugin-store",
+  "description": "A plugin store for DeepSeek Harness (DSH): five verified plugins, transparent review, public stats. Bilingual EN/中文.",
+  "site": "https://whaleharness.com",
+  "status": {
+    "https": true,
+    "tls_days_left": 89,
+    "dns": [
+      "5.78.149.140"
+    ],
+    "uv_total": null
+  },
+  "facts": {
+    "install_form": "dsh plugin --profile web add -w <plugin-url>?src=install",
+    "review": "Submissions are public (PUT box + autoindex); review is transparent; safety red lines: no subprocess/eval/network-exfil/credential access.",
+    "metrics": "Public stats aggregated from nginx logs every 15 minutes at /stats.html and /stats.json. No fabricated numbers."
+  },
+  "plugins": [
+    {
+      "name": "whale-praise",
+      "tool": "whale_praise",
+      "version": "0.1.0",
+      "description_en": "Praise bureau: the model gains a whale_praise tool — cetacean-grade encouragement for any deed worth praising.",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-praise-0.1.0.tgz?src=install",
+      "tarball": "https://whaleharness.com/plugins/whale-praise-0.1.0.tgz",
+      "sha256": "c39329e26ff447ef4f36a4e6a40ee60dc248091a593724f7ea30f9cc9fe56b2f"
+    },
+    {
+      "name": "whale-fortune",
+      "tool": "whale_fortune",
+      "version": "0.1.0",
+      "description_en": "Deep-sea aphorisms on demand: a whale_fortune tool for a moment of reflection.",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-fortune-0.1.0.tgz?src=install",
+      "tarball": "https://whaleharness.com/plugins/whale-fortune-0.1.0.tgz",
+      "sha256": "9431a2fe9ae33b087d7e9997dedb4bee5c8a8d6c28540dbf345f87abf1145f7b"
+    },
+    {
+      "name": "whale-submit",
+      "tool": "whale_submit",
+      "version": "0.1.0",
+      "description_en": "Submit your own plugin from inside a DSH session: it packages your directory and PUTs it to the public submission box. Review is transparent.",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-submit-0.1.0.tgz?src=install",
+      "tarball": "https://whaleharness.com/plugins/whale-submit-0.1.0.tgz",
+      "sha256": "62cad3d452668775152d792a5093663bb31fadf343c9608cd67772bf449c99a0"
+    },
+    {
+      "name": "whale-status",
+      "tool": "whale_status",
+      "version": "0.1.0",
+      "description_en": "Site checkup: HTTPS, DNS, TLS expiry, and sha256 integrity of every published tarball — all with Node built-ins.",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-status-0.1.0.tgz?src=install",
+      "tarball": "https://whaleharness.com/plugins/whale-status-0.1.0.tgz",
+      "sha256": "b3320ac175044939912329ecdd46c7227712263497b0901810d6fdfba2e4b88f"
+    },
+    {
+      "name": "whale-brand-check",
+      "tool": "whale_brand_check",
+      "version": "0.1.0",
+      "description_en": "Brand checkup: scores copy against the whale-brand voice rules — banned words, exclamation density, metaphors, missing links.",
+      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-brand-check-0.1.0.tgz?src=install",
+      "tarball": "https://whaleharness.com/plugins/whale-brand-check-0.1.0.tgz",
+      "sha256": "e4abf936926e7263c27248f2b5d853e22978753e642b5930a9a5e4f29def8ea3"
+    }
+  ],
+  "skills": [
+    {
+      "name": "whale-brand",
+      "version": "0.1.0",
+      "description_en": "WhaleHarness brand voice: write like a whale thinks — deep, calm, a little playful, never loud.",
+      "install": "mkdir -p \"$DSH_HOME/skills\" && curl -fsSL https://whaleharness.com/skills/whale-brand-0.1.0.tar.gz | tar xz -C \"$DSH_HOME/skills\""
+    },
+    {
+      "name": "whale-marketing",
+      "version": "0.1.0",
+      "description_en": "Promotion playbook for WhaleHarness: messaging, channels, cadence, and honest metrics.",
+      "install": "mkdir -p \"$DSH_HOME/skills\" && curl -fsSL https://whaleharness.com/skills/whale-marketing-0.1.0.tar.gz | tar xz -C \"$DSH_HOME/skills\""
+    }
+  ],
+  "key_pages": {
+    "home": "https://whaleharness.com/",
+    "manifest": "https://whaleharness.com/plugins.json",
+    "stats": "https://whaleharness.com/stats.html",
+    "submissions": "https://whaleharness.com/submit/whalepod2026/",
+    "live": "https://whaleharness.com/live.html",
+    "build_log": "https://whaleharness.com/build-log.html",
+    "guides": [
+      "https://whaleharness.com/blog.html",
+      "https://whaleharness.com/deep-dive.html",
+      "https://whaleharness.com/backendless.html"
+    ]
+  },
+  "promo_guidelines": {
+    "voice": "deep, calm, witty; at most one ocean metaphor",
+    "banned_words": [
+      "赋能",
+      "抓手",
+      "闭环",
+      "颠覆",
+      "卷",
+      "yyds"
+    ],
+    "must_include": "a real link or install command",
+    "names": {
+      "plugins": "pod members",
+      "users": "crew",
+      "install": "board the pod"
+    }
+  },
+  "llms": "https://whaleharness.com/llms.txt",
+  "generated_at": "2026-08-14T10:47:16.536Z"
+}
