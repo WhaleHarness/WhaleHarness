@@ -154,22 +154,23 @@ const statusTool = defineTool({
     schema: {
       type: "object",
       additionalProperties: false,
+        required: ["url", "https", "http_code", "dns", "tls_days_left", "manifest", "store_plugins", "plugins", "checked_at", "updates"],
       properties: {
-        url: { type: "string", required: true },
-        https: { type: "boolean", required: true },
-        http_code: { type: "number", required: true },
+        url: { type: "string" },
+        https: { type: "boolean" },
+        http_code: { type: "number" },
         dns: { type: "array", items: { type: "string" } },
-        tls_days_left: { type: "number", required: true },
-        manifest: { type: "string", required: true },
+        tls_days_left: { type: "number" },
+        manifest: { type: "string" },
         store_plugins: {
           type: "array",
           items: {
             type: "object",
             additionalProperties: false,
             properties: {
-              name: { type: "string", required: true },
-              version: { type: "string", required: true },
-              tarball: { type: "string", required: true },
+              name: { type: "string" },
+              version: { type: "string" },
+              tarball: { type: "string" },
               sha256_ok: { type: "boolean" }
             }
           }
@@ -180,27 +181,27 @@ const statusTool = defineTool({
             type: "object",
             additionalProperties: false,
             properties: {
-              name: { type: "string", required: true },
-              installed: { type: "string", required: true },
-              profile: { type: "string", required: true },
-              source: { type: "string", required: true },
-              verification: { type: "string", required: true },
+              name: { type: "string" },
+              installed: { type: "string" },
+              profile: { type: "string" },
+              source: { type: "string" },
+              verification: { type: "string" },
               audit_version: { type: "string" },
               issues: { type: "array", items: { type: "string" } }
             }
           }
         },
-        checked_at: { type: "string", required: true },
+        checked_at: { type: "string" },
         updates: {
           type: "array",
           items: {
             type: "object",
             additionalProperties: false,
             properties: {
-              name: { type: "string", required: true },
-              installed: { type: "string", required: true },
-              latest: { type: "string", required: true },
-              profile: { type: "string", required: true }
+              name: { type: "string" },
+              installed: { type: "string" },
+              latest: { type: "string" },
+              profile: { type: "string" }
             }
           }
         }
