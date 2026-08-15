@@ -113,12 +113,13 @@ async function checkSite() {
     out.updates = local.updates;
     out.plugins = local.plugins.map((p) => {
       const a = audit.get(p.name);
+      const inStore = storeNames.has(p.name);
       return {
         name: p.name,
         installed: p.version,
         profile: p.profile,
-        source: storeNames.has(p.name) ? "store" : a ? "audited" : "other",
-        verification: a ? (a.verdict === "PASS" ? "pass" : a.verdict === "REJECT" ? "reject" : "unevaluated") : "unverified",
+        source: inStore ? "store" : a ? "audited" : "other",
+        verification: inStore ? "pass" : a ? (a.verdict === "PASS" ? "pass" : a.verdict === "REJECT" ? "reject" : "unevaluated") : "unverified",
         audit_version: a?.version ?? "",
         issues: a?.issues ?? []
       };
@@ -224,7 +225,9 @@ const statusTool = defineTool({
         if (p.verification === "reject" && p.issues.length > 0) {
           line += "：" + p.issues.join("；");
         }
-        if (p.verification !== "unverified") {
+        if (p.source === "store" && p.verification === "pass") {
+          line += "（商店在架验证）";
+        } else if (p.verification !== "unverified") {
           line += "（审计 " + p.audit_version + "）";
         }
         lines.push(line);
