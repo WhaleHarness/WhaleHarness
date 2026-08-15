@@ -156,12 +156,12 @@ const statusTool = defineTool({
       additionalProperties: false,
         required: ["url", "https", "http_code", "dns", "tls_days_left", "manifest", "store_plugins", "plugins", "checked_at", "updates"],
       properties: {
-        url: { type: "string" },
-        https: { type: "boolean" },
-        http_code: { type: "number" },
-        dns: { type: "array", items: { type: "string" } },
-        tls_days_left: { type: "number" },
-        manifest: { type: "string" },
+        url: { type: "string", required: true },
+        https: { type: "boolean", required: true },
+        http_code: { type: "number", required: true },
+        dns: { type: "array", required: true, items: { type: "string" } },
+        tls_days_left: { type: "number", required: true },
+        manifest: { type: "string", required: true },
         store_plugins: {
           type: "array",
           items: {
@@ -191,7 +191,7 @@ const statusTool = defineTool({
             }
           }
         },
-        checked_at: { type: "string" },
+        checked_at: { type: "string", required: true },
         updates: {
           type: "array",
           items: {
