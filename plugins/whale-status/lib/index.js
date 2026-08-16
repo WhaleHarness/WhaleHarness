@@ -125,7 +125,7 @@ async function checkSite() {
       };
     });
     for (const p of manifest.plugins) {
-      const tarballRes = await fetch(SITE + p.tarball);
+      const tarballRes = await fetch(SITE + p.tarball + "?src=verify"); // verify traffic, excluded from download stats
       if (!tarballRes.ok) {
         out.store_plugins.push({ name: p.name, version: p.version, tarball: "HTTP " + tarballRes.status });
         continue;

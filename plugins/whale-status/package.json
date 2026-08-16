@@ -1,6 +1,6 @@
 {
   "name": "whale-status",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "WhaleHarness checkup inside a DSH session: site health (HTTPS, DNS, TLS, tarball integrity) plus a local plugin checkup with verification status (audited PASS / REJECT / unverified) and update checks.",
   "type": "module",
   "main": "lib/index.js",
