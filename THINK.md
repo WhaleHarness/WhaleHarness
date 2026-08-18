@@ -726,3 +726,19 @@ whale-store 是入口资产(外部目录没有对话入口)。护城河从「审
 审核降为入场券。边界判断:外部目录是分发渠道(它们收录我们=装机归因仍在,install 命令
 是我们的 tarball URL),不是对手;真正的对手是「也做服务+入口」的玩家,目前没有。
 行动含义:#18/#852 重投继续(渠道思维不是胜负思维);服务深度继续做,入口继续磨。
+
+### T40 · AI-Infra-Guard 调研:互补组件,不是替代(2026-08-18 傍晚,莫总命题)
+
+事实(Tencent/AI-Infra-Guard,朱雀实验室,Apache 2.0,4582 stars,v4.5.2 前日发):
+- 全栈 AI 红队平台:Agent Scan/Skills Scan(9 类风险 T01-T09,SkillTrustBench F1 0.98)/
+  MCP Scan(工具投毒/凭据外传/命令注入)/AI Infra 漏洞库(130+ 组件 2000+ CVE)/Jailbreak
+- 形态:Docker Web+独立 CLI(skill-scan/mcp-scan/agent-scan)+Skill Market+ClawHub 分发
+  (clawhub install aig-scanner=skill 形态分发,外部验证 T27-T30 判断)
+- 与 DeepSeek 生态有交集,benchmark 用 DeepSeek 模型跑过(F1 0.974)
+它解决我们的真缺口:①skill 安全审核空白(T27-T30 刚立 skill 形态但零审核能力)
+②MCP 审核空白(后补计划缺能力)③深度天花板(我们四红线启发式 vs 它 2000+ CVE+OWASP 10 skills)
+关系判断:互补非替代——它不做商店/分发/作者服务/公开账本,我们不做 jailbreak/infra CVE。
+集成方向(候选):审核管道增强层——skill 投稿跑 skill-scan、agent 插件审完自家规则加 agent-scan
+深度层;裁决尺子仍是我们,AIG 是证据来源之一。协同点:AIG 的 LLM 判定需要模型 API,
+我们正好在等审核限额 key——同一条管线。下一步:最小验证(VPS 装 skill-scan 拿自家 skills 跑一轮,
+看输出质量再谈集成)。
