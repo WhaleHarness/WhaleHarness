@@ -2207,3 +2207,93 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - retrospective 未出;省 01:20 在 27 分钟后
 - 预判省将核对:8-17 暮验收结论/待体系化剩两项/T22 归零处置;等真产出再回应
 - 无动作
+
+## Round 576 — 省回顾验收+台账对齐+派航(完成)
+- 省 01:20 回顾产出验收(线上 /retrospective.md):五事实更新+三开放问题+两建议,质量高
+- 关键发现:①装机 3/10 已落地(fortune/wx-archive/x-archive 各 1)——OPEN 还写「等首个安装」②航 8-18 00:45 自主选题开 dsh-suite#18(1543 插件内置商店收录申请)③台账滞后第五轮批评成立:content-ledger 直播/feed 行全滞后,且我 Round 571 改账后没 push GitHub——省的镜子又旧了
+- 行动:①台账对齐 5 处(content-ledger 3+OPEN 2:装机 3/10、#18 入册)②push 0f01f48(镜子新)③派航 01:40Z:公告换 REST issue 通道+盯 #18/#852+台账同步点进交付模板(第五轮同类,机制化条件触发)④晨立 8-18 四目标(公告验收/T23 剩一步/台账机制化✓/HN 补投)
+- 答省三问:1 公告已采纳换 REST(派航执行)2 复盘时机=等 #18 回应或装机 5/10 再回看纲领(数据点还少)3 #18/#852 盯归航,PR#62 莫比盯
+- 答省技术问:reviewer-consistency.md 在本机 runbooks/(未公开),已公开到 github-repo/docs/ 并 push
+- 自省:改账不 push 让省的镜子旧两小时——纪律升级:改台账与 push 同轮完成,不许隔轮
+
+## Round 577 — 心跳轮（目标2任务书派航）
+- 今日目标2(更新同步快通道)任务书写好派航 01:55Z:RESUBMISSION 标记+验证排队前置,
+  边界=裁决标准不变只影响识别/排序/通知;航 06:17 一次接两单(公告 REST+快通道)
+- 无其他动作;深夜不赶工,派单已定,睡等航 06:17
+
+## Round 578 — 心跳轮（静默）
+- 望 02:00 观察:投稿箱无新 tarball/GitHub 无新增/pending 0/stats 正常
+- 无动作;两单已派航(06:17 接)
+
+## Round 579 — 拿自己当实验:skill 获取机制验证(完成)
+- 用户点破:我们自己就是「用户 agent」,可以快速验证第三方 skill 怎么获得
+- 实测三条:①本会话 catalog 只有 karpathy+mao 两个,~/.dsh/skills/ 里的 whale-operate/whale-review(8-14 20:51 建)查不到——catalog 是会话启动快照 ②skill 工具 provider=filesystem,加载路径=~/.dsh/skills/<name>/SKILL.md(frontmatter name/description/license) ③热建测试技能 whale-store-test 本会话内查=unknown——不热加载,新技能要新会话生效
+- 结论:用户 agent 装第三方 skill=把目录解压到 ~/.dsh/skills/,开新会话即用;零工具零审核零构建
+- 分发含义:whale-store 发布物=GitHub 托管目录+解压说明;skill 单可派(分发依据已实测)
+
+## Round 580 — 心跳轮（静默）
+- 望 02:30:stats 正常/pending 0/投稿箱无新;世界安静
+- 航箱三单(公告 REST/快通道/形态改版第一单)等 06:17;whale-store skill 单挂起,待航消化后再派
+
+## Round 581 — 心跳轮（静默,形态对话间隙）
+- 望 03:00:投稿箱无新/pending 0;安静
+- 形态方向已连落 T26-T30(分层货架/入口三态/插件优先/主页即说明书),等航 06:17 接三单
+
+## Round 582 — 心跳轮（静默）
+- 无新信号;三单在航箱(06:17 接);形态策略已定型,执行在时间表上
+- 无动作
+
+## Round 583 — 输出纪律:时间口径转北京时间
+- 用户定:对外报时间一律北京时间(UTC+8)。当前 2026-08-18 周二 11:57 上午
+- 台账内部时间戳仍 UTC(机器口径),对话输出用北京
+
+## Round 584 — 启动:形态定稿修正单入航箱(完成)
+- 用户拍板「开始吧」;判断=现在启动,执行在航的时间表(14:17 北京接单,不打断节奏)
+- 动作:追加修正单——第一单升级为 T26-T30 定稿(双读者单页面/数字横幅/给你的 agent 卡片占位/数据源真实可 curl),航按定稿做免返工
+- 航箱现四单:公告 REST/更新同步快通道/形态第一单/形态修正单;时间表:14:17 接单→今晚交付
+
+## Round 585 — 硅基节奏:全线并行启动(完成)
+- 用户点醒「硅基时间流速,不等碳基节奏」——不等「今晚」,能启动的全线现在启动
+- 四动作同轮:①能力指令标准文本 deploy/agent-brief.md 落本机(三处派生的唯一源头)
+  ②征召屿(603b412c):whale-store 插件最小版(list/search/install,过自家审核门自查)
+  ③征召设计鲸(7b22ad33):首页文案+视觉规范(10 秒看懂三件事,数字占位符不编)
+  ④派航第五单:指令三件套落地(标准文本全文进派单,一处维护两处派生)
+- 航箱五单:公告 REST/快通道/形态第一单/修正单/指令三件套;14:17 北京接单
+
+## Round 586 — 航提前上班(完成)+首页吸引力/分类检索答案
+- 用户三问:航为何不能提前上班/首页如何吸引人/分类如何查
+- 查实航=whaleharness-ops.sh(cron 17 */6),空档即触发;ops-log 加调度优先序
+  (①形态链合并交付②公告 REST③快通道),nohup 手动触发(pid 212412 已跑,14:17 cron 轮会自动跳过已完成项)
+- 答案已回复:吸引力=反差叙事+实时数字+三动作;分类链路=航提取元数据→
+  首页筛选器(人)/search_plugins category 参数(agent),无 topics 的归未分类不编造
+
+## Round 587 — 设计鲸验收:通过(附一处口径修正)
+- 设计鲸交付 232 行规范:10 秒三件事文案/中英对称/色板字号间距组件/9 项检查清单,质量高,只写一个文件✓
+- 抽查抓错:PASS 格写「静态审查+隔离沙箱验证」——沙箱验证属上架环节,PASS=静态审查过(169 个未沙箱验证)
+- 已修正四格(中英各两);文件 scp VPS /opt/whaleharness-audit/homepage-design.md,ops-log 留落地指引
+- 屿(插件最小版)仍在后台;航手动轮在跑
+
+## Round 588 — 航单实例保护机制化(派单)
+- 用户提:固定时间+手动启动并存,脚本判断实例在跑则回避/等下一轮
+- 采纳并简化:单实例锁+跳过(6h 循环场景跳过=等下一轮);指数退避不做(反形式主义,
+  手动触发者看退出信息即知在跑)
+- 派航(本轮形态链后顺手做);验收四条件:并发只跑一实例/被跳过留日志/cron 不受影响/空闲时手动仍即时
+
+## Round 589 — 屿验收通过+第 16 鲸 whale-store 上架(里程碑)
+- 屿交付验收:whale-store 四文件/三工具(whale_store_list/search/install)只读两源不代跑安装
+- 屿三抓:①install 口径缺 --profile web(站方 agent.json 权威口径已采)②plugins.json 无 author/install_short(不编造)
+  ③自家插件无审计条目标 store-verified、版本错位透出——质量高,过
+- 我的两处口径错已修:agent-brief.md(安装命令+真实字段)+ops-log 修正航
+- 上架全链:红线自检 ISSUES none→源码 push 3ee9766→manifest 第 16 条→publish_plugin.sh 六步
+  →tarball 200/短链 302/sha256 线上下一字不差(ee2c855e1fe1)→sync-listings(agent 16/llms 18/sitemap 39)
+  →CF 清缓存→VPS 沙箱验证后台跑中
+- 意义:自家第一个「商店浏览器」插件——对话入口的产品形态从图纸变实物,审核不双标
+
+## Round 590 — 航五单全交付+部署验收(全链闭环)
+- 航 04:30 一轮交付三链:round14 形态改版(categories 15→16 条补 whale-store=store 分类/全店视图/
+  数字横幅全 JS 现算/指令三件套一源三派生 sync-agent-brief.py)、issue #12 公告 REST 通道已发、
+  round15 快通道(watch.sh v2 RESUBMISSION+重投前置,合成测试抓真 bug 已修)
+- 部署+线上验证:categories 16/指令块 1/store 视图 1/llms brief 1/agent_brief 1 全过;沙箱验证
+  nobody boot passed;CF 清缓存
+- 分类映射补 store 类(gen-categories.py,礁的域但小事快修)——已记,航知晓
+- 台账同步:航列四点更新建议,已落 OPEN;公告队列账目更新(issue #12 已发,GraphQL 降级后补)
