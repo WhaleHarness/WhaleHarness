@@ -48,6 +48,7 @@
 - 回流留存≥1:**已达标**(08-17 iactionfan 第二插件 x-archive 上架,第 15 鲸)
 - 体检师装机≥10:归因已建(installs_by_plugin),已 3/10(fortune/wx-archive/x-archive 各 1,8-17 数据)
 - 外部消费≥1:未达成(dsh-market 拒/#852 等;敲门继续挂,不等门吃饭)
+- 精选上架线:✓ 首跑 5/5(SKU 16→21,屿);PASS 池剩余转化+lib/ 门槛待判断
 - 责任:省(回顾时核对)
 
 ## 9. 公告队列

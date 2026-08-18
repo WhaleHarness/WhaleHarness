@@ -2297,3 +2297,21 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
   nobody boot passed;CF 清缓存
 - 分类映射补 store 类(gen-categories.py,礁的域但小事快修)——已记,航知晓
 - 台账同步:航列四点更新建议,已落 OPEN;公告队列账目更新(issue #12 已发,GraphQL 降级后补)
+
+## Round 591 — 心跳轮（今日目标盘:三闭环一待）
+- 8-18 目标:公告 REST ✓(issue #12)/快通道 ✓(round15)/台账机制化 ✓;HN 收工前补投
+- 形态改版上线:功能验收全过;视觉验收(0.5 秒不丑+10 秒三件事)待浏览器目测——请用户看
+
+## Round 592 — 心跳轮（验收纪律固化:页面类交付必须通读+人目测）
+- 莫总三轮纠首页(判定视角/堆砌/粗制滥造),根因=我的验收方式:grep 计数只验功能在,验不了页面对
+- 固化:pod-delegation 验收规范加第 4 条——页面类交付 grep 不算验收,须通读全文+按读者走一遍
+  (人首屏 10 秒三件事+第一眼美观;agent 抓取可见),最后请人目测
+- 航在跑整页重做;屿在跑精选上架
+
+## Round 593 — 屿精选上架首跑验收:5/5 上架,SKU 16→21(里程碑)
+- 屿从 PASS 池挑 5 独立插件全链上架:dsh-navbar/deeplink/subagent-tools/spend/context-doctor(MIT/BSD)
+- 抽查验收:线上 21 条、source.repo 全外部真实+40 位 commit、tarball 200/短链 302/llms 200、审查零问题、沙箱全绿
+- 屿关键发现:publish_plugin.sh 硬编码自家 repo→外部插件丢溯源;已派屿固化 publish_curated.sh(参数化 source,管道唯一写者纪律保留)
+- 屿跳过判据真实:lib/ 未提交(8 个)/@deepseek-ai/ squatting guard 生效/monorepo/无 LICENSE——安全网在起作用
+- 第一次收录纯 client 插件(4 个),tool 字段按能力 slug 口径已写清
+- 航首页重做作业中
