@@ -57,10 +57,11 @@ fi
 echo "[1/7] 可复现打包 $NAME $VERSION (source: $REPO @ $COMMIT12)"
 bash deploy/build_tgz.sh "$SRC" "$TGZ"
 
-echo "[2/7] 静态审查(review-submission.py 原样, REJECT 即停)"
-python3 tools/review-submission.py "$TGZ" --manifest dist/plugins.json | tee /tmp/publish_curated_review.txt || true
-if grep -q "verdict: REJECT" /tmp/publish_curated_review.txt && ! grep -q "already in the store" /tmp/publish_curated_review.txt; then
-  echo "审查 REJECT,发布中止"; exit 1
+echo "[2/7] 静态审查(review-submission.py 原样, RED-LINE/FORMAT-ISSUE 即停)"
+if ! python3 tools/review-submission.py "$TGZ" --manifest dist/plugins.json > /tmp/publish_curated_review.txt 2>&1; then
+  echo "审查阻塞(RED-LINE/FORMAT-ISSUE,退出码非零),发布中止"
+  cat /tmp/publish_curated_review.txt
+  exit 1
 fi
 
 echo "[3/7] manifest 条目(source.repo/commit 从 entry 注入)"
