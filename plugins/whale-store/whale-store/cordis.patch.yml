@@ -1,4 +1,0 @@
-# WhaleHarness bundle patch: inserts the whale-store tools into any profile.
-- insert:
-    - id: whale-store
-      name: whale-store
