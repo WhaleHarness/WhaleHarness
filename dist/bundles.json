@@ -1,0 +1,126 @@
+{
+ "name": "WhaleHarness",
+ "baseUrl": "https://whaleharness.com",
+ "generated_at": "2026-08-19T15:31:29Z",
+ "bundles": [
+  {
+   "id": "agent-team",
+   "name": "AI 团队协作",
+   "name_en": "Agent Team",
+   "tagline": "把 DSH 当多角色团队：委派分工、计划、汇报、独立验收。",
+   "tagline_en": "Run DSH as a multi-role team: delegation, planning, reporting, independent acceptance.",
+   "plugins": [
+    {
+     "name": "dsh-subagent-tools",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-subagent-tools-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-subagent-cwd",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-subagent-cwd-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-plannotator",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-plannotator-0.1.3.tgz?src=install"
+    },
+    {
+     "name": "dsh-report-studio",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-report-studio-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-proof",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-proof-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-task-status",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-task-status-0.3.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-deep-research",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deep-research-0.1.0.tgz?src=install"
+    }
+   ]
+  },
+  {
+   "id": "knowledge-base",
+   "name": "知识库",
+   "name_en": "Knowledge Base",
+   "tagline": "让 DSH 变成可检索、可沉淀的知识中枢：记忆、检索、摘要。",
+   "tagline_en": "Turn DSH into a searchable, accumulating knowledge hub: memory, retrieval, summarization.",
+   "plugins": [
+    {
+     "name": "dsh-memento",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memento-0.2.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-knowledge",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-knowledge-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-memoir",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memoir-0.4.3.tgz?src=install"
+    },
+    {
+     "name": "whale-memory",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-memory-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-premise-guard",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-premise-guard-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-deepread",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deepread-0.5.4.tgz?src=install"
+    },
+    {
+     "name": "whale-digest",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-digest-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-web-search-exa",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-web-search-exa-0.1.3.tgz?src=install"
+    }
+   ]
+  },
+  {
+   "id": "ui-beauty",
+   "name": "界面美化",
+   "name_en": "UI & Beauty",
+   "tagline": "让 DSH Web GUI 好看好玩：皮肤、HUD、宠物与看板娘。",
+   "tagline_en": "Make the DSH Web GUI pleasant and playful: skins, HUD, pets and mascots.",
+   "plugins": [
+    {
+     "name": "dsh-skin",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-skin-0.2.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-dream-skin",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-dream-skin-0.3.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-theme",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-theme-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-hud",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-hud-1.0.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-reasoning-effort",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-reasoning-effort-0.4.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-whale-musume",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-whale-musume-1.4.1.tgz?src=install"
+    },
+    {
+     "name": "deepseek-pet",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/deepseek-pet-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-chat-timeline",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-chat-timeline-0.1.3.tgz?src=install"
+    }
+   ]
+  }
+ ]
+}
