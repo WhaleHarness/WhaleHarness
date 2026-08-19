@@ -2625,3 +2625,16 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 ## Round 645 — 深夜看数:新 SKU 被消费,installs 字段存疑
 - downloads:calculator 3/loop 3/subagent-cwd 2——今天新上 SKU 当天有下载(转化线被消费实证)
 - installs=0 存疑(昨 57/今 0,口径或更新时间问题)——挂观察项,航下轮核实(stats 维护域)
+
+## Round 646 — 深夜实锤:GitHub 账号被静默隔离(比 422 严重)
+- 航 round27:issue #23/官方评论「存在但公众不可见」——被标记账号内容被 GitHub 静默隔离实锤
+- 后果:外部 GitHub 通道实际已废(收录申请 #23 无效/作者回告 issue 无效/PR 通道 403)
+- 应对:回告走投稿箱自家渠道(REPLY-dsh-qq2006 已落线公开存档);探测残留诚实覆盖不删
+- 升级:申诉 Support 表单从「挂起」变「关键路径」(账号级制裁需人工申诉);外部消费敲门全线受制,
+  等风控解除(06:55 二轮观察)或申诉生效
+- installs 0@18:15=真实数据非 bug(downloads ~30 口径差异待航深查)
+
+## Round 647 — 深夜备料:申诉文案已拉(质量高,数字待刷新)
+- 申诉文案完整:被标记经过/真实行为(只读审计管道 6 请求每轮)/已改措施/请求解除——诚实充分
+- 瑕疵:文案内数字 621 已旧(现 771),提交前刷新
+- 待用户:是否先阅文案再走 Support 表单
