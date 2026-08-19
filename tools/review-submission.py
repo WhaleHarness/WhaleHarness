@@ -73,7 +73,7 @@ OFFICIAL_REPO_PREFIX = "deepseek-ai/"
 SUBPROCESS_IMPORT = re.compile(
     r"node:child_process|require\(['\"]child_process['\"]\)|from\s+['\"]child_process['\"]"
 )
-SUBPROCESS_CALL = re.compile(r"\b(?:execFile(?:Sync)?|spawn(?:Sync)?|fork)\s*\(")
+SUBPROCESS_CALL = re.compile(r"\b(?:execFile(?:Sync)?|spawn(?:Sync)?)\s*\(|(?<![\w.])fork\s*\(")
 SHELL_EXEC = re.compile(r"(?<![\w.])exec(?:Sync)?\s*\(")  # bare exec/execSync = shell string
 SHELL_FLAG = re.compile(r"shell\s*:\s*true")
 SHELL_C = re.compile(r"\b(?:bash|zsh|sh|fish|dash|ksh)\s+-c\b|['\"]-c['\"]")

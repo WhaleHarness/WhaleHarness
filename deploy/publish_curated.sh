@@ -64,7 +64,17 @@ if ! python3 tools/review-submission.py "$TGZ" --manifest dist/plugins.json > /t
   exit 1
 fi
 
-echo "[3/7] manifest 条目(source.repo/commit 从 entry 注入)"
+if [ "$DRY" = "0" ]; then
+  echo "[3/8] 两阶段 Docker 沙箱(stage1 有网装依赖→stage2 禁网 boot, 支持硬依赖插件)"
+  scp -F /tmp/moby-ssh.cfg "$TGZ" wh:/tmp/publish_curated_sandbox.tgz
+  if ! ssh -F /tmp/moby-ssh.cfg wh 'bash /usr/local/bin/whaleharness-review-docker.sh /tmp/publish_curated_sandbox.tgz 2>&1; rm -f /tmp/publish_curated_sandbox.tgz' | tee /tmp/publish_curated_docker.txt | grep -q "docker review passed"; then
+    echo "Docker 沙箱验证未通过,发布中止"
+    cat /tmp/publish_curated_docker.txt
+    exit 1
+  fi
+fi
+
+echo "[4/8] manifest 条目(source.repo/commit 从 entry 注入)"
 SHA=$(shasum -a 256 "$TGZ" | cut -d' ' -f1)
 SHA12=$(printf '%.12s' "$SHA")
 python3 - "$SHA" "$ENTRY" "$SRC" "$DRY" "$NAME" "$VERSION" "$REPO" "$COMMIT" <<'PYEOF'
@@ -110,22 +120,22 @@ if [ "$DRY" = "1" ]; then
   exit 0
 fi
 
-echo "[4/7] 重生成短链"
+echo "[5/8] 重生成短链"
 python3 deploy/gen_p_short.py
 
-echo "[5/7] 部署 VPS(tar 单流)+nginx"
+echo "[6/8] 部署 VPS(tar 单流)+nginx"
 COPYFILE_DISABLE=1 tar czf /tmp/publish_curated.tgz -C dist plugins/$NAME-$VERSION.tgz plugins.json
 COPYFILE_DISABLE=1 tar czf /tmp/publish_curated_inc.tgz -C deploy whaleharness-p-short.inc
 scp -F /tmp/moby-ssh.cfg /tmp/publish_curated.tgz wh:/tmp/publish_curated.tgz
 scp -F /tmp/moby-ssh.cfg /tmp/publish_curated_inc.tgz wh:/tmp/publish_curated_inc.tgz
 ssh -F /tmp/moby-ssh.cfg wh 'cd /srv/whaleharness && tar xzf /tmp/publish_curated.tgz 2>/dev/null; tar xzf /tmp/publish_curated_inc.tgz -C /tmp 2>/dev/null; cp /tmp/whaleharness-p-short.inc /etc/nginx/whaleharness-p-short.inc; chmod 644 /srv/whaleharness/plugins.json /srv/whaleharness/plugins/*.tgz; nginx -t && systemctl reload nginx'
 
-echo "[6/7] sync-listings(派生文件同步)+CF 清缓存"
-ssh -F /tmp/moby-ssh.cfg wh 'cd /srv/whaleharness && python3 /opt/whaleharness-audit/tools/sync-listings.py --base /srv/whaleharness --out /srv/whaleharness && chmod 644 /srv/whaleharness/agent.json /srv/whaleharness/llms.txt /srv/whaleharness/sitemap.xml'
+echo "[7/8] sync-listings + gen-categories(派生文件同步)+CF 清缓存"
+ssh -F /tmp/moby-ssh.cfg wh 'cd /srv/whaleharness && python3 /opt/whaleharness-audit/tools/sync-listings.py --base /srv/whaleharness --out /srv/whaleharness && python3 /usr/local/bin/gen-categories.py /srv/whaleharness/plugins.json /srv/whaleharness/plugins > /tmp/categories.json && cp /tmp/categories.json /srv/whaleharness/categories.json && chmod 644 /srv/whaleharness/agent.json /srv/whaleharness/llms.txt /srv/whaleharness/sitemap.xml /srv/whaleharness/categories.json'
 CF_TOKEN=$(cat cf.txt)
 curl -s --max-time 20 -X POST 'https://api.cloudflare.com/client/v4/zones/8792301b0a58d9bff1140a16c868efc6/purge_cache' -H "Authorization: Bearer $CF_TOKEN" -H 'Content-Type: application/json' -d '{"purge_everything":true}' > /dev/null
 
-echo "[7/7] 线上验证"
+echo "[8/8] 线上验证"
 sleep 2
 TCODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "https://whaleharness.com/plugins/$NAME-$VERSION.tgz")
 LCODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "https://whaleharness.com/p/$NAME")

@@ -2566,3 +2566,38 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 8-19 HN 投递:POST 302(与 toonew 不同),但 Algolia 查无命中——未发布成功(302 跳回或静默丢弃)
 - 诚实记录;每日一投纪律照旧,不重试
 - 今日目标:冷却✓省✓红宝书✓精选第二批✓HN 已投(未发布)
+
+## Round 635 — 数字自动跟平全链实证(第三次)
+- 12:41 轮:审计 671→721;红宝书静态=721;前门 submit「721 在册」/blog「227 of 721」全自动跟平
+- sync-redbook v3 钩子+前门回填连续三轮零人工——「数字永不漂」机制稳定运行
+- 待:航构建实验交付/屿沙箱升级+重跑 3 插件
+
+## Round 636 — 屿第三批扩量验收:19/19,SKU 31→50(里程碑)
+- 屿扩量批 19 个全链上架(4 host 工具+2 tool+client+13 client),可打包池主体清空
+- 抽查:50 条/溯源真实/llms 50/cats 50(gen-categories 管道步骤生效);dsh-loop 404 是我版本猜错(0.3.0 实际 200)
+- 屿抓修:批量浅克隆 7 个 HEAD 未落 audit commit(unshallow 修复);同名 repo 撞名跳过
+- 边界:剩余 ~20 个低价值皮肤/宠物 client 未继续(近 3h 上限);沙箱升级单待接
+- SKU 里程碑:21→50(两天两批 29 个);精选转化线吞吐验证
+
+## Round 637 — 沙箱两阶段接线完成:SKU 53(第三堵墙拆除)
+- 屿交付:3 个硬依赖 host 插件(dsh-model-router/proof/web-search-exa)全过两阶段 Docker 沙箱上架
+- 能力闲置实锤:Docker 镜像与脚本早就在,验证环一直切错线;现在管道固化 [3/8] 两阶段沙箱(失败即中止)
+- 抽查:53 条/三插件溯源真实/管道第 68 行 [3/8] 在
+- 转化线三堵墙:批大小(已扩 19/批)/lib 构建(航实验待回)/沙箱硬依赖(已拆)——剩构建口径一道
+
+## Round 638 — 开闸批验收:通过(SKU 56)+礁误报单
+- 屿开闸批:v2 三处同步+sha 一致实证;3/3 上架(spotlight/explain/anysearch);dsh-memory 真实 RED-LINE 被抓对
+- 屿抓审查器误报:dsh-milestone sessions.fork 方法名被当 subprocess——派礁修+回归案例
+- dsh-tool-git 审计 commit 被 force-push 不可溯源,诚实跳过
+- 抽查:56 条/三插件溯源真实;构建口径开闸实证(两批管道 sha 可复现)
+
+## Round 639 — 礁误报修复验收:通过(回归 10/10)
+- 礁修:fork 检测加负向后顾(?<![\w.])fork,方法名不误判,真 fork 靠 import/require 兜底
+- 实测:回归 10/10 全绿(fork-method-name PROCEED/fork-child-process RED);dsh-milestone 不再误报;真红线 5/5 仍红
+- dsh-milestone 可转下一批上架;审查器四盲区后第五个案例修复
+
+## Round 640 — 价值修正批验收:22/23,SKU 56→78(里程碑)
+- 屿执行价值纪律:皮肤/宠物/趣味全上(判据只可打包/过审/沙箱过),22/23 成功
+- 抽查:78 条/pet×2/dream-skin/whale-musume(1.4.1)/portable-tavern 溯源真实;cats 78/llms 78 派生齐
+- dsh-qq2006 沙箱 boot 失败(cordis.patch.yml 缺 insert 包裹,真实格式 bug)诚实跳过
+- 货架三层成型:有用+好看+好玩;21→78(两天 57 个);「好看好玩」层从被否到上架=价值纪律首战

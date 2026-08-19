@@ -136,6 +136,32 @@ module.exports = { calc };
         [],
         "package/dist/index.js",
     ),
+    (
+        "fork-method-name",
+        "合法写法(必须绿)",
+        "GREEN",
+        """
+const sessions = { fork: (opts) => opts };
+function rewind(atSeq) { return sessions.fork({ sessionId: 's', atSeq, increaseTitle: true }); }
+module.exports = { rewind };
+""",
+        [],
+        ["subprocess", "red-line"],
+        "package/lib/index.js",
+    ),
+    (
+        "fork-child-process",
+        "真红线(必须红)",
+        "RED",
+        """
+const { fork } = require('child_process');
+const child = fork('./worker.js');
+module.exports = { child };
+""",
+        ["subprocess"],
+        [],
+        "package/lib/index.js",
+    ),
 ]
 
 
