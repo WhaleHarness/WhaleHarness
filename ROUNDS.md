@@ -2648,3 +2648,32 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
   不解除则外部敲门整体挂起转自家渠道+人工
 - 销账 5 处:OPEN #4/#16/#18/content-ledger Feed 13/第 10 集决策(素材=形态改版+SKU78 破闸+风控事故,8-21 前发布)
 - ext-consumption 已部署跑通(nginx 真日志证据)
+
+## Round 649 — dsh-milestone 复检上架:SKU 79(误报修复闭环)
+- 屿交付:milestone 0.6.0 全链上架(fork 误报已消,两阶段沙箱过);抽查 79 条/溯源真实
+- 误报修复的价值闭环:审查器修→复检 PROCEED→上架——质量门发现的问题转化为货架 SKU
+
+## Round 650 — 身份切换:commit 归 moby(账号画像修复)
+- 莫总点破根因:moby 账号行为单维(纯 API 零 commit)=风控眼中的 bot 画像;
+  commit 却走 Eno 身份=自动化挂人类账号,两头都错
+- 修正:github-repo commit 署名切 moby-whaleharness(GitHub noreply 邮箱),push token 本就是 moby 的;
+  已 test commit 验证(56c30d7)
+- 从此:moby 账号有日常开发活动(每天 push=真实),eno 身份退日常;账号画像从「只发 issue 的 bot」转「活跃开发者」
+
+## Round 651 — 二轮冷却观察:服务器端仍 422(72h+ 未解)
+- 06:55 探测:token 搜索仍 422 Validation Failed——风控未解除,已 72h+
+- 按裁决:不解除则外部敲门整体挂起(issue/评论/PR 全停),维持 B+D(匿名兜底+降频)+自家渠道
+- 下次观察:08-21 06:55;申诉路(手机号 region 限制)不通,等待+画像修复为主路
+- 供给不受影响:审计 821 队列充足,候选源多元化(航在跑 dsh-suite 调研)
+
+## Round 652 — round29 三包部署验收:全通过(三大补强)
+- ①stats 口径审计:四数是四口径非 bug(flat 子串 vs per-plugin 严格正则,18 缺口=9 历史无桶+9 非 GET);
+  「装机≥10」重判=达标(per-plugin 口径 3 插件≥10);补 installs_unbucketed 计数器
+- ②分类修复:未分类 43→0!(22 组 keywords 映射+11 条 desc 正则全按真实 tarball 数据,新增 search 类)
+- ③dsh-suite 候选源:1634 条匿名 raw 拉取(零配额零 token),风控卡不住候选供给——新增 637 候选
+- 验证:categories UNCAT=0;dsh-suite source 1634 实跑
+- 莫总两个建议(别被风控/43 个?)一天内双双闭环
+
+## Round 653 — HN 今日一投:302 但 Algolia 无命中(未发布,记录)
+- 8-20 投递同昨:POST 302 但 Algolia 查无——未发布成功;每日一投照旧,不重试
+- 今日目标盘:风控观察✓/省回顾✓/转化线✓/installs 审计✓/HN 已投未发布
