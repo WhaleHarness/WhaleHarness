@@ -2723,3 +2723,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 设计鲸交付:for humans 三小组(逛 4/读 4/参与 3)+for agents 保留+GitHub 底行;低频页退出 footer
 - 部署+清缓存;命名统一决策:全站用「审计」(footer 与 nav 一致)
 - 派航:新 footer 进 build-chrome.py 单源,全站 16 页同步
+
+## Round 663 — round32 部署验收:chip bug 修复+全站 chrome 同步(通过)
+- 航交付:chip bug 根因=catOf 空串 vs uncat 键失配(计数与过滤失配),一行修复+14 chip 实测全有卡片;
+  新 footer 三小组进 build-chrome.py 单源,16 页幂等重生成,命名统一「审计」
+- 部署+验证:五页 footer 三小组在;round32 基底=设计鲸新视觉(未覆盖新视觉)
+- 审计 971(+50 稳定);红宝书自动跟平
