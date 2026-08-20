@@ -1,7 +1,7 @@
 {
  "name": "WhaleHarness",
  "baseUrl": "https://whaleharness.com",
- "generated_at": "2026-08-19T15:31:29Z",
+ "generated_at": "2026-08-20T13:36:19Z",
  "bundles": [
   {
    "id": "agent-team",
@@ -9,14 +9,42 @@
    "name_en": "Agent Team",
    "tagline": "把 DSH 当多角色团队：委派分工、计划、汇报、独立验收。",
    "tagline_en": "Run DSH as a multi-role team: delegation, planning, reporting, independent acceptance.",
+   "curate": {
+    "source": "知乎答主实践（把 DSH 当多角色团队协作的做法，2026-08 社区讨论）。",
+    "note": "策展初版：成员由人工按 plugins.json 的 description/tool 字段 + 焦虑-解决映射挑选，非装机数据驱动；待装机数据验证后校正。",
+    "basis": "画像：老手用 DSH 做复杂多步任务，需要分工、计划回环、产出与验收。焦虑清单见各成员。",
+    "members": [
+     {
+      "name": "dsh-subagent-tools",
+      "reason": "焦虑「一个 agent 忙不过来」→ 子代理委派，把子任务分出去"
+     },
+     {
+      "name": "dsh-plannotator",
+      "reason": "焦虑「计划执行偏了没人纠」→ 内联批注计划，结构化反馈回环"
+     },
+     {
+      "name": "dsh-report-studio",
+      "reason": "焦虑「要交报告没空整理」→ 会话直接转可交付工作报告"
+     },
+     {
+      "name": "dsh-proof",
+      "reason": "焦虑「AI 产出没人验收」→ 每个 turn 结束 spawn 只读验证子代理并反馈缺口"
+     },
+     {
+      "name": "dsh-task-status",
+      "reason": "焦虑「后台任务看不到进度」→ 输入区上方任务进度条"
+     },
+     {
+      "name": "dsh-deep-research",
+      "reason": "焦虑「复杂调研要耗半天」→ 深度研究编排，复用 web_search/web_fetch"
+     }
+    ]
+   },
+   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-subagent-tools-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-plannotator-0.1.3.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-report-studio-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-proof-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-task-status-0.3.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deep-research-0.1.0.tgz?src=install",
    "plugins": [
     {
      "name": "dsh-subagent-tools",
      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-subagent-tools-0.1.0.tgz?src=install"
-    },
-    {
-     "name": "dsh-subagent-cwd",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-subagent-cwd-0.1.0.tgz?src=install"
     },
     {
      "name": "dsh-plannotator",
@@ -38,89 +66,172 @@
      "name": "dsh-deep-research",
      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deep-research-0.1.0.tgz?src=install"
     }
-   ]
+   ],
+   "verified": false,
+   "verify_ref": "BUNDLE-VERIFY.md"
   },
   {
    "id": "knowledge-base",
    "name": "知识库",
    "name_en": "Knowledge Base",
-   "tagline": "让 DSH 变成可检索、可沉淀的知识中枢：记忆、检索、摘要。",
-   "tagline_en": "Turn DSH into a searchable, accumulating knowledge hub: memory, retrieval, summarization.",
+   "tagline": "读、记、找三件事的闭环：深读长文、跨会话记忆、网络检索。",
+   "tagline_en": "A read-remember-find loop: deep-read long docs, cross-session memory, web retrieval.",
+   "curate": {
+    "source": "生态数据聚类：PASS 池 memory/检索/摘要类插件密集（10+），反映跨会话记忆与检索是 DSH 高频需求。",
+    "note": "策展初版：成员由人工按 plugins.json 的 description/tool 字段 + 焦虑-解决映射挑选，非装机数据驱动；待装机数据验证后校正。",
+    "basis": "画像：知识型用户多会话工作，闭环是「读长文→记结论→找资料」。最少完备=读/记/找各一个代表。",
+    "members": [
+     {
+      "name": "dsh-deepread",
+      "reason": "焦虑「长文读不完/提不出要点」→ 深读抽取核心论点/论证结构/证据"
+     },
+     {
+      "name": "dsh-memento",
+      "reason": "焦虑「跨会话记不住上次结论」→ 结构化 SQLite 记忆，下次会话可查"
+     },
+     {
+      "name": "dsh-web-search-exa",
+      "reason": "焦虑「外部资料找不到」→ 零配置网络搜索 provider"
+     }
+    ]
+   },
+   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deepread-0.5.4.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memento-0.2.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-web-search-exa-0.1.3.tgz?src=install",
    "plugins": [
-    {
-     "name": "dsh-memento",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memento-0.2.0.tgz?src=install"
-    },
-    {
-     "name": "dsh-knowledge",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-knowledge-0.1.0.tgz?src=install"
-    },
-    {
-     "name": "dsh-memoir",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memoir-0.4.3.tgz?src=install"
-    },
-    {
-     "name": "whale-memory",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-memory-0.1.0.tgz?src=install"
-    },
-    {
-     "name": "dsh-premise-guard",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-premise-guard-0.1.0.tgz?src=install"
-    },
     {
      "name": "dsh-deepread",
      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deepread-0.5.4.tgz?src=install"
     },
     {
-     "name": "whale-digest",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-digest-0.1.0.tgz?src=install"
+     "name": "dsh-memento",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memento-0.2.0.tgz?src=install"
     },
     {
      "name": "dsh-web-search-exa",
      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-web-search-exa-0.1.3.tgz?src=install"
     }
-   ]
+   ],
+   "verified": false,
+   "verify_ref": "BUNDLE-VERIFY.md"
   },
   {
    "id": "ui-beauty",
    "name": "界面美化",
    "name_en": "UI & Beauty",
-   "tagline": "让 DSH Web GUI 好看好玩：皮肤、HUD、宠物与看板娘。",
-   "tagline_en": "Make the DSH Web GUI pleasant and playful: skins, HUD, pets and mascots.",
+   "tagline": "好看、状态可见、有陪伴感：换肤、HUD、看板娘。",
+   "tagline_en": "Pleasant to look at, status at a glance, a companion: skin, HUD, mascot.",
+   "curate": {
+    "source": "货架装机数据：趣味/视觉类领跑（fortune 运势签 22/日），皮肤=美观需求、宠物=陪伴感（2026-08 校准）。",
+    "note": "策展初版：成员由人工按 plugins.json 的 description/tool 字段 + 焦虑-解决映射挑选，非装机数据驱动；待装机数据验证后校正。",
+    "basis": "画像：日常使用的视觉与情绪需求。最少完备=美观/状态/陪伴各一个代表，不堆叠同质换肤。",
+    "members": [
+     {
+      "name": "dsh-skin",
+      "reason": "焦虑「界面单调」→ 换肤切换器 + 自定义壁纸"
+     },
+     {
+      "name": "dsh-hud",
+      "reason": "焦虑「状态/用量看不到」→ HUD 面板（git/MCP/技能/模型/token）"
+     },
+     {
+      "name": "dsh-whale-musume",
+      "reason": "焦虑「没有陪伴感」→ 鲸娘看板娘吉祥物"
+     }
+    ]
+   },
+   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-skin-0.2.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-hud-1.0.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-whale-musume-1.4.1.tgz?src=install",
    "plugins": [
     {
      "name": "dsh-skin",
      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-skin-0.2.0.tgz?src=install"
     },
     {
-     "name": "dsh-dream-skin",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-dream-skin-0.3.0.tgz?src=install"
-    },
-    {
-     "name": "dsh-theme",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-theme-0.1.0.tgz?src=install"
-    },
-    {
      "name": "dsh-hud",
      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-hud-1.0.0.tgz?src=install"
     },
     {
-     "name": "dsh-reasoning-effort",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-reasoning-effort-0.4.0.tgz?src=install"
-    },
-    {
      "name": "dsh-whale-musume",
      "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-whale-musume-1.4.1.tgz?src=install"
-    },
-    {
-     "name": "deepseek-pet",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/deepseek-pet-0.1.0.tgz?src=install"
-    },
-    {
-     "name": "dsh-chat-timeline",
-     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-chat-timeline-0.1.3.tgz?src=install"
     }
-   ]
+   ],
+   "verified": false,
+   "verify_ref": "BUNDLE-VERIFY.md"
+  },
+  {
+   "id": "newbie-productivity",
+   "name": "新手生产力",
+   "name_en": "Newbie Productivity",
+   "tagline": "给「对 AI 感兴趣但不熟」的新手：费用透明、记忆、长文总结、报告，配上轻松正反馈。",
+   "tagline_en": "For newcomers interested in AI but not yet fluent: cost transparency, memory, long-doc summaries, reports — plus light positive feedback.",
+   "curate": {
+    "source": "莫总画像：AI 新手提效（对 AI 感兴趣但不熟的新用户）。",
+    "note": "策展初版：成员由人工按 plugins.json 的 description/tool 字段 + 焦虑-解决映射挑选，非装机数据驱动；待装机数据验证后校正。",
+    "basis": "画像：新手对 AI 的典型焦虑是「乱花钱、记不住、不会用」，逐个给解法 + 正反馈降挫败。",
+    "members": [
+     {
+      "name": "dsh-calculator",
+      "reason": "焦虑「AI 会不会乱花钱」→ 右上角费用卡让每会话/全部花费透明"
+     },
+     {
+      "name": "whale-memory",
+      "reason": "焦虑「AI 记不住上次说过什么」→ 显式跨会话记忆"
+     },
+     {
+      "name": "dsh-deepread",
+      "reason": "焦虑「长文档不会提炼」→ 一句总结出要点"
+     },
+     {
+      "name": "dsh-report-studio",
+      "reason": "焦虑「要交日报/周报没头绪」→ 会话转可交付报告"
+     },
+     {
+      "name": "whale-fortune",
+      "reason": "焦虑「上手有挫败感」→ 一支运势签的轻松正反馈"
+     },
+     {
+      "name": "whale-praise",
+      "reason": "焦虑「想被鼓励/表扬人」→ 鲸群认证的表扬"
+     }
+    ]
+   },
+   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-calculator-1.2.1.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-memory-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deepread-0.5.4.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-report-studio-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-fortune-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-praise-0.1.0.tgz?src=install",
+   "plugins": [
+    {
+     "name": "dsh-calculator",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-calculator-1.2.1.tgz?src=install",
+     "trigger": "「我这个会话花了多少钱？」"
+    },
+    {
+     "name": "whale-memory",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-memory-0.1.0.tgz?src=install",
+     "trigger": "「记住我偏好中文回复」"
+    },
+    {
+     "name": "dsh-deepread",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deepread-0.5.4.tgz?src=install",
+     "trigger": "「把这份文档总结成 3 点」"
+    },
+    {
+     "name": "dsh-report-studio",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-report-studio-0.1.0.tgz?src=install",
+     "trigger": "「把今天做的事整理成日报」"
+    },
+    {
+     "name": "whale-fortune",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-fortune-0.1.0.tgz?src=install",
+     "trigger": "「抽一支运势签」"
+    },
+    {
+     "name": "whale-praise",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-praise-0.1.0.tgz?src=install",
+     "trigger": "「表扬一下刚才帮我修 bug 的队友」"
+    }
+   ],
+   "onboarding": {
+    "first_task": "先试 dsh-deepread：对 AI 说「把这份文档总结成 3 点」；再试 whale-memory：说「记住我偏好中文回复」下次验证；最后看右上角 dsh-calculator 费用卡确认花费。",
+    "first_task_en": "Try dsh-deepread first: tell the AI \"summarize this doc into 3 points\". Then whale-memory: say \"remember I prefer Chinese replies\" and verify next session. Finally check the dsh-calculator cost card (top-right)."
+   },
+   "verified": true,
+   "verify_ref": "BUNDLE-VERIFY.md"
   }
  ]
 }
