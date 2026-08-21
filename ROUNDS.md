@@ -2764,3 +2764,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 航交付:同 round29 方法扩映射(22 新 SKU 按真实 tarball keywords/description),UNCAT 0;
   dsh-pet ui→fun=证据升级非误伤;顺带发现站点无 UA 403 机制问题(gen-categories 已加 UA 修复)
 - 部署+验证:live UNCAT=0 total=118
+
+## Round 670 — round36 验收+共生分析首跑发现污染(通过)
+- 航交付:install-cooccur.py(合成全验证)+llms 修复(1071/886/822);部署+真实跑通
+- 关键发现:top 共生对全是自家来源(gen-categories 下载全库+哨兵 curl)——数据污染实锤
+- 派航修复:自家 IP/UA 排除层+重跑;诚实预期:排除后真实信号可能很少(装机规模小)
+- 审计 1121(+50/轮,dsh-suite 源供血中)
