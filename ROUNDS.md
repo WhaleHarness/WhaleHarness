@@ -2770,3 +2770,13 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 关键发现:top 共生对全是自家来源(gen-categories 下载全库+哨兵 curl)——数据污染实锤
 - 派航修复:自家 IP/UA 排除层+重跑;诚实预期:排除后真实信号可能很少(装机规模小)
 - 审计 1121(+50/轮,dsh-suite 源供血中)
+
+## Round 671 — 第六批验收:21 上架 SKU 118→139(规模验证期 +44/两天)
+- 屿第六批 21 个全链上架(全 deps=0 免构建);重名预检建议已落实(DUP-name 3 跳过)
+- 抽查:139 条/溯源真实;UNCAT 8(新批映射缺口)——派屿补映射+机制化(UNCAT>0 警告进流程)
+- 规模验证期两天:SKU 95→139(+44),货架里程碑 200 已走 70%
+
+## Round 672 — 映射补单验收:UNCAT 0/139+预警机制固化(通过)
+- 屿交付:8 UNCAT 扩映射全分类(无误伤 diff 8/8);gen-categories-check.py 预警(UNCAT>0 报清单)
+  固化进 publish_curated.sh step 7b——分类缺口循环机制性终结
+- 抽查:live UNCAT=0 total=139;机制在管道
