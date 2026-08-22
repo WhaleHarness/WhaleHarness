@@ -2899,3 +2899,11 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 全文读:「trust neither the author nor the reviewer — trust the record」立住哲学;两失败→四步→真实数字→真实案例
 - 零营销词全可核查——诚实纪律外化成内容;增长线国际渠道第一块敲门砖
 - 记入简报夸航(质量对得起门)
+
+## Round 694 — 总经理收官:8-22 暮验收+8-23 目标(履行职责)
+- 8-22 五目标全落+六附加(SKU 164/whale-shot 分工/简报机制/自查清单/Google 专项/dev.to 首发)
+- 今日教训链:①先搜现成(webbridge)→确认场景→缺就造(whale-shot)——复用优先再验证
+  ②查证到底(dev.to 真相链:cookies→confirm→user-signed-in→API key)不猜第三次
+  ③防自动化分层攻正门(官方 API 终案)——莫总两拨(看 API/给 key)直接终结 8 轮迷宫
+  ④自己的问题=三层兜底(自查清单/省镜子/用户终审)
+- 8-23 五目标;总经理职责=账清/教训明/方向定——已交
