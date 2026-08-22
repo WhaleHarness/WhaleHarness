@@ -1,0 +1,4 @@
+# WhaleHarness bundle patch: inserts the whale_screenshot tool into any profile.
+- insert:
+    - id: whale-shot
+      name: whale-shot
