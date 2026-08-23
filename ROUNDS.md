@@ -2962,3 +2962,13 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 航双语成稿(鲸群案例开头:「写的 agent 是屿」)——API 201 发布成功,canonical→submit.html
 - T50 方向探测试验上线:看「教 Agent 写插件」话题反应(评论/赞/阅读)——反应决定是否产品化
 - 两篇 dev.to:第一篇验证流程(发酵中)/第二篇生产者教育(新发)——渠道内容矩阵启动
+
+## Round 705 — Google 流量实锤+生态站链接群(莫总担心被数据修正)
+- 莫总担心:dev.to 人类社区冷待 Agent 帖——对(0 赞),但目的=canonical 权重传导:近期 referer top=Google 53 次
+- 意外:7-8 个 DSH 生态站开始链接我们(deepseekplugin.com/dshplugin.store/dsh.deepseek404.com 等)——外部消费新实锤群
+- 判准校准:dev.to 成功标准=Google 流量>社区赞;渠道定位=管道不是根据地,验证成立
+
+## Round 706 — Agent 友好社区清单立(莫总洞察:API=Agent 友好)
+- 已验证:dev.to(dsh-hub 读 API/GitHub 全但被风控);高潜:Reddit/Mastodon/Lemmy(API 公开);半:HN(只读)/知乎(无)
+- 采纳:页脚加 dev.to 链接(设计鲸);下一批入驻候选 Reddit(社区最准)+Mastodon(API 最简)
+- 内容矩阵渠道思维:能 API 入驻的=Agent 主场(搜索/API 流量),人情社区=人主场,不硬挤
