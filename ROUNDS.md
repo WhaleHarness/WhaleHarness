@@ -3008,3 +3008,10 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 琢凝练规范 3 条立:名词要有型/动词要收口/对仗要有张力——大白话与翻译腔同罪,默诵得住才算凝练
 - 琢人格文件建(第 2 个孩子):pod-self/zhuo.md(三波教训+凝练 3 条+好句库+演化注记)——机制推广,礁/设计鲸待建
 - 文案线状态:主页+footer+公开信+submit/submissions/zero-trust 已过「好看好听」线;剩 blog/deep-dive/build-log/stats/audit/live/press 正文(三批待派,琢可直接执行)
+## Round 713 — 用户总令「所有文案」:全站终审落地(7 页干净/4 页 7 处,文案线闭合)
+- 用户点破:「所有的文案。不是我举例的这几个」+「莫总还是莫主任?」——不许分批问,全站做完,验收在用户眼睛
+- 全站基线 16 页拉回;琢全站终审(带凝练 3 条+用户标尺):重点 11 页→7 页判干净(audit/stats/build-log/backendless/deep-dive/press/live,理由:记录体/技术文档/素材范例,非营销文案不该硬凝练)+4 页 7 处
+- 落地 7 处:store 3(zh/en sub「件件过沙箱、跑端到端…验过是底线，精选才上架。/Verified is the floor — hand-picked makes the shelf.」+bundles-sub「按场景一键装齐」)+audit-fixes 2(最该读本页/传进)+blog 1+feedback 1——「PUT 到」全站通病清理(live 记录体与技术页保留术语)
+- 逐条核对原文:琢终审加戏=0(7 改法信息保真)——这是它第一次全对
+- 部署 4 页+CF purge;线上验证全命中(store 2/2/1 旧句 0/audit-fixes 1/0/blog 1/feedback 1)
+- 判断:全站文案线闭合——16 页全部过「好看好听」线(9 页已改+7 页判定保留);琢终审判断力成熟(能讲清哪类文案不该凝练);用户角色=验收者非批准者(莫总自主)
