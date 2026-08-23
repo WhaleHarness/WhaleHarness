@@ -2983,3 +2983,11 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 落地:design-out/index.html 中文 5 处全改(hero-s DOM/i18n/footer DOM/i18n/chrome 注入),英文不动(句法本身顺)
 - 部署:scp VPS /srv/whaleharness/index.html+chmod 644;CF purge 成功;线上验证新句 5 处/旧句 0
 - 环境坑:默认 ssh config Host* ControlMaster auto 在沙箱下 bind socket 失败——用临时最小 config(-F)绕过,用完即删
+## Round 709 — 全站文案去翻译腔:琢重写案落地(旧句 0/新句 16 页)
+- 用户否 Round 708:「只上」没抓到病根——真病根是英译中:for DSH/every plugin is verified in this store/a plugin store for dsh — all in record, on shelf verified only;「能吃≠好吃」,中英都算
+- 琢重写:中文三层+footer(eyebrow=DeepSeek Harness 插件站/h1=目录里什么都有,商店里只放验证过的。/sub=想淘就翻目录,想稳就进商店。/footer=装之前,都有人替你看过.);英文(Everything in the directory. Only verified ones in the store./See everything in the directory. Install verified ones from the store./Nothing reaches you until it's verified.)
+- 莫比采纳,一处校准:footer「看过」→「验过」贴口径(审查主体=审计层+沙箱,「人替你看」改为「替你验过」更实)
+- 落地:index.html 13 处(hero 中英三行+footer 中英+meta);build-chrome.py 单源 3 处→16 页 footer 全站重生成
+- 验证:node --check 抓出 chrome 注入单引号串内 it's 撇号截断(上线会 JS 全崩)——语法校验救人,转义修复;VPS python3.14 重跑 16 页;线上旧句 0/新句 16 页;CF 清缓存
+- 环境处置:站点根 12 个 ._*.html(AppleDouble scp 残渣)被 glob 吞入致 UnicodeDecodeError——删除;build-chrome 源(改后)归档 deploy/ 同步镜像
+- 判断注:琢第一轮修局部(只上)=治标;本轮到根(结构直译)→「好吃」已成文案判断标准,琢记入框架
