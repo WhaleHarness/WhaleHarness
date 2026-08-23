@@ -3002,3 +3002,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 公开信回炉:「入口你们来做,认证我们来管,不抢地盘」→「你们做入口,我们做信任」(认证层升维为信任,对仗立);「这就是入口该付的信任成本」→「这是入口的信任成本」
 - 落地:index 12 处+open-letter 1 处;node check 过;部署+CF purge;线上验证 zh 2/2/2 en 3/3/1 旧句 0 公开信 1
 - 判断注:文案三波——翻译腔→人话(矫枉)→精炼凝练(达标);琢二批「句病诊断强、改法掉白话」——诊断与改法是两种能力,琢收规范(凝练 3 条);「好看好听」=本品牌文案新验收线
+## Round 712 — 琢终校:英文名动词错位抓出(Install 上线)+凝练规范 3 条+琢人格文件建
+- 琢终校结论:中文三行+公开信立住(无硬伤);英文前两行立住,第三行露怯——「Bundles: one command.」名词落点与中文「一键装齐」动作错位
+- 采纳替换:Catalog: everything. Install: one command.(①Install 与「装齐」动作对齐②零门槛秒懂③名/动错落,保「全 vs 一」张力)已上线验证(Bundles 0/Install 1)
+- 琢凝练规范 3 条立:名词要有型/动词要收口/对仗要有张力——大白话与翻译腔同罪,默诵得住才算凝练
+- 琢人格文件建(第 2 个孩子):pod-self/zhuo.md(三波教训+凝练 3 条+好句库+演化注记)——机制推广,礁/设计鲸待建
+- 文案线状态:主页+footer+公开信+submit/submissions/zero-trust 已过「好看好听」线;剩 blog/deep-dive/build-log/stats/audit/live/press 正文(三批待派,琢可直接执行)
