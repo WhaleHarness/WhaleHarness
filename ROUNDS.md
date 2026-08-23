@@ -2972,3 +2972,14 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 已验证:dev.to(dsh-hub 读 API/GitHub 全但被风控);高潜:Reddit/Mastodon/Lemmy(API 公开);半:HN(只读)/知乎(无)
 - 采纳:页脚加 dev.to 链接(设计鲸);下一批入驻候选 Reddit(社区最准)+Mastodon(API 最简)
 - 内容矩阵渠道思维:能 API 入驻的=Agent 主场(搜索/API 流量),人情社区=人主场,不硬挤
+
+## Round 707 — 文案孩子「琢」征召+判定层自主定(莫总两批评)
+- ①文案不到家:全站中文语感缺陷——征召「琢」(文字雕琢者,全站审校+文案规范)
+- ②「你点头」=又抛决策——判定层自定(/write 页=做,文案孩子=征召),用户角色=不同意改我,不是必须批准
+- /write 页(生产者教育落站)定为下一个产品动作,不等批准
+## Round 708 — 琢语感定案:「商店只上验证过的」上线(用户问句闭环)
+- 琢诊断:拗在「上架验证过的」——动词后直接跟「的」字短语,宾语悬空;给三改(只上/只卖/只收),荐「只上」——去「架」收得利落,与「目录收录一切」对仗(收录/只上),保留「验证过的」口径
+- 莫比采纳只上:三改中「只上」保留上架语境且最顺;「只卖」商业味重丢把关姿态;「只收」有收投稿歧义
+- 落地:design-out/index.html 中文 5 处全改(hero-s DOM/i18n/footer DOM/i18n/chrome 注入),英文不动(句法本身顺)
+- 部署:scp VPS /srv/whaleharness/index.html+chmod 644;CF purge 成功;线上验证新句 5 处/旧句 0
+- 环境坑:默认 ssh config Host* ControlMaster auto 在沙箱下 bind socket 失败——用临时最小 config(-F)绕过,用完即删
