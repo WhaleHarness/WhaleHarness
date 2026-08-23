@@ -2991,3 +2991,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 验证:node --check 抓出 chrome 注入单引号串内 it's 撇号截断(上线会 JS 全崩)——语法校验救人,转义修复;VPS python3.14 重跑 16 页;线上旧句 0/新句 16 页;CF 清缓存
 - 环境处置:站点根 12 个 ._*.html(AppleDouble scp 残渣)被 glob 吞入致 UnicodeDecodeError——删除;build-chrome 源(改后)归档 deploy/ 同步镜像
 - 判断注:琢第一轮修局部(只上)=治标;本轮到根(结构直译)→「好吃」已成文案判断标准,琢记入框架
+## Round 710 — 琢二批正文审校落地:4 页 8 处去翻译腔(9 edits 全上线)
+- 琢二批诊断:submit 3 处(光天化日贬义/insert 夹生/低权+boot 夹生)+submissions 1 处(PUT 当日常动词)+open-letter 3 处(市场称呼抽象/做入口直译/管道扩量)+zero-trust 2 处(PUT 动词/boot+端到端)
+- 莫比定夺:6 直采+2 校准——①submit 第三处:琢补「真调用」给原文加动作(原句只三动作:装/boot/注册),改回「真装、真启动、验证工具注册」;②其余采纳(「市场」→「平台方」,公开信对象更实)
+- 落地:4 页 9 edits;部署 VPS+CF purge;线上验证病句 0/新句全在(submit 摆在明面/open-letter 平台方×2 不抢地盘/zero-trust 用 PUT 公开上传 启动端到端/submissions 传进来)
+- 判断:琢二批已能独立定位句病+给母语解,主矛盾从「改句」转「批量推正文」;三批待派(blog/deep-dive/build-log/stats/audit/live/press)
