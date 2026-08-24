@@ -90,6 +90,13 @@ footer#wh-chrome-footer .gh:hover{color:#4FD1C5;text-decoration:underline}
 @media (max-width:639px){nav#wh-nav{order:3;width:100%}#wh-lang{margin-left:0}footer#wh-chrome-footer .fgrid{grid-template-columns:1fr;gap:28px}footer#wh-chrome-footer .fg-cols{grid-template-columns:repeat(3,1fr);gap:16px}}
 </style>"""
 
+# favicon 三态(单源注入各页 head): SVG 现代浏览器 / ICO 兜底 / apple-touch
+FAVICON_LINKS = (
+    '<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n'
+    '<link rel="icon" type="image/x-icon" href="/favicon.ico">\n'
+    '<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n'
+)
+
 # 共享 i18n: 引擎页(index/store/audit)用 Object.assign 并入; 无引擎页用独立引擎
 I18N_ZH = {
     "nav-store": "货架", "nav-submit": "投稿", "nav-audit": "审计", "nav-log": "日志", "nav-stats": "数据",
@@ -258,7 +265,7 @@ def rebuild(html: str, page: str) -> tuple[str, list[str]]:
 
     # 3) chrome CSS
     html = CSS_RE.sub("", html)
-    html = html.replace("</head>", CHROME_CSS + "</head>", 1)
+    html = html.replace("</head>", FAVICON_LINKS + CHROME_CSS + "</head>", 1)
 
     # 4) lang 引擎
     if "function applyLang" in html:

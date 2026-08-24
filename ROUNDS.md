@@ -3037,3 +3037,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 定夺:6+1 全采;第 1 条微调(「上架再挑」→「验过的不全上架，上架的都要再挑过。」消歧义);英文 tl-foot 同步意合(Passing isn't listing — the store curates.)
 - 落地 11 处:index 7(stat-foot/bundles-sub/c2-h「Agent 自己装」+英文 tl-foot)+submit 2(返场快速通道/标出来源仓库和提交)+submissions 1+feedback 1;node check 过;部署 4 页+CF purge;线上验证全绿(zh 2/2/2 旧 0;submit 1/1;submissions 1;feedback 1/0)
 - 琢规范更新:zhuo.md 补翻译腔判定+verb-led(参照 skills.stellar.org)
+## Round 718 — favicon 全套上线(品牌脸补上:深底青鲸剪影+单源全站)
+- 判断:标签页裸奔=品牌缺位(无 link 无文件,404×3);做=设计+工程一次清
+- 设计(莫比拍):色=#0A1A2F 深海底+#4FD1C5 鲸青(站点主色);形=圆角方块32x32+鲸鱼剪影+眼睛+两气泡(32px 下识别度高,与 og-image 深海系一致)
+- 工程:SVG(现代)/ICO 16+32+48(兜底)/apple-touch-icon 180(手机);单源注入=build-chrome.py FAVICON_LINKS→17 页 head 各自带 link(与 chrome CSS 同机制,幂等)
+- 验证:三文件 200+正确 content-type(icon/svg/png);首页+store head link×2;内容正确;CF purge
+- 同步:deploy/build-chrome.py+favicon.svg;镜像待 push
