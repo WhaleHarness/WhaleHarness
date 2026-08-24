@@ -3096,3 +3096,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 落地:fortune-line 加演示层——箴言一行+小字「这就是 whale-fortune：装进你的 DSH，会话里随叫随抽。」(i18n 中英)+按钮组[再抽一支][装进 DSH](复制安装命令,与套装一键装同 UX,已复制提示)
 - 验收:node check 过;线上 2/1/2(演示层 HTML/i18n/文案);开眼截图确认(套装区顶部:箴言+演示句+双按钮,视觉协调);安装命令取 plugins.json(whale-fortune-0.2.0)
 - 产品逻辑:互动=插件的体验预览(0 成本把玩→1 键装=转化闭环)——「瞧见没?装了,你也能抽」自带演示感
+## Round 729 — fortune 演示带独立成层(用户讨论定:放 bundle 上面,不要动手→go)
+- 用户先讨论:「处理不错,能玩,玩开心了可以装。地方可能不太对——演示和 bundle 不太一样,放 bundle 上面也可以?先讨论不要动手」——单品演示(体验流)≠套装策展(选什么装),混容器=层级糊
+- 定案:独立演示带,位于数字条与套装区之间——hero(信条)→stats(数据)→demo 带(体验)→bundles(策展)→三卡(行动)→红线(信任)
+- 执行:fortune-line 从 bundles 内部移除→独立 section.demo-band(stats 与 bundles 之间);CSS .demo-band margin;JS/i18n 不变
+- 验证:node check 过;上线结构 demo-band/fortune-line 均在;开眼截图确认位置与视觉(独立一层,青描边+双按钮,不挤套装卡)
+- 扩展性:demo-band=「演示带」通用位——whale-breathe/pet 等可玩单品将来可轮流入驻(单品活 demo 的模式位)
