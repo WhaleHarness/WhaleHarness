@@ -3113,3 +3113,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 修:applyLang() 末尾加 drawFortune()——切换语言=重画箴言(用当前 LANG 取 zh/en)
 - 规律入册:动态内容也进语言生命周期——JS 写入的元素,切语言须重绘(自查清单+1)
 - 验证:node check 过;线上 applyLang 含 drawFortune;按钮/演示句/箴言三样随语言切换
+## Round 732 — 推敲待改全部落地(用户:「等我干啥」——别拿等校准当挡箭牌)
+- 自我纠偏:推敲 6 项方向早已清楚(用户认可过的标准),我却以「等校准」压着=借口;落地:
+- ①submit「作者有意愿」删→「再按批次转化验证」②submit 写死 1521/448/204/630→「规模随时在变,以 audit.json 实时为准」(比例信息保留,数字不骗人)③audit-fixes「地板/天花板」→「及格线/毕业线」④「(投稿箱已经公开做过一次)」→「(投稿箱里已经有个公开先例)」⑤open-letter 421→「(2026-08-23 口径)」
+- 核实销账:推敲 #5(修法表 298/310/68/95)在 audit-fixes 页面不存在——该页用 data-stat 自动同步(红宝书机制活着),四档数字是省回顾旧口径,误记销账
+- 验证:submit 1/旧 0;audit-fixes 1/1;open-letter 1;node 无需(纯文本);部署+purge
+
