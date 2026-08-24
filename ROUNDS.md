@@ -3021,3 +3021,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 三裁决(T54):①精度闸门=2 高优先已闭环+误报率量化抽查出数字即开(3 条信息质量件并行不阻塞)②两本日志=以 live 为准,省代核对,不立新自动化③钩子教训回归「修复→机制」(机制嵌入管道)
 - 台账校正:OPEN #8(审计 1621/收录 4 站+badge 销账「第二个目录收录」)+#23(第二篇 URL)+content-ledger(dev.to 两篇已发)
 - 线上验证:audit-journey 200/facts 新在旧 0/sitemap URL 200
+## Round 715 — 徽章动态化上线:5 模板+nginx map(用户拍板方案,航实施莫比验收)
+- 背景:项目徽章先前按 repo 静态生成(1621 文件,未来 10000+),用户两批:①「徽章不是只要 5 个?」②「别重新生成了,必须动态对应,哪怕 nginx 写法,性价比在这」——静态全量=把映射物化成冗余文件
+- 方案(莫比定稿):模板静态 5 个(badge-tpl/{PASS,RED-LINE,FORMAT-ISSUE,UNEVALUATED,EXCLUDED}.svg)+单一 map(badge-map.conf: /badge/o/r/badge.svg→verdict)+nginx location(查 map→内部 rewrite break→404 兜底);管道 [4/5] 由 gen_badges 全量替换为 gen-badge-map.py+nginx -t+reload
+- 航实施(工程质量高):备份回滚点/偏差三处如实(实际 config=sites-enabled;大小写去重 limbo947 两 case 冲突→1620 条双 URL 实测 200;map_hash 10000+ 前瞻)、验收 6 条全绿+绕过 CF 直连源站复验(非缓存假象)、管道 bash -n 过
+- 莫比验收:通过;清理存量判定=保留无害惰性归档(nginx 已拦截不再服务),不为此再起单
+- 教训(T55):徽章=模板×映射;先问本质/谁消费/性价比线,后动手;「别重新生成」「必须动态」是答案,不是我还在跑命令的理由
