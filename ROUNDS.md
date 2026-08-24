@@ -3091,3 +3091,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 单源:fortunes.json(30 条站根)+插件 whale-fortune 0.2.0 内置同代 30 条(不从网络拉=过审查红线「无外传」且离线可用;发布用自家管道:打包→审查→manifest→短链→部署→清缓存→验证全绿)
 - 工程细节:publish 管道依赖 /tmp/moby-ssh.cfg(宿主历史文件)——补最小 config 后整跑通;发布 manifest sha 与本地一致
 - 验收:node check 过;fortunes.json 200/30 条;dump-dom 证实渲染;开眼截图确认(套装区顶部箴言行+按钮样式协调);插件线上 0.2.0
+## Round 728 — fortune 演示感回归:「这就是 whale-fortune」(用户:功能在了,没了初始的演示感)
+- 用户:「瞧见没?装了___这个插件,你也能抽」——互动行缺「演示=插件能力证明」的语义连接:抽签不只是站内装饰,是 whale-fortune 的活 demo
+- 落地:fortune-line 加演示层——箴言一行+小字「这就是 whale-fortune：装进你的 DSH，会话里随叫随抽。」(i18n 中英)+按钮组[再抽一支][装进 DSH](复制安装命令,与套装一键装同 UX,已复制提示)
+- 验收:node check 过;线上 2/1/2(演示层 HTML/i18n/文案);开眼截图确认(套装区顶部:箴言+演示句+双按钮,视觉协调);安装命令取 plugins.json(whale-fortune-0.2.0)
+- 产品逻辑:互动=插件的体验预览(0 成本把玩→1 键装=转化闭环)——「瞧见没?装了,你也能抽」自带演示感
