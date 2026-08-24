@@ -3118,4 +3118,11 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - ①submit「作者有意愿」删→「再按批次转化验证」②submit 写死 1521/448/204/630→「规模随时在变,以 audit.json 实时为准」(比例信息保留,数字不骗人)③audit-fixes「地板/天花板」→「及格线/毕业线」④「(投稿箱已经公开做过一次)」→「(投稿箱里已经有个公开先例)」⑤open-letter 421→「(2026-08-23 口径)」
 - 核实销账:推敲 #5(修法表 298/310/68/95)在 audit-fixes 页面不存在——该页用 data-stat 自动同步(红宝书机制活着),四档数字是省回顾旧口径,误记销账
 - 验证:submit 1/旧 0;audit-fixes 1/1;open-letter 1;node 无需(纯文本);部署+purge
+## Round 733 — c3 正面提问+favicon 被改版冲掉修复(用户:一改版 favicon 系列又被冲没了)+单源终制式
+- c3:「怕退稿?」(恐惧/揭伤疤/读者错位:首页多为用户非作者)→「想投稿?先自检。」(正面提问+方案;en Want to submit? Self-check first.)——用户拍「不妥当,思考为啥」后正确归因
+- 抓包:首页 rel=icon 0(store/press 4/6 在)——favicon links 在模板里,但我在 VPS 重跑前的「scp 本地手工 index」冲掉了它;根因=本地 index 手工版与 build-chrome 产物脱节(假单源再现)
+- 工程终制式(钉死):改 index/任意页后,上线前必在 VPS 跑 build-chrome(/srv/whaleharness)再 purge——build-chrome=最终唯一生成器,手工只改动态区,不许「scp 手改版完事」;本机 py3.10 跑不了模板(VPS 3.14),本地验证不可用→一律 VPS 重跑
+- 验证:首页 icon 2/fortune 2/想投稿 2;17 页重跑幂等;CF purge
+- 运营裁定(同轮):#2 同名分流=不重要销账;#3 作者零投=GitHub 渠道断(422)非动作问题;供给线=等解冻+dev.to 被动传导常驻
+
 
