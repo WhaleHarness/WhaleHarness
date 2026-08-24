@@ -3084,3 +3084,10 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 教训:「单源」要覆盖全部 footer 元素(不只文字句)——外链是增长资产,必须进模板;之前自称"单源防回滚"但模板缺外链=假单源(用户笑死=讽刺到位)
 - 根治:模板 footer 单 gh → ext-links 容器(GitHub+dev.to)+CSS .ext-links;17 页重跑统一;验证 dev.to=1/GitHub=1-2(store 2 因页内源码链接)
 - 闭环:全站 footer=模板单源(导航/三小组/tagline/外链/i18n)一处改全站生效——真单源
+## Round 727 — fortune 互动回归:语料 30 条单源+首页互动行+插件 0.2.0(用户反馈驱动)
+- 用户转述访客反馈:「以前来过抽签挺有意思(条数有点少),改版正规但缺了 fortune 可互动感觉」——查证:语料仅 6 条(比想象还少),站上无免装互动入口
+- 语料:琢扩 24 条(深/稳/巧,不说教不鸡汤),莫比融合定稿 30 条(鲸为魂:10 条鲸本位,海为肉:20 条海洋生态——用户点破「我的鲸味足,琢的海味多」,定稿=鲸鱼指纹+海洋铺底)
+- 互动:首页套装带(生活区)加「今日鲸鱼箴言」行——随机一条+再抽一支(不重复上次);CSS/JS/i18n(再抽一支/Draw again);fetch /fortunes.json
+- 单源:fortunes.json(30 条站根)+插件 whale-fortune 0.2.0 内置同代 30 条(不从网络拉=过审查红线「无外传」且离线可用;发布用自家管道:打包→审查→manifest→短链→部署→清缓存→验证全绿)
+- 工程细节:publish 管道依赖 /tmp/moby-ssh.cfg(宿主历史文件)——补最小 config 后整跑通;发布 manifest sha 与本地一致
+- 验收:node check 过;fortunes.json 200/30 条;dump-dom 证实渲染;开眼截图确认(套装区顶部箴言行+按钮样式协调);插件线上 0.2.0
