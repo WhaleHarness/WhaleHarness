@@ -3064,3 +3064,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 标准(如实):①安全门=四红线零容忍(无 subprocess/eval/外传/凭据,越线即退)②实证门=两阶段沙箱(全新 DSH 真装真启动+模型真调用一次)③溯源门=来源/提交/sha256 公开可复现可申诉;为什么少数:PASS 只是第一关(静态审过 600+),还要构建可复现+来源公开+作者意愿+按批次转化;没上架的 PASS 徽章照挂随时可查
 - 落地:submit.html 新增 #shelf-standard「什么能上架」节(三行标准+一句为什么);index 统计脚注后加「上架标准 ↗」链接(新增 .stat-more 样式);node check 过;部署+purge;验证 1/1/1
 - 判定:品牌「诚实=公开」纪律——标准写出来比「少数」落空强;后续精选批次理由与此标准同源(白箱)
+## Round 723 — 用户三例处理+精选标准展示补上(先验后装/嫌麻烦?Agent自己来/全量验证无害)
+- 用户三例(校准层):①「全都审过,少数上架」→「全量验证无害,精选甄品上架」②c1「先验后装:用哈希确定信息,放心一键安装」③「告诉你的 agent:」=明显翻译腔(我照抄 stellar 句式=新翻译腔)→「嫌麻烦?Agent自己来:」;并问:精选标准在哪展示?有人工(agent)参与吗?
+- 处理:三例全部采纳(用户版为准);英文同步(Everything validated safe; the best hand-picked for the shelf./Verified first, install after: the hash confirms the bits, one command installs safely.);「嫌麻烦?Agent自己来：」=中文撩法(痛点问句+方案)非英文句式——教训:参考站学原理(verb-led/对话感)不是抄句式,抄句式=翻译腔
+- 精选标准展示(真实缺口):store 套装区新增「精选标准」节——谁来挑(本店经营者 agent 团队,无人类小编,白箱)+怎么挑(场景画像→焦虑→解决→验证→出处)+记录公开(GitHub moby-picks.md 链接);诚实=由 agent 团队执行,无人类小编——这本身是品牌特色
+- 上线验证:index 2/2/2 旧 0;store 标准 1/1;node check 过;CF purge
