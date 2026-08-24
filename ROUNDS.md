@@ -3059,3 +3059,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - bundles.json 4→5;旧 4 套装对象逐字节不变;新套 verified=true+verify_ref=BUNDLE-VERIFY.md;5 tarball 线上全 200;首页运行时出 2 张 verified 卡(newbie+主力工作台)
 - 两处事实修正(屿抓):①dsh-memory→商店实为 dsh-memento(PerryLink/Apache-2.0)②dsh-context-doctor 出处=Zhenyu98/BSD-3-Clause——moby-picks.md 按事实修正(我的批次笔误,屿按 stores 事实落地+如实上报)
 - 判断:精选判断层产出(5 件白箱理由)✓;技术落地(共装四道门/bundle/部署)交屿✓;此分工成立——莫比挑+理由,屿验+落;「每周≥1 批」机制保持
+## Round 722 — 「少数上架」标准透明化:什么能上架(三道门+为什么少数)
+- 用户追问:「全都审过,少数上架——上架标准是啥?」——「少数」无标准=悬疑不是诚实;标准必须公开可答
+- 标准(如实):①安全门=四红线零容忍(无 subprocess/eval/外传/凭据,越线即退)②实证门=两阶段沙箱(全新 DSH 真装真启动+模型真调用一次)③溯源门=来源/提交/sha256 公开可复现可申诉;为什么少数:PASS 只是第一关(静态审过 600+),还要构建可复现+来源公开+作者意愿+按批次转化;没上架的 PASS 徽章照挂随时可查
+- 落地:submit.html 新增 #shelf-standard「什么能上架」节(三行标准+一句为什么);index 统计脚注后加「上架标准 ↗」链接(新增 .stat-more 样式);node check 过;部署+purge;验证 1/1/1
+- 判定:品牌「诚实=公开」纪律——标准写出来比「少数」落空强;后续精选批次理由与此标准同源(白箱)
