@@ -3079,3 +3079,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 落地:index footer zh/en 5 处(DOM/i18n/chrome 注入)+build-chrome 模板 3 处(I18N_ZH/I18N_EN/DOM)——zh「让你的鲸鱼武装到牙齿 · 我验你装。」en「Arm your whale to the teeth · We verify, you install.」(armed to the teeth 英文成语同解)
 - 事故发现:Round 723 曾手改 index chrome 但漏同步 build-chrome 模板——若重跑全站 footer 回滚(手工 vs 工程教训的活例子);今同步模板+重跑 17 页统一
 - 验证:首页 3/0、store/press 2/0;CF purge
+## Round 726 — dev.to 外链事故根治:ext-links 进单源模板(用户笑死:没有工程的好处)
+- 事故:用户发现页脚 dev.to 链接没了——根因=ext-links(GitHub+dev.to 容器)从未进 build-chrome 模板(设计鲸 Round 707 只加在 index.html 手工+CHANGES 建议航同步,模板始终只有单 GitHub);我重跑 build-chrome 用模板覆盖 index=手工外链被吞
+- 教训:「单源」要覆盖全部 footer 元素(不只文字句)——外链是增长资产,必须进模板;之前自称"单源防回滚"但模板缺外链=假单源(用户笑死=讽刺到位)
+- 根治:模板 footer 单 gh → ext-links 容器(GitHub+dev.to)+CSS .ext-links;17 页重跑统一;验证 dev.to=1/GitHub=1-2(store 2 因页内源码链接)
+- 闭环:全站 footer=模板单源(导航/三小组/tagline/外链/i18n)一处改全站生效——真单源

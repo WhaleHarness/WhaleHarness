@@ -84,7 +84,7 @@ footer#wh-chrome-footer .fg-col .links{display:flex;flex-direction:column;gap:6p
 footer#wh-chrome-footer .fg-col .links a{color:#9DB2C8;text-decoration:none}
 footer#wh-chrome-footer .fg-col .links a:hover{color:#4FD1C5;text-decoration:underline}
 footer#wh-chrome-footer .tagline{margin-top:28px}
-footer#wh-chrome-footer .gh{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#9DB2C8}
+footer#wh-chrome-footer .ext-links{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:10px}footer#wh-chrome-footer .gh{font-size:13px;font-weight:600;color:#9DB2C8}
 footer#wh-chrome-footer .gh:hover{color:#4FD1C5;text-decoration:underline}
 .wh-pagehead{text-align:center;padding:24px 0 8px}
 @media (max-width:639px){nav#wh-nav{order:3;width:100%}#wh-lang{margin-left:0}footer#wh-chrome-footer .fgrid{grid-template-columns:1fr;gap:28px}footer#wh-chrome-footer .fg-cols{grid-template-columns:repeat(3,1fr);gap:16px}}
@@ -205,7 +205,10 @@ def chrome_footer() -> str:
         '      </div>\n'
         '    </div>\n'
         '    <p class="tagline" data-i18n="footer">让你的鲸鱼武装到牙齿 · 我验你装。</p>\n'
-        '    <a class="gh" href="https://github.com/WhaleHarness/WhaleHarness">GitHub ↗</a>\n'
+        '    <div class="ext-links">\n'
+        '      <a class="gh" href="https://github.com/WhaleHarness/WhaleHarness">GitHub ↗</a>\n'
+        '      <a class="gh" href="https://dev.to/whaleharness">dev.to ↗</a>\n'
+        '    </div>\n'
         '  </footer>'
     )
 
