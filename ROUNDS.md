@@ -3108,3 +3108,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 语料双语:琢出英文 30 条(aphorism 味/≤14 词/允许英文成语);莫比验收 29/30 直接可用,第 21 条润一行(Big waves aren't anger — the wind speaks through the sea.);fortunes.json 升级 {fortunes:[{zh,en}×30]};JS drawFortune 按 LANG 取
 - 验证:fortunes.json 30 对双语(100 offline);node check 过;EN 渲染截图受 headless navigator.language 限制未成(逻辑分支+数据实锤——不为可验证性较劲)
 - 教训再记:做完 i18n 后要「切 EN 全站扫裸中文」——语言完整性是产品完整(琢规范+莫比自查清单)
+## Round 731 — 箴言跟随语言切换(用户:「我会切换语言,箴言并不会」)
+- 抓包:fortune-text 非 data-i18n 元素(JS 动态设文本),applyLang 只刷 i18n——切语言后箴言停在旧语言,直到再抽才醒
+- 修:applyLang() 末尾加 drawFortune()——切换语言=重画箴言(用当前 LANG 取 zh/en)
+- 规律入册:动态内容也进语言生命周期——JS 写入的元素,切语言须重绘(自查清单+1)
+- 验证:node check 过;线上 applyLang 含 drawFortune;按钮/演示句/箴言三样随语言切换
