@@ -63,7 +63,7 @@
 - 体检师装机≥10:**已达标坐实**(round652 口径审计:四数是四口径非 bug,per-plugin 口径 3 插件≥10,unbucketed 补丁)
 - 外部消费≥1:**已达标**(round31 实锤:dsh-hub.cc 生态主商店 9021 插件目录收录我们,08-14 起站方扫描)——**四标准全达标,进入下一阶段**
 - 叙事转「已被收录,深化关系」(POD-ON-DSHHUB 提案=把第一方 pod 仓库化进首开批,已批准方向,航执行中)
-- **规模验证期里程碑**:外部装机 91/500(round39 口径,诚实基线)· 货架 165/200 · 审计 1421 持续(dsh-hub 源扩池 9648 待审) · 目录收录 1/2
+- **规模验证期里程碑**:外部装机 91/500(round39 口径,诚实基线)· 货架 165/200 · 审计 1621@00:43:15Z 持续(dsh-hub 源扩池 9648 待审) · 生态站收录已达标(4+badge 引用:deepseek1024 收录 9 页/dshplugin.store/dsh.deepseek404/plugin.dshx.dev + dsh-hub.cc 对照;第三方作者主动挂 audit badge)——「第二个目录收录」销账
 - 精选上架线:第五批 23(SKU 95→118);PASS 池构建路径已开(57 buildable)
 - 责任:省(回顾时核对)
 
@@ -127,7 +127,7 @@
 - ⚠️ 后被查证链推翻:账号有效(确认信在 CF KV),用户给 API key→官方 API 发布成功——见 #23;
 
 ## 23. 增长渠道落地(2026-08-22)
-- dev.to:✓ https://dev.to/whaleharness/how-we-verify-dsh-plugins-855(API key 用户给,官方 API 发布,canonical+回链全)
+- dev.to:✓ 首篇 https://dev.to/whaleharness/how-we-verify-dsh-plugins-855(API key 用户给,官方 API 发布,canonical+回链全);✓ 第二篇 T50 探测文 https://dev.to/whaleharness/how-your-agent-writes-its-first-dsh-plugin-4cpf(canonical→submit.html,发酵观察中;成功标准=Google 流量>社区赞)
 - 知乎:中文文已写好(round41),待注册/发布(知乎无 captcha 但需手机号——用户依赖)
 - HN:通道不可用(429),停投+每周诊断探针(航结论)
 ## 24. 红队剩余 3 条(审计精度,2026-08-23 立)

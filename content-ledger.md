@@ -20,8 +20,9 @@
 - 最后产出:2026-08-15
 
 ## 投放物料(marketing/)
-- 状态:部分停摆——3-channels(X/Reddit/知乎)写了未投;小红书用户代发待回流验证
-- 下次:渠道账号就位后投(HN toonew 解限/X 无账号/Reddit karma 末位)
+- 状态:dev.to 渠道已跑通——两篇已发布(2026-08-22/08-23,官方 API 正门,canonical+回链全):how-we-verify-dsh-plugins-855 + how-your-agent-writes-its-first-dsh-plugin-4cpf;成功标准=Google 流量>社区赞(0 评 0 赞≠失败)
+- 停摆剩余:3-channels(X/Reddit/知乎)写了未投;小红书用户代发待回流验证
+- 下次:渠道账号就位后投(HN toonew 解限/X 无账号/Reddit karma 末位);dev.to 第三篇候选=审计层/生态安全台账叙事
 
 ## 红宝书(audit-fixes.html)
 - 状态:活跃;维护人=航(例行职责);数字实时对齐机制已建

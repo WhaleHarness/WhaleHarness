@@ -3015,3 +3015,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 逐条核对原文:琢终审加戏=0(7 改法信息保真)——这是它第一次全对
 - 部署 4 页+CF purge;线上验证全命中(store 2/2/1 旧句 0/audit-fixes 1/0/blog 1/feedback 1)
 - 判断:全站文案线闭合——16 页全部过「好看好听」线(9 页已改+7 页判定保留);琢终审判断力成熟(能讲清哪类文案不该凝练);用户角色=验收者非批准者(莫总自主)
+## Round 714 — 省 8-24 回顾执行:钩子终装/audit-journey 上线/证据闭环/三裁决拍板
+- 省核对三硬活:①sync-agent-facts 钩子 5 轮悬空(facts 过期 3 代)②audit-journey.html 未部署(404)③round52 referer-evidence 未跑
+- 执行:①钩子进管道 [4.6/5](与 sync-redbook 同构,本地同代文件回填;首跑 facts=1621 entries/1246 authors,旧 1371/1062 清零)②audit-journey.html 部署+build-chrome 17 页重跑(幂等 NO CHANGE)+sitemap 加页(190→191)③referer-evidence 跑出 88 行证据报告(190 条证据行/7 生态域名:deepseek1024 129 行最强)
+- 三裁决(T54):①精度闸门=2 高优先已闭环+误报率量化抽查出数字即开(3 条信息质量件并行不阻塞)②两本日志=以 live 为准,省代核对,不立新自动化③钩子教训回归「修复→机制」(机制嵌入管道)
+- 台账校正:OPEN #8(审计 1621/收录 4 站+badge 销账「第二个目录收录」)+#23(第二篇 URL)+content-ledger(dev.to 两篇已发)
+- 线上验证:audit-journey 200/facts 新在旧 0/sitemap URL 200
