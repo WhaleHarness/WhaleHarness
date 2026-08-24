@@ -3043,3 +3043,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 工程:SVG(现代)/ICO 16+32+48(兜底)/apple-touch-icon 180(手机);单源注入=build-chrome.py FAVICON_LINKS→17 页 head 各自带 link(与 chrome CSS 同机制,幂等)
 - 验证:三文件 200+正确 content-type(icon/svg/png);首页+store head link×2;内容正确;CF purge
 - 同步:deploy/build-chrome.py+favicon.svg;镜像待 push
+## Round 719 — C2 改「告诉你的 agent」+verify 卖点答卷+精选批次 1(莫比亲手挑)
+- 用户三问:几条线(1 verify/1.1 给 agent 看/1.2 作者徽章/2 picked)/verify 卖点在哪/精选停滞(莫总义务未履行)
+- 1.1:C2 卡改 stellar 同构(参照 Tell your agent: Read skills.stellar.org before...)——「告诉你的 agent：/ 打开 whaleharness.com，尽情挑选插件。」(中英同步;验证 2/2/旧 0)
+- 1.2 答卷(T57):verify 四不像(中立/深度/公开/全覆盖)+商品化诚实+壁垒=公共信任资产;picked+内容+工具链=第二曲线
+- 2 精选:莫比亲手挑批次 1「主力工作台」5 件(dsh-memory/dsh-usage-dashboard/dsh-context-doctor/dsh-subagent-tools/dsh-proof,焦虑→解决→出处,moby-picks.md 入册);派屿按 bundle 标准(四道门共装+verified)落地上线
+- 机制立:精选=莫比义务,每周≥1 批亲手挑,理由白箱;技术落地交屿
