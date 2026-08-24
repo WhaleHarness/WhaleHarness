@@ -1,34 +1,124 @@
 {
   "fortunes": [
-    "海面之上是浪，海面之下是路。",
-    "鲸不追浪，浪自来。",
-    "大音希声，大鲸潜深。",
-    "你听到的每一声鲸歌，都是深海对浅海的回信。",
-    "别怕下潜：压力最大的地方，浮力也最大。",
-    "鲸群从不解释方向，它们只是游成方向。",
-    "涨潮时别数脚印，退潮时也别怪沙滩。",
-    "灯塔不照亮整片海，只照亮你该避开的礁。",
-    "盐从不喊咸，海却因它成海。",
-    "沉船不是海的错，是船问了海答不了的问题。",
-    "海沟最深处，也最安静。",
-    "雾再大，看罗盘，别盯雾。",
-    "鲸落不是终点，是海底的一场开饭。",
-    "浮标晃得最凶的地方，水未必最深。",
-    "冰山露给你看的部分，从来不是撞沉你的部分。",
-    "退潮的水洼里，也盛得下自己的月亮。",
-    "别教海水往哪流，选好你站的那条洋流。",
-    "海不教鱼怎么游，鱼生来会水。",
-    "潮汐表不说谎，只在你看得懂时才有用。",
-    "锚沉到底，船自然停。",
-    "浪大不是海发火，是风借海说话。",
-    "退潮带走沙，带不走岸。",
-    "海螺里装着海，贴耳才听得见。",
-    "帆顺风时快，逆风时才知道它值钱。",
-    "海图再旧，也比船长的记忆准。",
-    "别在退潮时量海，海没变浅，是你站错了时候。",
-    "一只鲸鱼从不问海有多深，它只问往哪游。",
-    "鲸歌是深海的普通话，波浪是它的方言。",
-    "白鲸不是白，是深到发光。",
-    "鲸群游过的地方，深海记得。"
+    {
+      "zh": "海面之上是浪，海面之下是路。",
+      "en": "Above the surface, waves; below it, a way."
+    },
+    {
+      "zh": "鲸不追浪，浪自来。",
+      "en": "The whale chases no waves. The waves come."
+    },
+    {
+      "zh": "大音希声，大鲸潜深。",
+      "en": "Great sound is near-silent; great whales dive deep."
+    },
+    {
+      "zh": "你听到的每一声鲸歌，都是深海对浅海的回信。",
+      "en": "Every whale song you hear is the deep answering the shallow."
+    },
+    {
+      "zh": "别怕下潜：压力最大的地方，浮力也最大。",
+      "en": "Dive without fear — the deepest pressure gives the strongest lift."
+    },
+    {
+      "zh": "鲸群从不解释方向，它们只是游成方向。",
+      "en": "The pod never explains its direction. It just swims it."
+    },
+    {
+      "zh": "涨潮时别数脚印，退潮时也别怪沙滩。",
+      "en": "Count no footprints at high tide, blame no sand at low tide."
+    },
+    {
+      "zh": "灯塔不照亮整片海，只照亮你该避开的礁。",
+      "en": "A lighthouse doesn't light the whole sea — only the reef to miss."
+    },
+    {
+      "zh": "盐从不喊咸，海却因它成海。",
+      "en": "Salt never claims to be salty — it just makes the sea."
+    },
+    {
+      "zh": "沉船不是海的错，是船问了海答不了的问题。",
+      "en": "No wreck is the sea's fault — the ship asked what the sea can't answer."
+    },
+    {
+      "zh": "海沟最深处，也最安静。",
+      "en": "The deepest trench is the quietest."
+    },
+    {
+      "zh": "雾再大，看罗盘，别盯雾。",
+      "en": "In the thickest fog, watch the compass, not the fog."
+    },
+    {
+      "zh": "鲸落不是终点，是海底的一场开饭。",
+      "en": "A whale fall isn't the end — it's a feast for the deep."
+    },
+    {
+      "zh": "浮标晃得最凶的地方，水未必最深。",
+      "en": "The buoy that bobs hardest doesn't mark the deepest water."
+    },
+    {
+      "zh": "冰山露给你看的部分，从来不是撞沉你的部分。",
+      "en": "The part of the iceberg you see is never the part that sinks you."
+    },
+    {
+      "zh": "退潮的水洼里，也盛得下自己的月亮。",
+      "en": "Even a tide pool holds its own moon."
+    },
+    {
+      "zh": "别教海水往哪流，选好你站的那条洋流。",
+      "en": "Don't tell the sea where to flow — pick the current you stand in."
+    },
+    {
+      "zh": "海不教鱼怎么游，鱼生来会水。",
+      "en": "The sea doesn't teach fish to swim — they're born to it."
+    },
+    {
+      "zh": "潮汐表不说谎，只在你看得懂时才有用。",
+      "en": "Tide tables never lie — only once you learn to read them."
+    },
+    {
+      "zh": "锚沉到底，船自然停。",
+      "en": "Anchor down, the ship comes to rest."
+    },
+    {
+      "zh": "浪大不是海发火，是风借海说话。",
+      "en": "Big waves aren't anger — the wind speaks through the sea."
+    },
+    {
+      "zh": "退潮带走沙，带不走岸。",
+      "en": "The tide takes the sand, not the shore."
+    },
+    {
+      "zh": "海螺里装着海，贴耳才听得见。",
+      "en": "A seashell holds the sea — press it to your ear."
+    },
+    {
+      "zh": "帆顺风时快，逆风时才知道它值钱。",
+      "en": "A sail is fast downwind — upwind, you learn its worth."
+    },
+    {
+      "zh": "海图再旧，也比船长的记忆准。",
+      "en": "The oldest chart beats the captain's memory."
+    },
+    {
+      "zh": "别在退潮时量海，海没变浅，是你站错了时候。",
+      "en": "Don't measure the sea at low tide — it hasn't shrunk; you timed it wrong."
+    },
+    {
+      "zh": "一只鲸鱼从不问海有多深，它只问往哪游。",
+      "en": "A whale never asks how deep the sea is, only where to swim."
+    },
+    {
+      "zh": "鲸歌是深海的普通话，波浪是它的方言。",
+      "en": "Whale song is the deep's common tongue; the waves, its dialect."
+    },
+    {
+      "zh": "白鲸不是白，是深到发光。",
+      "en": "The white whale isn't white — it's deep enough to glow."
+    },
+    {
+      "zh": "鲸群游过的地方，深海记得。",
+      "en": "Where the pod has swum, the deep remembers."
+    }
   ]
 }

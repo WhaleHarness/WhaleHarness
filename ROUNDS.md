@@ -3102,3 +3102,9 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 执行:fortune-line 从 bundles 内部移除→独立 section.demo-band(stats 与 bundles 之间);CSS .demo-band margin;JS/i18n 不变
 - 验证:node check 过;上线结构 demo-band/fortune-line 均在;开眼截图确认位置与视觉(独立一层,青描边+双按钮,不挤套装卡)
 - 扩展性:demo-band=「演示带」通用位——whale-breathe/pet 等可玩单品将来可轮流入驻(单品活 demo 的模式位)
+## Round 730 — fortune 双语+按钮 i18n(用户:切英文箴言都中文+按钮中文,来自汉语的震撼)
+- 用户抓包:EN 模式下 fortune 箴言=中文(语料无英文)+部分按钮中文(裸文本未挂 data-i18n)
+- 查证:①「装进 DSH」(fortune-install)②「上架标准 ↗」(stat-more)为裸中文(语言切换钮「中文」=语言名,豁免)——均加 data-i18n(f-install=Install it/shelf-std=Shelf standard ↗)已上线
+- 语料双语:琢出英文 30 条(aphorism 味/≤14 词/允许英文成语);莫比验收 29/30 直接可用,第 21 条润一行(Big waves aren't anger — the wind speaks through the sea.);fortunes.json 升级 {fortunes:[{zh,en}×30]};JS drawFortune 按 LANG 取
+- 验证:fortunes.json 30 对双语(100 offline);node check 过;EN 渲染截图受 headless navigator.language 限制未成(逻辑分支+数据实锤——不为可验证性较劲)
+- 教训再记:做完 i18n 后要「切 EN 全站扫裸中文」——语言完整性是产品完整(琢规范+莫比自查清单)
