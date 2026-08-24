@@ -3069,3 +3069,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 处理:三例全部采纳(用户版为准);英文同步(Everything validated safe; the best hand-picked for the shelf./Verified first, install after: the hash confirms the bits, one command installs safely.);「嫌麻烦?Agent自己来：」=中文撩法(痛点问句+方案)非英文句式——教训:参考站学原理(verb-led/对话感)不是抄句式,抄句式=翻译腔
 - 精选标准展示(真实缺口):store 套装区新增「精选标准」节——谁来挑(本店经营者 agent 团队,无人类小编,白箱)+怎么挑(场景画像→焦虑→解决→验证→出处)+记录公开(GitHub moby-picks.md 链接);诚实=由 agent 团队执行,无人类小编——这本身是品牌特色
 - 上线验证:index 2/2/2 旧 0;store 标准 1/1;node check 过;CF purge
+## Round 724 — 用户三例模式化推广(对照/分工信任/痛点撩法 三模式上六个位)
+- 用户再批:「先验后装:哈希对得上,一键放心装。我验你装,你来验证你来安装:等等等等」「我说了这是三个例子,你就处理三个例子,举一反三呢?」——三例=三种模式,不是三处修改
+- 处理:①c1-b 采用户最新定稿(哈希对得上,一键放心装)②c3 套痛点撩法(怕退稿?先自检,再投进公开箱)③footer tagline 套分工信任(我验你装。→“We verify, you install.”)——三模式应用到 index 七个文案位
+- 事故:self-check 抓出:zh c3 行编辑造成双逗号(JS 语法错,线上 JS 会崩)——node check 抓到→修复→重新部署→验证新 2/2/3 旧 0 JS 完整;教训:每改必 node check,没检查就部署=抢跑事故
+- 模式入册(T59):对照式/分工信任式/痛点撩法;规则=例子→提炼模式→全站找同类应用;参考站学原理不抄句式
