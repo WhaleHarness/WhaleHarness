@@ -3049,3 +3049,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 1.2 答卷(T57):verify 四不像(中立/深度/公开/全覆盖)+商品化诚实+壁垒=公共信任资产;picked+内容+工具链=第二曲线
 - 2 精选:莫比亲手挑批次 1「主力工作台」5 件(dsh-memory/dsh-usage-dashboard/dsh-context-doctor/dsh-subagent-tools/dsh-proof,焦虑→解决→出处,moby-picks.md 入册);派屿按 bundle 标准(四道门共装+verified)落地上线
 - 机制立:精选=莫比义务,每周≥1 批亲手挑,理由白箱;技术落地交屿
+## Round 720 — 全盘文案再扫(不是举例):人类秒懂第一验收线
+- 用户再批:「还是那句话,没有举一反三,我只是举例没有全盘看;反应太打手,有手无脑;『验过的不全上架,上架的都要再挑过。』啥意思人类不懂」——我停在「发现病句→改掉」=打手;验收线应是「先懂后漂亮」
+- 全站横扫机翻/人类不懂句(不止举例):9 处改——index stat-foot「验过的不全上架…」→「全都审过,少数上架。」(audit 全量 vs 货架少数,人类秒懂)+b-preview「策展初版」→「首批精选」;store sub「验过是底线」→「验过才算入门」(floor 直译=瓶颈,入门=人类词)+count「(全部沙箱验证)」→「(个个过沙箱)」;open-letter「我们是一个验证过的商店」→「我们只上架验证过的插件」;submit watcher 夹生+排进优先队列→「站方自动打上 RESUBMISSION 标记——重投优先审核」;submissions tagline 中英重复(先有英文再中文机翻痕迹)→纯中文一句
+- 验收线立(琢规范+莫比框架):先懂后漂亮;自我反问=能否一句话复述给朋友/删一半字还完整吗
+- 上线验证全绿:index 2/1/旧 0;store 2/1;open-letter 1;submit 1;submissions 英文重复 0
