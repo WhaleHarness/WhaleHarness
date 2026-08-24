@@ -3074,3 +3074,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 处理:①c1-b 采用户最新定稿(哈希对得上,一键放心装)②c3 套痛点撩法(怕退稿?先自检,再投进公开箱)③footer tagline 套分工信任(我验你装。→“We verify, you install.”)——三模式应用到 index 七个文案位
 - 事故:self-check 抓出:zh c3 行编辑造成双逗号(JS 语法错,线上 JS 会崩)——node check 抓到→修复→重新部署→验证新 2/2/3 旧 0 JS 完整;教训:每改必 node check,没检查就部署=抢跑事故
 - 模式入册(T59):对照式/分工信任式/痛点撩法;规则=例子→提炼模式→全站找同类应用;参考站学原理不抄句式
+## Round 725 — footer 品牌解释句:「让你的鲸鱼武装到牙齿」(单源同步防回滚)
+- 用户批:「给 DeepSeek Harness 的鲸鱼插件=典型不说人话(for ... 直译),不如解释 whale harness:让你的鲸鱼武装到牙齿」——WhaleHarness=鲸鱼(agent)+harness(武装),一句解释品牌名+有画面
+- 落地:index footer zh/en 5 处(DOM/i18n/chrome 注入)+build-chrome 模板 3 处(I18N_ZH/I18N_EN/DOM)——zh「让你的鲸鱼武装到牙齿 · 我验你装。」en「Arm your whale to the teeth · We verify, you install.」(armed to the teeth 英文成语同解)
+- 事故发现:Round 723 曾手改 index chrome 但漏同步 build-chrome 模板——若重跑全站 footer 回滚(手工 vs 工程教训的活例子);今同步模板+重跑 17 页统一
+- 验证:首页 3/0、store/press 2/0;CF purge

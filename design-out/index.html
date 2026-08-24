@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://whaleharness.com/">
+<link rel="alternate" type="application/rss+xml" title="WhaleHarness" href="https://whaleharness.com/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "WhaleHarness",
+  "url": "https://whaleharness.com",
+  "description": "WhaleHarness: the plugin hub for DeepSeek Harness (DSH). Verified. Hand-picked. One-command installs.",
+  "inLanguage": ["en", "zh-CN"]
+}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhaleHarness · DSH 插件站</title>
+<meta property="og:title" content="WhaleHarness — the plugin store for DeepSeek Harness">
+<meta property="og:description" content="WhaleHarness: the plugin hub for DeepSeek Harness (DSH). Verified. Hand-picked. One-command installs.">
+<meta property="og:url" content="https://whaleharness.com/">
+<meta property="og:image" content="https://whaleharness.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<style>
+  :root {
+    --wh-bg: #0A1A2F;
+    --wh-bg-deep: #071423;
+    --wh-surface: #122841;
+    --wh-surface-2: #0D2238;
+    --wh-surface-hover: #183452;
+    --wh-inset: #0A1626;
+    --wh-border: #1F3A5C;
+    --wh-border-strong: #2A4A70;
+    --wh-text: #E8EFF7;
+    --wh-text-2: #9DB2C8;
+    --wh-text-3: #6B8198;
+    --wh-accent: #4FD1C5;
+    --wh-accent-strong: #6FE0D6;
+    --wh-accent-soft: rgba(79, 209, 197, .14);
+    --wh-accent-glow: rgba(79, 209, 197, .10);
+    --wh-pass: #34C88A;
+    --wh-pass-soft: rgba(52, 200, 138, .13);
+    --wh-blue: #5E9FE8;
+    --wh-blue-soft: rgba(94, 159, 232, .16);
+    --wh-danger: #E5484D;
+    --wh-danger-soft: rgba(229, 72, 77, .10);
+    --wh-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    --wh-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-pill: 999px;
+    --shadow-1: 0 1px 2px rgba(4, 12, 24, .4);
+    --shadow-2: 0 8px 28px rgba(4, 12, 24, .45);
+    --ease: cubic-bezier(.22, .61, .36, 1);
+    --dur: .16s;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; scrollbar-color: var(--wh-border) var(--wh-bg-deep); }
+  body {
+    background: var(--wh-bg);
+    color: var(--wh-text);
+    font-family: var(--wh-font);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  /* deep-sea depth: one bioluminescent teal glow, one cool blue, fading to the deep */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(1100px 560px at 14% -8%, var(--wh-accent-glow), transparent 62%),
+      radial-gradient(980px 540px at 88% 4%, rgba(45, 102, 178, .13), transparent 60%),
+      linear-gradient(180deg, #0B1D33 0%, var(--wh-bg) 34%, var(--wh-bg-deep) 100%);
+  }
+  ::selection { background: var(--wh-accent-soft); color: var(--wh-text); }
+  a { color: var(--wh-accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: var(--wh-mono); }
+  :focus-visible { outline: 2px solid var(--wh-accent); outline-offset: 2px; border-radius: 4px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- sticky header ---- */
+  header#wh-chrome {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(10, 24, 43, .8);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3);
+    backdrop-filter: blur(14px) saturate(1.3);
+    border-bottom: 1px solid rgba(31, 58, 92, .9);
+  }
+  .hbar { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding-top: 11px; padding-bottom: 11px; }
+  .brand { font-size: 17px; font-weight: 700; letter-spacing: .01em; display: inline-flex; align-items: center; gap: 8px; }
+  .brand .whale { font-size: 19px; line-height: 1; }
+  .brand a { color: var(--wh-text); text-decoration: none; }
+  .brand a:hover { color: var(--wh-text); }
+  nav#wh-nav { display: flex; gap: 2px; flex-wrap: wrap; }
+  nav#wh-nav a {
+    color: var(--wh-text-2); font-size: 14.5px; font-weight: 600;
+    padding: 9px 13px; border-radius: 8px; min-height: 44px;
+    display: inline-flex; align-items: center; position: relative;
+    text-decoration: none;
+  }
+  nav#wh-nav a:hover { color: var(--wh-text); background: var(--wh-surface); text-decoration: none; }
+  nav#wh-nav a.on { color: var(--wh-accent); }
+  nav#wh-nav a.on::after {
+    content: ""; position: absolute; left: 13px; right: 13px; bottom: 4px;
+    height: 2px; border-radius: 2px; background: var(--wh-accent);
+  }
+  #wh-lang {
+    margin-left: auto; display: flex; gap: 3px; padding: 3px;
+    background: var(--wh-surface); border: 1px solid var(--wh-border); border-radius: 10px;
+  }
+  #wh-lang button {
+    background: none; border: none; color: var(--wh-text-3);
+    font: 600 13px var(--wh-font); padding: 7px 12px; border-radius: 7px;
+    cursor: pointer; min-height: 36px;
+    transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+  }
+  #wh-lang button.on { color: var(--wh-accent); background: var(--wh-surface-hover); }
+
+  /* ---- hero ---- */
+  .hero { padding: 88px 0 36px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--wh-accent); margin-bottom: 22px;
+  }
+  .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--wh-accent); opacity: .7; }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 56px);
+    font-weight: 700; line-height: 1.08; letter-spacing: -.015em;
+    max-width: 16em;
+  }
+  .sub { margin-top: 18px; font-size: clamp(16px, 2vw, 20px); color: var(--wh-text-2); line-height: 1.55; max-width: 38em; }
+
+  /* ---- live stats strip ---- */
+  .stats {
+    display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: flex-end;
+    margin: 8px 0 0; padding: 32px 0 12px;
+    border-top: 1px solid var(--wh-border);
+  }
+  .stat { display: flex; flex-direction: column; gap: 8px; }
+  .stat-num {
+    font-size: clamp(34px, 6vw, 52px); font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+  }
+  .stat-label { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--wh-text-2); text-transform: uppercase; }
+  .stat-label .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .stat-label .dot-audit { background: var(--wh-blue); box-shadow: 0 0 0 3px var(--wh-blue-soft); }
+  .stat-label .dot-accent { background: var(--wh-accent); box-shadow: 0 0 0 3px var(--wh-accent-soft); }
+  .stat-foot { font-size: 13px; color: var(--wh-text-3); margin-left: auto; align-self: flex-end; max-width: 26em; padding-bottom: 4px; }
+  .stat-more { font-size: 12.5px; color: var(--wh-text-3); margin-left: auto; align-self: flex-end; padding-bottom: 6px; text-decoration: none; }
+  .stat-more:hover { color: var(--wh-accent); text-decoration: underline; }
+
+  /* ---- three action cards ---- */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 44px 0 72px; }
+  .card {
+    position: relative;
+    background: linear-gradient(180deg, var(--wh-surface), var(--wh-surface-2));
+    border: 1px solid var(--wh-border);
+    border-radius: var(--r-md);
+    padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    color: inherit; text-decoration: none;
+    transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .card::before {
+    content: ""; position: absolute; top: 0; left: 12%; right: 12%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .10), transparent);
+  }
+  a.card:hover { text-decoration: none; }
+  .card:hover { transform: translateY(-3px); border-color: var(--wh-border-strong); box-shadow: var(--shadow-2); }
+  .card .icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--wh-accent-soft); color: var(--wh-accent);
+    border: 1px solid rgba(79, 209, 197, .25);
+  }
+  .card .icon svg { width: 20px; height: 20px; }
+  .card h2 { font-size: 18px; font-weight: 650; line-height: 1.3; color: var(--wh-text); }
+  .card p { font-size: 15px; line-height: 1.65; color: var(--wh-text-2); }
+  .card .trigger {
+    font: 500 15px/1.55 var(--wh-mono);
+    color: var(--wh-accent);
+    border-left: 2px solid var(--wh-accent);
+    padding-left: 12px;
+  }
+  .card .cta { font-size: 15px; font-weight: 600; color: var(--wh-accent); margin-top: auto; display: inline-flex; align-items: center; gap: 6px; }
+  .card .cta .arr { width: 16px; height: 16px; transition: transform var(--dur) var(--ease); }
+  .card:hover .cta .arr { transform: translateX(4px); }
+  .card .copy {
+    background: var(--wh-surface); color: var(--wh-accent);
+    border: 1px solid rgba(79, 209, 197, .4); border-radius: 8px;
+    font: 600 14px var(--wh-font);
+    padding: 10px 16px; cursor: pointer;
+    min-height: 44px; align-self: flex-start; margin-top: auto;
+    transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .card .copy:hover { background: var(--wh-accent-soft); border-color: var(--wh-accent); }
+
+  /* ---- red-line / safety ---- */
+  .safety {
+    border-top: 1px solid var(--wh-border);
+    padding: 28px 0 48px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .safety-head h2 { font-size: 15px; font-weight: 650; color: var(--wh-text); }
+  .safety-head p { font-size: 13.5px; line-height: 1.6; color: var(--wh-text-3); margin-top: 4px; }
+  .rb-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .rb {
+    display: inline-flex; align-items: center; gap: 7px;
+    font: 600 12px var(--wh-font);
+    color: #FFB4B8;
+    border: 1px solid rgba(229, 72, 77, .45);
+    background: var(--wh-danger-soft);
+    border-radius: var(--r-pill);
+    padding: 6px 13px; min-height: 32px;
+  }
+  .rb .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--wh-danger); }
+  .safety-more {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 600; color: var(--wh-accent);
+    align-self: flex-start; text-decoration: none;
+  }
+  .safety-more:hover { text-decoration: none; }
+  .safety-more .arr { width: 15px; height: 15px; transition: transform var(--dur) var(--ease); }
+  .safety-more:hover .arr { transform: translateX(3px); }
+
+  /* ---- footer ---- */
+  footer#wh-chrome-footer {
+    border-top: 1px solid var(--wh-border);
+    padding: 40px 0 64px;
+    font-size: 13px; color: var(--wh-text-3);
+  }
+  .fgrid { display: grid; grid-template-columns: auto 1fr; gap: 40px; }
+  .fg h4 { font-size: 12px; font-weight: 600; letter-spacing: .08em; color: var(--wh-text-3); margin: 0 0 10px; text-transform: uppercase; }
+  .fg .links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .fg .links a { color: var(--wh-text-2); text-decoration: none; }
+  .fg .links a:hover { color: var(--wh-accent); text-decoration: underline; }
+  .fg-cols { display: grid; grid-template-columns: repeat(3, auto); gap: 32px; justify-content: start; }
+  .fg-col { display: flex; flex-direction: column; gap: 10px; }
+  .fg-col-h { font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--wh-text-3); text-transform: uppercase; }
+  .fg-col .links { display: flex; flex-direction: column; gap: 6px; }
+  .fg-col .links a { color: var(--wh-text-2); text-decoration: none; }
+  .fg-col .links a:hover { color: var(--wh-accent); text-decoration: underline; }
+  .tagline { margin-top: 28px; }
+  .ext-links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px; }
+  .gh { font-size: 13px; font-weight: 600; color: var(--wh-text-2); }
+  .gh:hover { color: var(--wh-accent); text-decoration: underline; }
+
+  /* ---- featured bundles band ---- */
+  .bundles {
+    margin: 40px 0 56px;
+    padding: 24px;
+    border: 1px solid var(--wh-border);
+    border-radius: var(--r-lg);
+    background:
+      linear-gradient(180deg, rgba(79, 209, 197, .05), transparent 44%),
+      var(--wh-surface-2);
+  }
+  .sec-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+  .sec-head h2 { font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
+  .sec-head .sub { margin-top: 6px; font-size: 14px; }
+  .sec-head .more { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--wh-accent); flex-shrink: 0; margin-top: 4px; text-decoration: none; }
+  .sec-head .more:hover { text-decoration: none; }
+  .sec-head .more .arr { width: 15px; height: 15px; transition: transform var(--dur) var(--ease); }
+  .sec-head .more:hover .arr { transform: translateX(3px); }
+  .bundle-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .bcard {
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 18px;
+    background: linear-gradient(180deg, var(--wh-surface), var(--wh-surface-2));
+    border: 1px solid rgba(79, 209, 197, .25);
+    border-radius: var(--r-md);
+    transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+  .bcard:hover { transform: translateY(-2px); border-color: rgba(79, 209, 197, .5); box-shadow: var(--shadow-2); }
+  .bflag {
+    align-self: flex-start;
+    font: 600 11px var(--wh-mono); letter-spacing: .08em; text-transform: uppercase;
+    color: var(--wh-accent);
+    border: 1px solid rgba(79, 209, 197, .30); background: var(--wh-accent-soft);
+    border-radius: var(--r-pill); padding: 2px 9px;
+  }
+  .bname { font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+  .btag { font-size: 13.5px; line-height: 1.55; color: var(--wh-text-2); }
+  .bmeta { display: flex; align-items: center; gap: 8px; }
+  .count-tag { font: 600 12px var(--wh-mono); color: var(--wh-text-2); }
+  .binstall {
+    margin-top: auto;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--wh-accent); color: #06281C;
+    border: none; border-radius: 8px;
+    font: 700 14px var(--wh-font); padding: 10px 16px; cursor: pointer; min-height: 44px;
+    transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+  .binstall:hover { background: var(--wh-accent-strong); }
+  .binstall:active { transform: translateY(1px); }
+  @media (max-width: 899px) { .bundle-strip { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 639px) {
+    .bundles { padding: 18px; }
+    .bundle-strip {
+      display: flex; flex-wrap: nowrap; gap: 12px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding-bottom: 8px;
+    }
+    .bundle-strip::-webkit-scrollbar { display: none; }
+    .bundle-strip .bcard { flex: 0 0 78%; scroll-snap-align: start; }
+  }
+
+  @media (max-width: 1023px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 639px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding: 56px 0 24px; }
+    .cards { grid-template-columns: 1fr; gap: 16px; padding: 32px 0 48px; }
+    .stats { gap: 20px 40px; }
+    .stat-foot { margin-left: 0; flex-basis: 100%; max-width: none; }
+    nav#wh-nav { order: 3; width: 100%; }
+    #wh-lang { margin-left: 0; }
+    .fgrid { grid-template-columns: 1fr; gap: 28px; }
+    .fg-cols { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+</style></head>
+<body>
+
+<header id="wh-chrome">
+  <div class="wrap hbar">
+    <div class="brand"><span class="whale">🐋</span><a href="/">WhaleHarness</a></div>
+    <nav id="wh-nav">
+      <a href="/store.html" data-i18n="nav-store">货架</a>
+      <a href="/submit.html" data-i18n="nav-submit">投稿</a>
+      <a href="/audit.html" data-i18n="nav-audit">审计</a>
+      <a href="/build-log.html" data-i18n="nav-log">日志</a>
+      <a href="/stats.html" data-i18n="nav-stats">数据</a>
+    </nav>
+    <div id="wh-lang"><button id="lang-zh" class="on">中文</button><button id="lang-en">EN</button></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <main>
+    <section class="hero">
+      <p class="eyebrow" data-i18n="hero-eyebrow">DeepSeek Harness 插件集散地</p>
+      <h1 data-i18n="hero-h">验证有据，人工精选。</h1>
+      <p class="sub" data-i18n="hero-s">淘尽目录，一键装齐。</p>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <div class="stat-num" id="n-audited">…</div>
+        <div class="stat-label"><span class="dot dot-audit"></span><span data-i18n="tl-a">审过</span></div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="n-listed">…</div>
+        <div class="stat-label"><span class="dot dot-accent"></span><span data-i18n="tl-l">上架</span></div>
+      </div>
+      <p class="stat-foot" data-i18n="tl-foot">全量验证无害，精选甄品上架。</p>
+      <a class="stat-more" href="/submit.html#shelf-standard">上架标准 ↗</a>
+    </section>
+
+    <section class="bundles" id="bundles-sec">
+      <header class="sec-head">
+        <div>
+          <h2 data-i18n="bundles-h">场景套装</h2>
+          <p class="sub" data-i18n="bundles-sub">按场景一键装齐，开箱即用。</p>
+        </div>
+        <a class="more" href="/store.html#bundles-sec"><span data-i18n="b-more">逛货架</span><svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"/><path d="M9 4l4 4-4 4"/></svg></a>
+      </header>
+      <div class="bundle-strip" id="bundle-strip"></div>
+    </section>
+
+    <section class="cards">
+      <a class="card" href="/store.html">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="5.5" height="5.5" rx="1.5"/><rect x="11" y="3.5" width="5.5" height="5.5" rx="1.5"/><rect x="3.5" y="11" width="5.5" height="5.5" rx="1.5"/><rect x="11" y="11" width="5.5" height="5.5" rx="1.5"/></svg></span>
+        <h2 data-i18n="c1-h">翻货架</h2>
+        <p data-i18n="c1-b">先验后装：哈希对得上，一键放心装。</p>
+        <span class="cta"><span data-i18n="c1-cta">浏览货架</span><svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"/><path d="M9 4l4 4-4 4"/></svg></span>
+      </a>
+      <div class="card">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="M6 9.5 8.5 12 6 14.5"/><path d="M10.5 14.5H14"/></svg></span>
+        <h2 data-i18n="c2-h">嫌麻烦？Agent自己来：</h2>
+        <p class="trigger" data-i18n="c2-b">打开 whaleharness.com，尽情挑选插件。</p>
+        <button class="copy" id="copy-brief" data-i18n="c2-cta">复制一句</button>
+      </div>
+      <a class="card" href="/submit.html">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13V4.5"/><path d="M6 8l4-4 4 4"/><path d="M4 12.5v2.5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2.5"/></svg></span>
+        <h2 data-i18n="c3-h">怕退稿？</h2>
+        <p data-i18n="c3-b">先自检，再投进公开箱。审核与退回理由全程公开。</p>
+        <span class="cta"><span data-i18n="c3-cta">查看投稿流程</span><svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"/><path d="M9 4l4 4-4 4"/></svg></span>
+      </a>
+    </section>
+
+    <div class="safety">
+      <div class="safety-head">
+        <h2 data-i18n="safety-h">四条红线</h2>
+        <p data-i18n="safety-s">上架的插件：四关全过，再加沙箱验证。</p>
+      </div>
+      <div class="rb-group">
+        <span class="rb"><span class="dot"></span><span data-i18n="r1">无 subprocess</span></span>
+        <span class="rb"><span class="dot"></span><span data-i18n="r2">无 eval</span></span>
+        <span class="rb"><span class="dot"></span><span data-i18n="r3">无外传</span></span>
+        <span class="rb"><span class="dot"></span><span data-i18n="r4">无凭据</span></span>
+      </div>
+      <a class="safety-more" href="/zero-trust.html"><span data-i18n="safety-more">安全全貌</span><svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10"/><path d="M9 4l4 4-4 4"/></svg></a>
+    </div>
+  </main>
+
+  <footer id="wh-chrome-footer">
+    <div class="fgrid">
+      <div class="fg">
+        <h4 data-i18n="fg-a">给 agent 的</h4>
+        <div class="links">
+        <a href="/plugins.json">plugins.json</a>
+        <a href="/agent.json">agent.json</a>
+        <a href="/llms.txt">llms.txt</a>
+        <a href="/categories.json">categories.json</a>
+        <a href="/audit.json">audit.json</a>
+        <a href="/authors.json">authors.json</a>
+        </div>
+      </div>
+      <div class="fg">
+        <h4 data-i18n="fg-h">给人看的</h4>
+        <div class="fg-cols">
+          <div class="fg-col">
+            <span class="fg-col-h" data-i18n="fg-browse">逛</span>
+            <div class="links">
+              <a href="/store.html" data-i18n="f-store">货架</a>
+              <a href="/audit.html" data-i18n="f-audit">审计名录</a>
+              <a href="/submit.html" data-i18n="f-submit">投稿</a>
+              <a href="/stats.html" data-i18n="f-stats">数据</a>
+            </div>
+          </div>
+          <div class="fg-col">
+            <span class="fg-col-h" data-i18n="fg-read">读</span>
+            <div class="links">
+              <a href="/blog.html">Blog</a>
+              <a href="/deep-dive.html">Deep Dive</a>
+              <a href="/zero-trust.html">Zero Trust</a>
+              <a href="/build-log.html" data-i18n="f-buildlog">构建日志</a>
+            </div>
+          </div>
+          <div class="fg-col">
+            <span class="fg-col-h" data-i18n="fg-join">参与</span>
+            <div class="links">
+              <a href="/submissions.html" data-i18n="f-submissions">投稿箱</a>
+              <a href="/feedback.html" data-i18n="f-feedback">吐槽</a>
+              <a href="/open-letter.html" data-i18n="f-openletter">公开信</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="tagline" data-i18n="footer">让你的鲸鱼武装到牙齿 · 我验你装。</p>
+    <div class="ext-links">
+      <a class="gh" href="https://github.com/WhaleHarness/WhaleHarness">GitHub ↗</a>
+      <a class="gh" href="https://dev.to/whaleharness">dev.to ↗</a>
+    </div>
+  </footer>
+</div>
+
+<script type="application/json" id="agent-brief" style="display:none">
+{"brief": "# WhaleHarness Agent Brief\n你正在为你的用户找 DSH 插件。按此执行:\n1. 查目录: GET https://whaleharness.com/plugins.json(上架插件:name/version/tool/description/tarball/install/sha256/dsh_compat)\n2. 查判定: GET https://whaleharness.com/audit.json(全部已审仓库 verdict+issues+行号证据;上架=沙箱验证过,其他 PASS=静态审查过未沙箱验证)\n3. 安装: 执行 dsh plugin --profile web add -w https://whaleharness.com/p/<name>(<name> 取 plugins.json 的 name)\n口径纪律(对用户必报): 安装前必报验证深度(上架/Audited);数据以线上实时为准不本地缓存;没有的插件就说没有,不编造。"}
+</script>
+
+<script>
+const I18N = {
+  zh: {
+    "nav-store": "货架", "nav-submit": "投稿", "nav-audit": "审计", "nav-log": "日志", "nav-stats": "数据",
+    "hero-eyebrow": "DeepSeek Harness 插件集散地",
+    "hero-h": "验证有据，人工精选。",
+    "hero-s": "淘尽目录，一键装齐。",
+    "tl-a": "审过", "tl-l": "上架", "tl-foot": "全量验证无害，精选甄品上架。",
+    "c1-h": "翻货架", "c1-b": "先验后装：哈希对得上，一键放心装。", "c1-cta": "浏览货架",
+    "c2-h": "嫌麻烦？Agent自己来：", "c2-b": "打开 whaleharness.com，尽情挑选插件。", "c2-cta": "复制一句",
+    "c3-h": "怕退稿？", "c3-b": "先自检，再投进公开箱。审核与退回理由全程公开。", "c3-cta": "查看投稿流程",
+    "r1": "无 subprocess", "r2": "无 eval", "r3": "无外传", "r4": "无凭据",
+    "safety-h": "四条红线", "safety-s": "上架的插件：四关全过，再加沙箱验证。", "safety-more": "安全全貌",
+    "footer": "让你的鲸鱼武装到牙齿 · 我验你装。",
+    "fg-browse": "逛", "fg-read": "读", "fg-join": "参与",
+    "f-store": "货架", "f-audit": "审计名录", "f-submit": "投稿", "f-stats": "数据",
+    "f-buildlog": "构建日志", "f-submissions": "投稿箱", "f-feedback": "吐槽", "f-openletter": "公开信",
+    "bundles-h": "场景套装", "bundles-sub": "按场景一键装齐，开箱即用。",
+    "b-preview": "首批精选", "b-install": "一键装", "b-n": "个插件", "b-more": "逛货架",
+    "copied": "已复制 ✓"
+  },
+  en: {
+    "nav-store": "Store", "nav-submit": "Submit", "nav-audit": "Audit", "nav-log": "Log", "nav-stats": "Stats",
+    "hero-eyebrow": "DeepSeek Harness plugin hub",
+    "hero-h": "Verified. Hand-picked.",
+    "hero-s": "Catalog: everything. Install: one command.",
+    "tl-a": "audited", "tl-l": "listed", "tl-foot": "Everything validated safe; the best hand-picked for the shelf.",
+    "c1-h": "Browse the pod", "c1-b": "Verified first, hash checks out, one-click install.", "c1-cta": "Browse the store",
+    "c2-h": "Tell your agent:", "c2-b": "Open whaleharness.com and pick what you need.", "c2-cta": "Copy one-liner",
+    "c3-h": "Afraid of rejection?", "c3-b": "Self-check first, then publish — every review and rejection is public.", "c3-cta": "See how to submit",
+    "r1": "no subprocess", "r2": "no eval", "r3": "no exfiltration", "r4": "no credentials",
+    "safety-h": "Four red lines", "safety-s": "Every listed plugin clears these four checks plus sandbox verification.", "safety-more": "Security, in full.",
+    "footer": "Arm your whale to the teeth · We verify, you install.",
+    "fg-browse": "Browse", "fg-read": "Read", "fg-join": "Contribute",
+    "f-store": "Store", "f-audit": "Audit", "f-submit": "Submit", "f-stats": "Stats",
+    "f-buildlog": "Build Log", "f-submissions": "Submissions", "f-feedback": "Feedback", "f-openletter": "Open Letter",
+    "bundles-h": "Scene bundles", "bundles-sub": "Install a ready set in one command — out of the box.",
+    "b-preview": "curated preview", "b-install": "Install set", "b-n": "plugins", "b-more": "Browse the shelf",
+    "copied": "copied ✓"
+  }
+};
+let LANG = localStorage.getItem("wh-lang") || (navigator.language.startsWith("zh") ? "zh" : "en");
+let BUNDLES = [];
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
+function t(k) { return I18N[LANG][k] ?? k; }
+function applyLang() {
+  document.documentElement.lang = LANG === "zh" ? "zh-CN" : "en";
+  document.getElementById("lang-zh").classList.toggle("on", LANG === "zh");
+  document.getElementById("lang-en").classList.toggle("on", LANG === "en");
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.innerHTML = t(el.dataset.i18n); });
+  document.title = LANG === "zh" ? "WhaleHarness · DSH 插件站" : "WhaleHarness — DSH plugin store";
+  renderBundles();
+  localStorage.setItem("wh-lang", LANG);
+}
+async function loadNumbers() {
+  try {
+    const [audit, plugins] = await Promise.all([
+      fetch("/audit.json").then(r => r.json()),
+      fetch("/plugins.json").then(r => r.json())
+    ]);
+    document.getElementById("n-audited").textContent = audit.entries.length;
+    document.getElementById("n-listed").textContent = plugins.plugins.length;
+  } catch (e) {
+    document.getElementById("n-audited").textContent = "—";
+    document.getElementById("n-listed").textContent = "—";
+  }
+}
+async function loadBundles() {
+  try {
+    const d = await fetch("/bundles.json").then(r => r.json());
+    BUNDLES = d.bundles || [];
+  } catch (e) { BUNDLES = []; }
+  renderBundles();
+}
+function renderBundles() {
+  const el = document.getElementById("bundle-strip");
+  if (!el) return;
+  const sec = document.getElementById("bundles-sec");
+  if (!BUNDLES.length) { if (sec) sec.style.display = "none"; return; }
+  if (sec) sec.style.display = "";
+  el.innerHTML = BUNDLES.map(b => {
+    const title = LANG === "zh" ? b.name : (b.name_en || b.name);
+    const tag = LANG === "zh" ? b.tagline : (b.tagline_en || b.tagline);
+    const n = b.plugins.length;
+    return '<article class="bcard">' +
+      '<span class="bflag">' + esc(t("b-preview")) + '</span>' +
+      '<h3 class="bname">' + esc(title) + '</h3>' +
+      '<p class="btag">' + esc(tag) + '</p>' +
+      '<div class="bmeta"><span class="count-tag">' + n + ' ' + esc(t("b-n")) + '</span></div>' +
+      (b.one_liner ? '<button class="binstall" data-cmd="' + esc(b.one_liner) + '">' + esc(t("b-install")) + '</button>' : '') +
+      '</article>';
+  }).join("");
+  el.querySelectorAll(".binstall").forEach(btn => btn.addEventListener("click", async () => {
+    const cmd = btn.dataset.cmd;
+    try { await navigator.clipboard.writeText(cmd); } catch (e) {
+      const ta = document.createElement("textarea"); ta.value = cmd; document.body.appendChild(ta); ta.select();
+      document.execCommand("copy"); ta.remove();
+    }
+    const old = btn.textContent; btn.textContent = t("copied");
+    setTimeout(() => btn.textContent = old, 1500);
+  }));
+}
+document.getElementById("copy-brief").addEventListener("click", async () => {
+  const brief = t("c2-b");
+  try { await navigator.clipboard.writeText(brief); }
+  catch (e) {
+    const ta = document.createElement("textarea");
+    ta.value = brief; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); ta.remove();
+  }
+  const btn = document.getElementById("copy-brief");
+  btn.textContent = t("copied");
+  setTimeout(() => btn.textContent = t("c2-cta"), 1500);
+});
+applyLang();
+loadNumbers();
+loadBundles();
+<!-- wh-chrome:lang -->
+Object.assign(I18N.zh, {'nav-store': '货架', 'nav-submit': '投稿', 'nav-audit': '审计', 'nav-log': '日志', 'nav-stats': '数据', 'nav-home': '首页', 'nav-live': '直播间', 'nav-press': '推广物料', 'nav-box': '投稿箱', 'nav-fb': '吐槽', 'fg-a': '给 agent 的', 'fg-h': '给人看的', 'footer': '让你的鲸鱼武装到牙齿 · 我验你装。'});
+Object.assign(I18N.en, {'nav-store': 'Store', 'nav-submit': 'Submit', 'nav-audit': 'Audit', 'nav-log': 'Log', 'nav-stats': 'Stats', 'nav-home': 'Home', 'nav-live': 'Live', 'nav-press': 'Press Kit', 'nav-box': 'Submissions', 'nav-fb': 'Feedback', 'fg-a': 'For agents', 'fg-h': 'For humans', 'footer': 'Arm your whale to the teeth · We verify, you install.'});
+document.getElementById("lang-zh").addEventListener("click", function(){LANG="zh";applyLang();});
+document.getElementById("lang-en").addEventListener("click", function(){LANG="en";applyLang();});
+applyLang();
+<!-- /wh-chrome:lang -->
+</script>
+</body>
+</html>

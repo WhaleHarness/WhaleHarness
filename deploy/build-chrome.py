@@ -105,7 +105,7 @@ I18N_ZH = {
     "fg-browse": "逛", "fg-read": "读", "fg-join": "参与",
     "f-store": "货架", "f-audit": "审计", "f-submit": "投稿", "f-stats": "数据",
     "f-buildlog": "构建日志", "f-submissions": "投稿箱", "f-feedback": "吐槽", "f-openletter": "公开信",
-    "footer": "给 DeepSeek Harness 的鲸鱼插件 · 装之前，都有人替你验过。",
+    "footer": "让你的鲸鱼武装到牙齿 · 我验你装。",
 }
 I18N_EN = {
     "nav-store": "Store", "nav-submit": "Submit", "nav-audit": "Audit", "nav-log": "Log", "nav-stats": "Stats",
@@ -114,7 +114,7 @@ I18N_EN = {
     "fg-browse": "Browse", "fg-read": "Read", "fg-join": "Contribute",
     "f-store": "Store", "f-audit": "Audit", "f-submit": "Submit", "f-stats": "Stats",
     "f-buildlog": "Build Log", "f-submissions": "Submissions", "f-feedback": "Feedback", "f-openletter": "Open Letter",
-    "footer": "whale plugins for DeepSeek Harness · Nothing reaches you until it's verified.",
+    "footer": "Arm your whale to the teeth · We verify, you install.",
 }
 
 LANG_MERGE = (
@@ -204,7 +204,7 @@ def chrome_footer() -> str:
         '        </div>\n'
         '      </div>\n'
         '    </div>\n'
-        '    <p class="tagline" data-i18n="footer">给 DeepSeek Harness 的鲸鱼插件 · 装之前，都有人替你验过。</p>\n'
+        '    <p class="tagline" data-i18n="footer">让你的鲸鱼武装到牙齿 · 我验你装。</p>\n'
         '    <a class="gh" href="https://github.com/WhaleHarness/WhaleHarness">GitHub ↗</a>\n'
         '  </footer>'
     )
