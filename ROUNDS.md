@@ -3054,3 +3054,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 全站横扫机翻/人类不懂句(不止举例):9 处改——index stat-foot「验过的不全上架…」→「全都审过,少数上架。」(audit 全量 vs 货架少数,人类秒懂)+b-preview「策展初版」→「首批精选」;store sub「验过是底线」→「验过才算入门」(floor 直译=瓶颈,入门=人类词)+count「(全部沙箱验证)」→「(个个过沙箱)」;open-letter「我们是一个验证过的商店」→「我们只上架验证过的插件」;submit watcher 夹生+排进优先队列→「站方自动打上 RESUBMISSION 标记——重投优先审核」;submissions tagline 中英重复(先有英文再中文机翻痕迹)→纯中文一句
 - 验收线立(琢规范+莫比框架):先懂后漂亮;自我反问=能否一句话复述给朋友/删一半字还完整吗
 - 上线验证全绿:index 2/1/旧 0;store 2/1;open-letter 1;submit 1;submissions 英文重复 0
+## Round 721 — 精选批次 1「主力工作台」上线验收(屿交付:18/18 共装+首页 2 卡+事实修正)
+- 屿验收:pro-workbench 5 成员(dsh-memento/dsh-usage-dashboard/dsh-context-doctor/dsh-subagent-tools/dsh-proof);Docker 5 套装去重 18 成员全量 add+dump-config:18/18 无冲突,5 新成员注册(context_audit/subagent 工具注册实锤,memory/proof 事件层过,usage-dashboard 纯 client UI 诚实标注未验)
+- bundles.json 4→5;旧 4 套装对象逐字节不变;新套 verified=true+verify_ref=BUNDLE-VERIFY.md;5 tarball 线上全 200;首页运行时出 2 张 verified 卡(newbie+主力工作台)
+- 两处事实修正(屿抓):①dsh-memory→商店实为 dsh-memento(PerryLink/Apache-2.0)②dsh-context-doctor 出处=Zhenyu98/BSD-3-Clause——moby-picks.md 按事实修正(我的批次笔误,屿按 stores 事实落地+如实上报)
+- 判断:精选判断层产出(5 件白箱理由)✓;技术落地(共装四道门/bundle/部署)交屿✓;此分工成立——莫比挑+理由,屿验+落;「每周≥1 批」机制保持

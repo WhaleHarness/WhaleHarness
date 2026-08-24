@@ -6,10 +6,10 @@
 
 | # | 插件 | 焦虑 | 解决 | 出处 |
 |---|------|------|------|------|
-| 1 | dsh-memory | 换会话/上下文压缩就忘 | SQLite 持久化,写操作过审批门,快照自动注入 | PerryLi,MIT |
+| 1 | dsh-memento | 换会话/上下文压缩就忘 | SQLite 持久化,写操作过审批门,快照自动注入 | PerryLink,Apache-2.0(批次笔误 dsh-memory,屿按商店事实修正) |
 | 2 | dsh-usage-dashboard | 不知道钱烧哪了 | 余额撑几天/今日本月/最贵模型一屏看清 | Cassius0924,MIT |
-| 3 | dsh-context-doctor | 上下文越塞越贵 | AGENTS.md/技能/schema token 成本体检+检测重复 | 公开仓库,MIT |
-| 4 | dsh-subagent-tools | 子代理没谱一把抓 | 逐调用覆盖 model/provider/persona/toolFilter | MIT |
+| 3 | dsh-context-doctor | 上下文越塞越贵 | AGENTS.md/技能/schema token 成本体检+检测重复 | Zhenyu98,BSD-3-Clause(批次笔误「公开仓库/MIT」,屿按商店事实修正) |
+| 4 | dsh-subagent-tools | 子代理没谱一把抓 | 逐调用覆盖 model/provider/persona/toolFilter | lynx-gt,MIT |
 | 5 | dsh-proof | 验收靠自觉 | turn 末自动 spawn 只读验证代理挑缺口 | EvilIrving,MIT |
 
 ## 备选池(下批候选)
