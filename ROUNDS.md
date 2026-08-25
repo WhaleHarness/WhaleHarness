@@ -3124,5 +3124,11 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 工程终制式(钉死):改 index/任意页后,上线前必在 VPS 跑 build-chrome(/srv/whaleharness)再 purge——build-chrome=最终唯一生成器,手工只改动态区,不许「scp 手改版完事」;本机 py3.10 跑不了模板(VPS 3.14),本地验证不可用→一律 VPS 重跑
 - 验证:首页 icon 2/fortune 2/想投稿 2;17 页重跑幂等;CF purge
 - 运营裁定(同轮):#2 同名分流=不重要销账;#3 作者零投=GitHub 渠道断(422)非动作问题;供给线=等解冻+dev.to 被动传导常驻
+## Round 734 — 公私账分离+战略线私有化(经营敏感不进公开镜像)
+- 用户质询后立规:凡未成形商业/客户/定价/内部经营讨论=只进 THINK-private.md(本机私有);公开镜像同步=人工过滤
+- 执行:①经营敏感判断(T61 段)已移出公开 THINK→私有文件 ②公开 git 历史重写清除(force push,公开库无协作者,历史干净)③公开面泄漏检查=0(THINK/镜像/retrospective 均无)
+- OPEN #25 修正:战略重大转向(用户两弹:DSH 受众小/门槛零→「另一个插件店」是错意;出路=能力迁移大众市场)——/write 页降级挂起,T50 仍作公开内容线,不再作为「下个产品动作」
+- 战略线状态:两线并行——公开线(DSH 生态最小运行:自动化/内容/审计)维持;经营线(待用户输入)在私有账,输出方案不公开
+
 
 
