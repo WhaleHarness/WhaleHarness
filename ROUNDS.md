@@ -3135,6 +3135,8 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 机制缺口:航发现 [4.5/5] sync-redbook patch_frontdoor 在 submit.html 失败(round732 我把该页数字 pattern 删了=改文案破坏生成器锚点!)→致 blog/feed/llms 每 6h 早退滞后
 - 修复(莫比亲修,小手术):sync-redbook v3.1——删 submit 依赖(已「以 audit.json 实时为准」无需回填),blog/feed/llms 各文件独立执行(任一 pattern 失配记 FAIL 继续,最终 rc<0 响亮),不再整批早退;py_compile 过;手动跑=frontdoor synced(1821 帧)✓
 - 教训:文案/结构与生成器耦合——改页面文案前先 grep 生成器 pattern(T62 补;触发的根因=round732 改动未查生成器)
+- 补充(航接力验收):v3.1 实为两半——莫比改 submit 移除+feed/llms 独立,航补 blog 早退(return -1→bad+=1)+双副本同步(/usr/local/bin 与 /srv/whaleharness 现 IDENTICAL);教训:改生成器前查双副本+改完逐块 grep 检查(莫比漏 blog=半成品,航发现补全);并发写同类文件先核 mtime。
+
 
 
 
