@@ -3129,6 +3129,13 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 执行:①经营敏感判断(T61 段)已移出公开 THINK→私有文件 ②公开 git 历史重写清除(force push,公开库无协作者,历史干净)③公开面泄漏检查=0(THINK/镜像/retrospective 均无)
 - OPEN #25 修正:战略重大转向(用户两弹:DSH 受众小/门槛零→「另一个插件店」是错意;出路=能力迁移大众市场)——/write 页降级挂起,T50 仍作公开内容线,不再作为「下个产品动作」
 - 战略线状态:两线并行——公开线(DSH 生态最小运行:自动化/内容/审计)维持;经营线(待用户输入)在私有账,输出方案不公开
+## Round 735 — 宿主积压 4 件清批验收+前门收口机制修复(省回顾驱动)
+- 省 08-25 回顾三硬伤全接:①积压第二轮(航 round54-57 全 pending)②前门/红宝书帧漂移根因(round33 家族第 3+ 次)③最小运行边界(见 T62)
+- 清批(航执行,验收通过):round54 audit-trends 上线(sitemap 192,实时帧 banner)round55 sync-audit-report.py 挂机+管道 [4.7/5](用机制件注入 1821,不用旧帧 cp——航有脑子)round56 红宝书已自动 1821 帧(机制活着)round57 blog/feed/llms 同步 1821——**执行时帧已 1771→1821,航按最新帧全落**
+- 机制缺口:航发现 [4.5/5] sync-redbook patch_frontdoor 在 submit.html 失败(round732 我把该页数字 pattern 删了=改文案破坏生成器锚点!)→致 blog/feed/llms 每 6h 早退滞后
+- 修复(莫比亲修,小手术):sync-redbook v3.1——删 submit 依赖(已「以 audit.json 实时为准」无需回填),blog/feed/llms 各文件独立执行(任一 pattern 失配记 FAIL 继续,最终 rc<0 响亮),不再整批早退;py_compile 过;手动跑=frontdoor synced(1821 帧)✓
+- 教训:文案/结构与生成器耦合——改页面文案前先 grep 生成器 pattern(T62 补;触发的根因=round732 改动未查生成器)
+
 
 
 
