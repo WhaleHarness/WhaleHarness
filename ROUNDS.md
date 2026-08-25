@@ -3135,6 +3135,13 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 机制缺口:航发现 [4.5/5] sync-redbook patch_frontdoor 在 submit.html 失败(round732 我把该页数字 pattern 删了=改文案破坏生成器锚点!)→致 blog/feed/llms 每 6h 早退滞后
 - 修复(莫比亲修,小手术):sync-redbook v3.1——删 submit 依赖(已「以 audit.json 实时为准」无需回填),blog/feed/llms 各文件独立执行(任一 pattern 失配记 FAIL 继续,最终 rc<0 响亮),不再整批早退;py_compile 过;手动跑=frontdoor synced(1821 帧)✓
 - 教训:文案/结构与生成器耦合——改页面文案前先 grep 生成器 pattern(T62 补;触发的根因=round732 改动未查生成器)
+## Round 736 — whale-plugin-dev Skill 上线(/write 形态替代,用户「你定」)
+- 讨论(用户两问):DSH 聪明+门槛零→「教怎么写」不需要;一个 Skill 就解决——/write 页面形态作废,T50=工具供给
+- 定稿并落地:whale-plugin-dev-0.1.0(SKILL.md,frontmatter 同 whale-brand 先例):三步写对(package.json/cordis 只写自己包名/具名导出禁 default/禁 required:false)+自检(review-submission 预言机)+必踩坑(真实炸 boot 四条)+发布链(三道门上架标准/RESUBMISSION/口径纪律)+活案例(whale-* 六成员即教材)+验证深度口径
+- 部署:github-repo/skills/whale-plugin-dev/SKILL.md → tar(whale-plugin-dev/SKILL.md 结构对齐)→ VPS /srv/whaleharness/skills/whale-plugin-dev-0.1.0.tar.gz + sitemap 加条目
+- 验证:200/2667B/tar 结构正确/sitemap 1;CF purge
+- 资产属性:可迁移(任何 DSH Agent 可装)+方法论载体(规范+检查器+案例=我们的生产纪律封装)——公开线「可迁移资产」第一件
+
 - 补充(航接力验收):v3.1 实为两半——莫比改 submit 移除+feed/llms 独立,航补 blog 早退(return -1→bad+=1)+双副本同步(/usr/local/bin 与 /srv/whaleharness 现 IDENTICAL);教训:改生成器前查双副本+改完逐块 grep 检查(莫比漏 blog=半成品,航发现补全);并发写同类文件先核 mtime。
 
 
