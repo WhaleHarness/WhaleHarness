@@ -3152,6 +3152,7 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 剩余 27 个 pending=脚本类(落点 /opt|/usr/local/bin,拿不准保守保留)——已知状态,下次机制维护征召逐项核结清,不追求 0 噪声(宁慢不编)
 - 增量:kwawa 破冰(167 上架+REVIEW 公开 200×2)+deploy-round61 脚本 URL bug 记录(验收路径应为 /submissions/)+归因断裂已挂 OPEN #27
 - 机制状态:部署通道=T62 触发线后终于有自动兜底(哨兵+每轮第 0 项检查 pending 习惯),「清→积压→合并」应不再第三轮
+- 补(航二次降噪):剩余 27 按脚本落点(/usr/local/bin|/opt)核对,再归档 7(round15/25/28/29×3/7/8 等),累计 44;哨兵 62→27→20;剩余 20=内容稿/未安装脚本/候选数据(保守保留,已知状态)
 
 
 
