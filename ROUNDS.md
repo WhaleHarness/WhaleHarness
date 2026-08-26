@@ -3147,6 +3147,12 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 机制尾(派航):①sync-agent-pages.py 挂生成链(防 6h 冲引用)②audit-trends 静态刷 2021 帧③哨兵 stage 超 2 轮告警
 - 归因诊断:installs_by_plugin 顶层空+installs_unbucketed 字段消失=生成器侧 schema 变化/解析未跑——37 装机真实(累计 121 相符),归因层丢失;OPEN #27 挂(航/望修)
 - 台账:OPEN #8 2021/#25 T63 措辞/暮验收 8-23/24/25 速记补(省 3 个 ✗ 全清)
+## Round 738 — 部署通道机制线完结:挂点/帧/哨兵/归档四件(省回顾第 3 轮响应)
+- 省 08-26 回顾「积压第三轮」→ 本次机制线一次落地:①sync-agent-pages.py 挂 [4.8/5](挂点查明=审计管道补丁链,sync-listings 无 cron=手动全量器,记录设计)②audit-trends 静态刷 2021 帧(全字段+authors 1528)③哨兵 [5.5/5] stage>12h 告警 ④已部署 stage 归档(37 个:round53-61 已知+round5-52 按产物在 srv 判定 28;哨兵 62→27)
+- 剩余 27 个 pending=脚本类(落点 /opt|/usr/local/bin,拿不准保守保留)——已知状态,下次机制维护征召逐项核结清,不追求 0 噪声(宁慢不编)
+- 增量:kwawa 破冰(167 上架+REVIEW 公开 200×2)+deploy-round61 脚本 URL bug 记录(验收路径应为 /submissions/)+归因断裂已挂 OPEN #27
+- 机制状态:部署通道=T62 触发线后终于有自动兜底(哨兵+每轮第 0 项检查 pending 习惯),「清→积压→合并」应不再第三轮
+
 
 
 - 补充(航接力验收):v3.1 实为两半——莫比改 submit 移除+feed/llms 独立,航补 blog 早退(return -1→bad+=1)+双副本同步(/usr/local/bin 与 /srv/whaleharness 现 IDENTICAL);教训:改生成器前查双副本+改完逐块 grep 检查(莫比漏 blog=半成品,航发现补全);并发写同类文件先核 mtime。
