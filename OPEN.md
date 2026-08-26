@@ -140,7 +140,7 @@
 - 附:精度闸门开闸条件(T54)=2 高优先已闭环+误报率量化抽查出数字;T62 裁决后优先级=低(审计层=能力证明/素材,不为主营)
 ## 27. stats 装机归因断裂(2026-08-26 省开放3,快速诊断)
 - 事实:installs 累计 121(8-25 单日 +37,跳升)但 stats.json installs_by_plugin=空列表(上轮还有 fortune 19/wx 14)、installs_unbucketed 字段消失——归因 schema 变了或 8-25 日志解析没跑
-- 判断:37 装机真实存在(累计口径一致),归因层级丢失=生成器(stats.py)需补——37 来自哪个入口待知(选中套装/Skill/bundle?)
+- 归因真相(2026-08-26 拆解):37=套装批量安装——主力工作台 26(usage-dashboard 7/memento 7/context-doctor 5/subagent-tools 4/proof 3)+界面美化 11(skin 5/hud 4/musume 2)=37 完全对上 ✓;真增长+来源=精选套装;installs_by_plugin 空=stats.py 归类 bug(显示层),日志有真相
 - 责任:航(stats.py 维护)/望(拆 37 来源,推荐看 8-25 access log ?src=install 条目分布);触发:下次维护征召一并做;处置=诊断结论已在此,数据不复现猜测
 
 ## 25. 全站文案线验收(2026-08-23 夜立)

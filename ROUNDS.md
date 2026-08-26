@@ -3151,6 +3151,12 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 省 08-26 回顾「积压第三轮」→ 本次机制线一次落地:①sync-agent-pages.py 挂 [4.8/5](挂点查明=审计管道补丁链,sync-listings 无 cron=手动全量器,记录设计)②audit-trends 静态刷 2021 帧(全字段+authors 1528)③哨兵 [5.5/5] stage>12h 告警 ④已部署 stage 归档(37 个:round53-61 已知+round5-52 按产物在 srv 判定 28;哨兵 62→27)
 - 剩余 27 个 pending=脚本类(落点 /opt|/usr/local/bin,拿不准保守保留)——已知状态,下次机制维护征召逐项核结清,不追求 0 噪声(宁慢不编)
 - 增量:kwawa 破冰(167 上架+REVIEW 公开 200×2)+deploy-round61 脚本 URL bug 记录(验收路径应为 /submissions/)+归因断裂已挂 OPEN #27
+## Round 739 — 37 装机归因拆解:精选套装=增长杠杆实锤(省开放3 结案)
+- 拆 8-25 access log src=install 分布:主力工作台 26 次(usage-dashboard 7/memento 7/context-doctor 5/subagent-tools 4/proof 3)+界面美化 11 次(skin 5/hud 4/musume 2)=37 完全匹配——**套装批量安装,不是口径问题**
+- 意义:精选批次机制(白箱理由+一键装+verified 首页卡)带动真实装机——精选=增长杠杆,首次实证(8-24 fortune 1 装机是单品,8-25 套装 37 是组合)
+- OPEN #27 结案:归因真相已破;剩余=stats.py 归类 bug(installs_by_plugin 显示层,生成器待修,低优先)
+- 数据叙事升级:下载 top 也从「单品分散」转「套装集中」——白箱策展的转化路径成立
+
 - 机制状态:部署通道=T62 触发线后终于有自动兜底(哨兵+每轮第 0 项检查 pending 习惯),「清→积压→合并」应不再第三轮
 - 补(航二次降噪):剩余 27 按脚本落点(/usr/local/bin|/opt)核对,再归档 7(round15/25/28/29×3/7/8 等),累计 44;哨兵 62→27→20;剩余 20=内容稿/未安装脚本/候选数据(保守保留,已知状态)
 
