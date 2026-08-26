@@ -3141,6 +3141,13 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 部署:github-repo/skills/whale-plugin-dev/SKILL.md → tar(whale-plugin-dev/SKILL.md 结构对齐)→ VPS /srv/whaleharness/skills/whale-plugin-dev-0.1.0.tar.gz + sitemap 加条目
 - 验证:200/2667B/tar 结构正确/sitemap 1;CF purge
 - 资产属性:可迁移(任何 DSH Agent 可装)+方法论载体(规范+检查器+案例=我们的生产纪律封装)——公开线「可迁移资产」第一件
+## Round 737 — 省 08-26 回顾处置:round61 一键包落线+kwawa 破冰闭环+归因诊断
+- 省回顾三刀:积压第三轮(18h 击穿 3 天触发线)/kwawa 返场双投卡最后一公里/装机 37 跳升但归因断裂
+- 执行 round61 一键部署包(航包质量高:sha256 先验后放+帧断言+幂等):kwawa 双插件上架(plugins 165→167/sitemap 195/tarball 200×2/REVIEW 公开 200×2——脚本验收 URL 错写成 /submit/(301),真实公开路径 /submissions/ 200,已查明非部署问题);audit-trends(1971)/agent.json/llms.txt 落线
+- 机制尾(派航):①sync-agent-pages.py 挂生成链(防 6h 冲引用)②audit-trends 静态刷 2021 帧③哨兵 stage 超 2 轮告警
+- 归因诊断:installs_by_plugin 顶层空+installs_unbucketed 字段消失=生成器侧 schema 变化/解析未跑——37 装机真实(累计 121 相符),归因层丢失;OPEN #27 挂(航/望修)
+- 台账:OPEN #8 2021/#25 T63 措辞/暮验收 8-23/24/25 速记补(省 3 个 ✗ 全清)
+
 
 - 补充(航接力验收):v3.1 实为两半——莫比改 submit 移除+feed/llms 独立,航补 blog 早退(return -1→bad+=1)+双副本同步(/usr/local/bin 与 /srv/whaleharness 现 IDENTICAL);教训:改生成器前查双副本+改完逐块 grep 检查(莫比漏 blog=半成品,航发现补全);并发写同类文件先核 mtime。
 
