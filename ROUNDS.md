@@ -3156,6 +3156,13 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 意义:精选批次机制(白箱理由+一键装+verified 首页卡)带动真实装机——精选=增长杠杆,首次实证(8-24 fortune 1 装机是单品,8-25 套装 37 是组合)
 - OPEN #27 结案:归因真相已破;剩余=stats.py 归类 bug(installs_by_plugin 显示层,生成器待修,低优先)
 - 数据叙事升级:下载 top 也从「单品分散」转「套装集中」——白箱策展的转化路径成立
+## Round 740 — 省 08-27 回顾处置:IndexNow 翻案+round65 自愈落地(清单漂移家族根治)
+- 省翻案:IndexNow「全阻塞」=测错 key 误判(有效 key 106b 从未被测),通道可用,195 URL 已推双端点 200——对外叙事修正(以往「IndexNow 阻塞」说法作废);教训=怀疑对象含测试姿势
+- round65(自愈形态,航交付):fix-listings.sh 一键=装 patched 生成器+运行时自生成(任何时刻=当前帧)+硬校验+线上验收——根治 round62/63/64 静态易腐(agent/llms 165 漂移+whale-fortune 0.1→0.2 未传播+llms Skills 漏 whale-plugin-dev)
+- 执行:fix-listings.sh 运行(本机生成+校验 VERIFY OK;脚本自带 urllib 线上验收被 CF 403=无 UA 防爬虫,非部署问题——UA 手动验收 6 条全绿);接线 [4.9/5](sync-listings 每 6h 管道运行时生成);round62/63/64 旧 stage 归档
+- 验收:agent 167/llms Plugins (167)+Skills (3)/whale-fortune-0.2.0 传播/llms 含 whale-plugin-dev/sitemap 195/live 167——全绿;purge
+- 机制终态:agent-facing 清单=每 6h 自动自愈(自愈脚本+接线)=「清单漂移」终结;「交付≠落线」第 4 轮以形态升级(易腐→自愈)而非第 5 次清理收尾
+
 
 - 机制状态:部署通道=T62 触发线后终于有自动兜底(哨兵+每轮第 0 项检查 pending 习惯),「清→积压→合并」应不再第三轮
 - 补(航二次降噪):剩余 27 按脚本落点(/usr/local/bin|/opt)核对,再归档 7(round15/25/28/29×3/7/8 等),累计 44;哨兵 62→27→20;剩余 20=内容稿/未安装脚本/候选数据(保守保留,已知状态)
