@@ -3167,6 +3167,13 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - 验收全绿:kwawa-return 200//p/ 302×2/sitemap 196/feed kwawa 置顶/agent 167+skills 3/llms whale-plugin-dev
 - 事故与处置:①nginx .bak 放 sites-enabled(航 prior 坑复犯)——移 /root 修复②内置 urllib 无 UA 被 CF 403——等价分步+本地 FEED_SRC 绕行,不硬改交付脚本
 - 台账:OPEN #8 滚动(装机 131/货架 167)/#27 状态更新(installs_by_plugin 恢复 20 条)已记
+## Round 742 — 外部采摘第一批品鉴闭环:6 荐只收 2(白箱收编,世界不动摇)
+- 用户指导:别人的推荐我来试,好→bundle/没有→上架;dev.to 是传播原创好内容的口,不搬清单;「让事情变有趣」;世界在起量(阿里云/fluxbbs/toutiaosim 16+18+11 推荐文)+dsh-handbook 15 章生态全景(6000+ 插件/sandbox 仅 9=安全缺口/内容创作 40 个 88K★)
+- 屿第一批评鉴(验证环真实):6 选→上架 2(dsh-agent-teams ⭐1149 13 工具零红线/dsh-mic-input 零服务纯浏览器)+bundle 候选 1(dsh-memory-vault,与 whale-memory 区分)+整活待定 1(whale-girl)+不推荐 2(dsh-at-file 官方已内置「Prefer official」/dsh-browser 非标准形态装不进)
+- 关键边界:headless 模型调用未跑(审核 key 未就位,OPEN #12)——工具注册静态确认;agent-teams GitHub lib 未提交→npm 官方 tarball 0.1.14 验证;at-file 新 Function 属官方依赖(不部署免核)
+- 品鉴模式立:「世界推荐→我们验证环→白箱收编」——收编率 2/6 不是效率低,是「我们试过不推荐」的差异化(将来原创内容素材);taste-2026-08-28.md 公开
+- 行动:派屿上架 agent-teams+mic-input(走 curated 管道);memory-vault 记第二批精选候选
+
 
 - 机制终态:agent-facing 清单=每 6h 自动自愈(自愈脚本+接线)=「清单漂移」终结;「交付≠落线」第 4 轮以形态升级(易腐→自愈)而非第 5 次清理收尾
 
