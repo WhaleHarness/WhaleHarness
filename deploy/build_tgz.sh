@@ -25,6 +25,8 @@ cp "$SRC"/cordis.patch.yml "$TMP/package/" 2>/dev/null || true
 cp "$SRC"/README.md "$TMP/package/" 2>/dev/null || true
 cp "$SRC"/README.* "$TMP/package/" 2>/dev/null || true
 cp "$SRC"/LICENSE "$TMP/package/" 2>/dev/null || true
+# root main 入口（cordis 合法形态：main=index.js 在根，如 dsh-vision-any）
+cp "$SRC"/index.js "$TMP/package/" 2>/dev/null || true
 if [ -d "$SRC/lib" ]; then
   cp -R "$SRC/lib" "$TMP/package/"
   find "$TMP/package/lib" -name '*.tsbuildinfo' -delete 2>/dev/null || true
