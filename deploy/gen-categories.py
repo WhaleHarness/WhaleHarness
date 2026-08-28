@@ -141,6 +141,8 @@ DESC_CAT = [
     # round38-1 (finance gap): grounded in dsh-finreport 0.1.0 tarball
     # description (Yahoo Finance / CoinGecko / 财经日报).
     (r"财经|finance|financial", "finance"),
+    # round38-2 (outline): grounded in whale-outline 0.1.0 tarball description (An offline outline generator).
+    (r"outline|大纲", "productivity"),
     (r"summariz", "productivity"),
     (r"archiv", "archive"),
     (r"memory", "memory"),
