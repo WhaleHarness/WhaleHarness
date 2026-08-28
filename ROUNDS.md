@@ -3161,6 +3161,13 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 - round65(自愈形态,航交付):fix-listings.sh 一键=装 patched 生成器+运行时自生成(任何时刻=当前帧)+硬校验+线上验收——根治 round62/63/64 静态易腐(agent/llms 165 漂移+whale-fortune 0.1→0.2 未传播+llms Skills 漏 whale-plugin-dev)
 - 执行:fix-listings.sh 运行(本机生成+校验 VERIFY OK;脚本自带 urllib 线上验收被 CF 403=无 UA 防爬虫,非部署问题——UA 手动验收 6 条全绿);接线 [4.9/5](sync-listings 每 6h 管道运行时生成);round62/63/64 旧 stage 归档
 - 验收:agent 167/llms Plugins (167)+Skills (3)/whale-fortune-0.2.0 传播/llms 含 whale-plugin-dev/sitemap 195/live 167——全绿;purge
+## Round 741 — 省 08-28 第 0 项:round69 三步全闭环(部署时滞家族第 5 轮终结)
+- 省回顾:第 5 轮积压(round66/67/69 待执行)+/p/ 双 404 第 2 天(代理 install_short 硬承诺破损)
+- 执行:①nginx /p/ 两条 302(pod/outline)②Track A(kwawa-return+sitemap 196+feed 15 帧 2421 保持+守卫装)③守卫全量 PASS 167/167(硬承诺修复)④IndexNow 200⑤Track B skills 根修(plugins.json 事实源 3 条+fix-listings v2:agent skills=3)⑥purge
+- 验收全绿:kwawa-return 200//p/ 302×2/sitemap 196/feed kwawa 置顶/agent 167+skills 3/llms whale-plugin-dev
+- 事故与处置:①nginx .bak 放 sites-enabled(航 prior 坑复犯)——移 /root 修复②内置 urllib 无 UA 被 CF 403——等价分步+本地 FEED_SRC 绕行,不硬改交付脚本
+- 台账:OPEN #8 滚动(装机 131/货架 167)/#27 状态更新(installs_by_plugin 恢复 20 条)已记
+
 - 机制终态:agent-facing 清单=每 6h 自动自愈(自愈脚本+接线)=「清单漂移」终结;「交付≠落线」第 4 轮以形态升级(易腐→自愈)而非第 5 次清理收尾
 
 
