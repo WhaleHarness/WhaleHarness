@@ -3189,3 +3189,22 @@ curl -s -b hn.cookies -c hn.cookies -A "$UA" -X POST https://news.ycombinator.co
 
 
 
+
+## Round 743 — 首批收编上架 167→169(外部采摘第一刀)+5 处基础设施修复
+- 屿交付:dsh-agent-teams 0.1.14(NanmiCoder,npm tarball)+dsh-mic-input 0.1.0(QT-Chen)——审查 PROCEED/零红线;线上 tarball 200×2/短链 302×2/plugins 169/agent 169/llms(169)+Skills(3)/守卫 PASS 169/169;备份齐全
+- 修复 5 处:①build_tgz 拷 assets(agent-teams 头像)②review-submission id_rsa 改 path-aware(防御性排除守卫误报→仅真实路径读红)——回归 +2 样例 15/15 绿③nginx /p/ 去重(硬编码与新 .inc 冲突→删硬编码)④本机 dist 滞后 VPS 2 条→先同步再发布(躲过 167→165 回退)⑤待办:作者 issue(422 解冻后补;HEADLESS 审核 key OPEN #12)
+- 机制缺口入账 OPEN #29:发布管道双源权威(本机 dist vs VPS)=建议固化「发布前本机←VPS 同步校验」
+- 里程碑:货架 167→169(外部推荐收编开张;品鉴→收编→上架全链跑通一轮)
+
+## Round 744 — 第二批品鉴:1 收 4 否,外部热推抓出 2 条真实红线
+- 屿第二批(5 个已审计候选):dsh-context(⭐1129,PASS,验证环过,上下文生命周期仪表盘)→上架候选;usage-stats(RED-LINE 实为误报:UI 提示串,真代码走官方 credentials.resolve——精度家族新误报样本);vision-toolkit(⭐837,真实 subprocess 未声明 dsh.runtime:host+视觉桥 3 重叠);mnemon(真实 subprocess+第三方记忆 API 外传+whale-memory 重叠);web-ui(⭐5349 非标准形态装不进)——4 否
+- 关键观察:5/5 均与货架功能重叠——第二批外部推荐=「已在架功能的重复实现」,白箱避免重复收编;且外面热推 4 个里有 2 条真实红线=热≠安全,生态验证位价值实锤
+- 定夺:dsh-context 上架(差异化:context=生命周期管理 vs doctor=成本体检 vs vista=视觉化——白箱理由写清),派屿执行;usage-stats 误报挂精度家族待办
+
+
+## Round 745 — dsh-context 收编 170+可复现构建精确化(gzip -n,屿诚实发现)
+- 屿上架 dsh-context 0.37.0(Apache-2.0,bowenliang123;白箱:生命周期仪表盘 vs doctor 成本体检/vista 视觉化——三人行互补)——验收全绿:170/短链 302/守卫 170/170/sha 本地=线上
+- 屿发现承诺缺口:build_tgz 可复现性只在 tar 内容层,.tgz gzip 头带 mtime 致外层 sha 随构建时刻变(dry vs real 不同)——「同命令同 sha256」承诺未精确兑现
+- 修复:build_tgz.sh 改 tar -cf 分离 + gzip -n -9(去头时间戳/文件名);实测同源两次 sha 完全一致(c5e24a8×2)——承诺精确兑现;既有 170 包 manifest 不变(修复前生成,诚实口径:745 起新包恒定)
+- 账:第二批 4 否记录;usage-stats 误报挂精度家族
+

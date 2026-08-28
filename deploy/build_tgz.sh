@@ -29,14 +29,20 @@ if [ -d "$SRC/lib" ]; then
   cp -R "$SRC/lib" "$TMP/package/"
   find "$TMP/package/lib" -name '*.tsbuildinfo' -delete 2>/dev/null || true
 fi
+if [ -d "$SRC/assets" ]; then
+  cp -R "$SRC/assets" "$TMP/package/"
+fi
 TS=$(date -u -d "@$EPOCH" +%Y%m%d%H%M.%S 2>/dev/null || date -r "$EPOCH" +%Y%m%d%H%M.%S)
 find "$TMP/package" -exec touch -t "$TS" {} +
 if tar --sort=name -cf /dev/null --files-from /dev/null 2>/dev/null; then
   # GNU tar: --sort=name 固定条目顺序
-  tar --sort=name --no-xattrs -czf "$OUT" -C "$TMP" package
+  tar --sort=name --no-xattrs -cf "$OUT.tar" -C "$TMP" package
 else
   # bsdtar(macOS): 无 --sort=name, 只去 xattr
-  tar --no-xattrs -czf "$OUT" -C "$TMP" package
+  tar --no-xattrs -cf "$OUT.tar" -C "$TMP" package
 fi
+# gzip -n: 去掉 gzip 头的时间戳/文件名 — 同源码同命令 → 外层 sha 恒定 (round745)
+gzip -n -9 -c "$OUT.tar" > "$OUT"
+rm -f "$OUT.tar"
 rm -rf "$TMP"
 echo "built $OUT (epoch $EPOCH)"
