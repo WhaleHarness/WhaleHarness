@@ -17,7 +17,7 @@ import re
 import sys
 import tarfile
 from pathlib import Path
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 # keyword -> category (primary, first match wins)
 # round29 (dispatch 04:30Z, 2026-08-20): extended from the 43 previously
@@ -25,6 +25,8 @@ from urllib.request import urlopen
 # below maps at least one live plugin; no invented keywords. New category
 # "search" is grounded in 4 real plugins (web-search providers + finder).
 KEYWORD_CAT = [
+    (("sql", "database", "db", "postgres", "mysql", "sqlite", "query", "db-tools"), "database"),
+    (("finance", "financial", "trading", "market-data", "stock", "crypto", "finreport", "财经"), "finance"),
     (("web-search", "websearch", "search-provider", "exa-search"), "search"),
     (("search", "discovery"), "search"),
     (("subagent", "delegation"), "workflow"),
@@ -59,6 +61,36 @@ KEYWORD_CAT = [
     (("archive", "archive-tool"), "archive"),
     (("praise", "fortune", "fun", "celebrate"), "fun"),
     (("store", "catalog", "marketplace"), "store"),
+    # round35 (dispatch 05:10Z, 2026-08-21): fifth batch of 23 new SKUs left
+    # 22 unclassified. Every tuple below maps at least one live shipped tarball
+    # package.json keyword (evidence extracted from the actual /plugins/*.tgz
+    # artifacts, downloaded 2026-08-21T06:3xZ). No invented keywords.
+    (("desktop-pet", "桌宠", "kun", "ikun"), "fun"),    # dsh-ikun-pet (also rescues dsh-pet: has codex+desktop-pet)
+    (("codex", "provider"), "ops"),                     # dsh-codex-provider: OpenAI Codex provider
+    (("deeplink",), "ui"),                              # dsh-session-deeplink: URL ?session= navigation
+    (("turn-delete", "side-chat"), "ui"),               # dsh-turn-delete / dsh-side-chat: conversation editing
+    (("chinese",), "productivity"),                     # dsh-think-zh: Simplified-Chinese output enforcement
+    (("subagents", "orchestration", "failover", "high-availability"), "workflow"),  # dsh-ha-orchestrator
+    (("sandbox",), "ops"),                              # dsh-sandbox-escalation-fix
+    (("audit", "evidence"), "ops"),                     # qiushi-dsh-evidence-audit
+    (("verification", "observability"), "ops"),         # dsh-verification-receipt (execution summaries)
+    (("telemetry", "redaction"), "ops"),                # dsh-telemetry-redactor
+    (("prompt-template", "model-profile"), "workflow"), # dsh-prompt-profile
+    (("skills",), "workflow"),                          # dsh-skills-manager (local/agent skills management)
+    # round36 (batch-6 UNCAT backfill): 8 SKUs left unclassified by round35.
+    # Every tuple maps at least one live tarball keyword; no invented keywords.
+    (("sidechain", "btw"), "ui"),                       # dsh-btw: transient /btw side questions
+    (("workbench", "jupyter", "reproducible-research", "bioinformatics"), "productivity"),  # dsh-science-workbench
+    (("prompt-optimize",), "productivity"),             # dsh-prompt-optimize
+    # round37 (batch-7): 8 SKUs left unclassified by round36 (batch-7 listing).
+    # Every tuple maps at least one live tarball keyword; no invented keywords.
+    (("chat-outline",), "ui"),                          # dsh-chat-outline
+    (("textarea", "resize", "expand"), "ui"),           # dsh-composer-expand
+    (("selection", "quote"), "ui"),                     # dsh-selection-ask
+    (("lorebook", "world-info", "sillytavern"), "productivity"),  # dsh-lorebookmd
+    (("vlm", "multimodal", "image-understanding", "ocr"), "knowledge"),  # dsh-vision-bridge
+    # round38 (whale-shot, store dogfooding #1): own headless-screenshot tool.
+    (("screenshot", "playwright", "browser"), "productivity"),  # whale-shot
 ]
 # description-keyword -> category (only used when keywords are absent)
 # round29 additions are regex patterns that match the real package.json
@@ -79,6 +111,36 @@ DESC_CAT = [
     (r"置顶|sticky|pin", "ui"),
     (r"模板|template", "workflow"),
     (r"防护|guard|漂移", "ops"),
+    # round35 additions: regexes matching the real package.json descriptions
+    # of the keywordless fifth-batch plugins (evidence = shipped tarball
+    # description text); placed before the broad tail heuristics.
+    (r"workspace file path|instead of model attachments", "workflow"),  # dsh-drop-to-path
+    (r"reasoning effort|model routing", "ops"),                         # dsh-reasoning-settings
+    (r"agent preset|agent-presets|preset 分发", "workflow"),            # dsh-router-flash
+    (r"技能管理器|skill manager|managing local skills|shared Agent skills", "workflow"),  # dsh-skill-manager / dsh-skills-manager
+    (r"token consumption|token usage|cost estimate|context pressure|套餐余量|消耗 token", "ops"),  # dsh-token-panel / dsh-ocgo-lite
+    (r"简体中文", "productivity"),                                      # dsh-think-zh
+    (r"global rules|AGENTS\.md", "workflow"),                           # dsh-global-rules
+    (r"streaming reveals|animations|scroll-follow", "ui"),              # dsh-plugin-smooth-stream
+    (r"系统提示词|deployment persona|persona", "workflow"),             # dsh-prompt-persona
+    (r"sandbox escalation", "ops"),                                     # dsh-sandbox-escalation-fix
+    # round36 additions: regexes matching the real tarball descriptions of the
+    # keywordless batch-6 plugins (evidence = shipped tarball description
+    # text); placed before the broad tail heuristics.
+    (r"composer mic|transcription|hold-to-talk", "ui"),   # dsh-client-ui-voice-input
+    (r"quick-jump rail|prompt rail", "ui"),               # dsh-prompt-rail
+    (r"skin plugin|built-in skins", "ui"),                # dsh-client-ui-skins
+    (r"便签", "ui"),                                      # dsh-sticky-notes
+    (r"思考强度|推理等级", "ops"),                        # dsh-effort-slider
+    # round37 additions: regexes matching the real tarball descriptions of the
+    # keywordless batch-7 plugins (evidence = shipped tarball description text);
+    # placed before the broad tail heuristics.
+    (r"distill|reflection", "productivity"),            # distill
+    (r"telegram|bot bridge", "workflow"),               # telegram
+    (r"滑动|变祖器", "ui"),                              # dsh-huadong-bianzuqi
+    # round38-1 (finance gap): grounded in dsh-finreport 0.1.0 tarball
+    # description (Yahoo Finance / CoinGecko / 财经日报).
+    (r"财经|finance|financial", "finance"),
     (r"summariz", "productivity"),
     (r"archiv", "archive"),
     (r"memory", "memory"),
@@ -98,6 +160,8 @@ CATS = {
     "archive": {"zh": "存档", "en": "archive"},
     "store": {"zh": "商店", "en": "store"},
     "search": {"zh": "搜索", "en": "search"},
+    "database": {"zh": "数据库", "en": "database"},
+    "finance": {"zh": "金融", "en": "finance"},
 }
 
 
@@ -118,7 +182,10 @@ def fetch(name, ver, base, cache):
     p = cache / fn
     if not p.exists():
         url = f"{base}/plugins/{fn}"
-        with urlopen(url, timeout=30) as r:
+        # round35: site 403s UA-less clients (observed 2026-08-21); send a
+        # browser UA so the generator keeps working unattended.
+        req = Request(url, headers={"User-Agent": "Mozilla/5.0 (WhaleHarness categories generator)"})
+        with urlopen(req, timeout=30) as r:
             p.write_bytes(r.read())
     return p
 
