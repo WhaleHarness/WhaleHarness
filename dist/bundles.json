@@ -292,8 +292,10 @@
     "dsh-memento",
     "dsh-deep-research"
    ],
-   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-genui-0.8.2.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-agent-teams-0.1.14.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-context-0.37.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-telemetry-redactor-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memento-0.2.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deep-research-0.1.0.tgz?src=install",
-   "featured": true
+   "one_liner": "dsh plugin --profile consensus install && dsh --profile consensus",
+   "featured": true,
+   "profile_url": "https://whaleharness.com/profiles/whale-consensus-starter-0.1.0.tar.gz",
+   "profile_install": "unpack to $DSH_HOME/profiles/consensus, then: dsh plugin --profile consensus install && dsh --profile consensus"
   }
  ]
 }

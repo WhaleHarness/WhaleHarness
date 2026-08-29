@@ -27,15 +27,16 @@ NETWORK_SINK = re.compile(r"\bfetch\s*\(|\b(?:http|https)\.(?:request|get)\s*\(|
 DANGER = [
     # subprocess is handled per-file below (host-capability gate + call-shape),
     # not as a flat global pattern, so it is intentionally absent from this list.
-    # 防: 任意代码执行/逃逸。误伤面: 注释/字符串里的 eval( 已被 strip_comments 剥离,合法插件几乎不用 eval。
-    (re.compile(r"\beval\s*\("), "eval"),
     # path-aware: .credentials as a FILESYSTEM path only; ctx.credentials member
     # calls on the official dsh-credentials service are legitimate (see
     # Anionex/dsh-vision-toolkit appeal, 2026-08-15: reviewer regex had a
     # false positive on ctx.credentials.resolve/describe/set).
     # 防: 读本机凭据外传。误伤面: 官方服务成员调用 + README/文档里的路径字面量(非代码读取)。
-    (re.compile(r"(?:^|[\s\"'/\\\\])[^\w]*\.credentials\b|authorized_keys|id_rsa|\b\.ssh\b"), "sensitive path"),
+    (re.compile(r"(?:^|[\s\"'/\\\\])[^\w]*\.credentials\b|authorized_keys|(?:[/\\~]id_rsa\b|id_rsa\.[a-zA-Z0-9]+\b)|\b\.ssh\b"), "sensitive path"),
 ]
+# eval 独立检测(上下文区分, 见 strip_strings/strip_declare): 防 declare function 类型声明
+# 与文档/字符串里 mention eval 的误报; 真 eval 调用仍红。
+EVAL_CALL = re.compile(r"\beval\s*\(")
 # RegExp.prototype.exec is a normal JS API — flag it as a warning, not a red line.
 RE_EXEC = re.compile(r"\.exec\(")
 # --- host exemption list ---
@@ -177,6 +178,38 @@ def strip_comments(src):
     return src
 
 
+def strip_strings(src):
+    """Strip string/template literals (keep line numbers).
+
+    Documents, markdown tables, and error messages mention eval() without calling it;
+    a bare substring match would red-line those. True eval() calls live outside string
+    literals, so stripping literals loses no real call. Escaped quotes inside literals
+    are not handled (rare in docs), and eval inside template interpolation is also
+    stripped and missed — both accepted tradeoffs.
+    """
+    def _blank(m):
+        return "\n" * m.group(0).count("\n")
+    src = re.sub(r"'(?:\\.|[^'\\\n])*'", _blank, src)
+    src = re.sub(r'"(?:\\.|[^"\\\n])*"', _blank, src)
+    src = re.sub(r"\x60(?:\\.|[^\x60\\])*\x60", _blank, src)
+    return src
+
+
+def strip_declare(src):
+    """Strip TypeScript declare function/var/const/let ... ; signatures (keep line numbers).
+
+    Bundled .d.ts / generated worker code declares globals like
+    "declare function eval(x: string): any;" — a type declaration, not a call.
+    Declarations run to the terminating ';' (their signatures contain no ';'), so
+    this removal is safe and also handles multi-line declarations.
+    """
+    return re.sub(
+        r"\bdeclare\s+(?:function|var|const|let|class|namespace|interface|type|enum)\b[^;]*;",
+        lambda m: "\n" * m.group(0).count("\n"),
+        src,
+    )
+
+
 def _line_no(src, pos):
     """1-based line number of a character offset in src."""
     return src.count("\n", 0, pos) + 1
@@ -241,7 +274,10 @@ def check(tarball: str, manifest_path=None, repo=None) -> int:
             format_issues.append(f"bad package name: {name!r}")
         if name.startswith("@deepseek-ai/"):
             warnings.append(f"package name {name} claims the @deepseek-ai/ scope but repo is not official (manual confirm)")
-        if not re.match(r"^\d+\.\d+\.\d+$", ver or ""):
+        # 版本口径(2026-08-18 拍板): semver——可选 v 前缀 + 可选 prerelease + 可选 build metadata。
+        # DSH 生态官方即 prerelease(deepseek-harness 0.1.0-rc.5, dsh_compat ^0.1.0-rc.6),
+        # 拒绝 prerelease 会误拒合法插件; v 前缀(如 v1.0.0)按同版本判定, 存储保持原值不 rewrite。
+        if not re.match(r"^v?\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$", ver or ""):
             format_issues.append(f"bad version: {ver!r}")
         dsh = pkg.get("dsh") or {}
         bundle = dsh.get("bundle") or {}
@@ -266,11 +302,15 @@ def check(tarball: str, manifest_path=None, repo=None) -> int:
         loaded = re.findall(r"^\s*name:\s*['\"]?([^'\"]+?)['\"]?\s*$", patch, re.M)
         if pkg:
             pname = pkg.get("name")
+            deps = set((pkg.get("dependencies") or {}).keys())
+            # rule v2 (2026-08-29): a bundle patch may reference its own name OR
+            # any package declared in dependencies (official DSH aggregation bundles);
+            # undeclared foreign loads stay FORMAT-ISSUE (security boundary kept).
             for nm in loaded:
-                if nm != pname:
-                    format_issues.append(f"patch loads foreign package {nm!r}")
-            if pname not in loaded:
-                warnings.append("patch does not load the package's own name")
+                if nm != pname and nm not in deps:
+                    format_issues.append(f"patch loads undeclared foreign package {nm!r}")
+            if pname not in loaded and not any(nm in deps for nm in loaded):
+                warnings.append("patch does not reference its own name or any declared dependency")
 
     all_src = "\n".join(srcs.values())
     if vendor_srcs:
@@ -293,6 +333,10 @@ def check(tarball: str, manifest_path=None, repo=None) -> int:
         for pattern, label in DANGER:
             for m in pattern.finditer(fsrc):
                 red_lines.append(f"{label}: {path}:L{_line_no(fsrc, m.start())}: {_evidence(fsrc, m)}")
+        # eval: 剥注释+字符串+declare 声明后只剩真调用; 文档/类型声明里的 eval 字样被跳过
+        fsrc_eval = strip_declare(strip_strings(fsrc))
+        for m in EVAL_CALL.finditer(fsrc_eval):
+            red_lines.append(f"eval: {path}:L{_line_no(fsrc_eval, m.start())}: {_evidence(fsrc_eval, m)}")
 
     # dynamic network exfiltration: per-file, tainted data -> non-exempt sink
     for path, src in srcs.items():
