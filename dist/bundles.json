@@ -358,7 +358,15 @@
       }
      }
     ]
-   }
+   },
+   "plugins": [
+    "dsh-genui",
+    "dsh-agent-teams",
+    "dsh-context",
+    "dsh-telemetry-redactor",
+    "dsh-memento",
+    "dsh-deep-research"
+   ]
   }
  ]
 }
