@@ -1,7 +1,7 @@
 {
  "name": "WhaleHarness",
  "baseUrl": "https://whaleharness.com",
- "generated_at": "2026-08-20T13:36:19Z",
+ "generated_at": "2026-08-29T10:25:00Z",
  "bundles": [
   {
    "id": "agent-team",
@@ -232,6 +232,133 @@
    },
    "verified": true,
    "verify_ref": "BUNDLE-VERIFY.md"
+  },
+  {
+   "id": "pro-workbench",
+   "name": "主力工作台",
+   "name_en": "Pro Workbench",
+   "tagline": "把 DSH 当生产工具：记忆不丢、花费透明、上下文可控、子代理可控、产出有验收。",
+   "tagline_en": "DSH as a production tool: persistent memory, transparent cost, controlled context, controllable subagents, verified output.",
+   "curate": {
+    "source": "莫比亲手挑·精选批次 1（2026-08-24，moby-picks.md）：把 DSH 当生产工具的用户画像。",
+    "note": "策展初版：成员由莫比按「焦虑→解决」映射亲手挑选（白箱，理由见 members），出处=各成员 plugins.json source（作者/仓库/许可）；待装机数据验证后校正。",
+    "basis": "画像：把 DSH 当生产工具的工程师/资深用户——焦虑集中在五件事：换会话就忘、钱烧哪了、上下文越塞越贵、子代理没谱、验收靠自觉。最少完备=五焦虑各一个代表，不硬凑。首个 wow=装上一屏看清余额撑几天（dsh-usage-dashboard）+ 写下即记住（dsh-memento）。",
+    "members": [
+     {
+      "name": "dsh-memento",
+      "reason": "焦虑「换会话/上下文压缩就忘」→ SQLite 持久化,写操作过审批门,快照自动注入"
+     },
+     {
+      "name": "dsh-usage-dashboard",
+      "reason": "焦虑「不知道钱烧哪了」→ 余额撑几天/今日本月/最贵模型一屏看清"
+     },
+     {
+      "name": "dsh-context-doctor",
+      "reason": "焦虑「上下文越塞越贵」→ AGENTS.md/技能/schema token 成本体检+检测重复"
+     },
+     {
+      "name": "dsh-subagent-tools",
+      "reason": "焦虑「子代理没谱一把抓」→ 逐调用覆盖 model/provider/persona/toolFilter"
+     },
+     {
+      "name": "dsh-proof",
+      "reason": "焦虑「验收靠自觉」→ turn 末自动 spawn 只读验证代理挑缺口"
+     }
+    ]
+   },
+   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memento-0.2.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-usage-dashboard-0.5.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-context-doctor-0.5.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-subagent-tools-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-proof-0.1.0.tgz?src=install",
+   "plugins": [
+    {
+     "name": "dsh-memento",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memento-0.2.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-usage-dashboard",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-usage-dashboard-0.5.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-context-doctor",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-context-doctor-0.5.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-subagent-tools",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-subagent-tools-0.1.0.tgz?src=install"
+    },
+    {
+     "name": "dsh-proof",
+     "install": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-proof-0.1.0.tgz?src=install"
+    }
+   ],
+   "verified": true,
+   "verify_ref": "BUNDLE-VERIFY.md"
+  },
+  {
+   "id": "consensus-starter",
+   "name": "大众共识·新人起步",
+   "name_en": "Consensus Starter",
+   "tagline": "全网推荐度 x 白箱验证：算法选出的起步六件套，装完就能干活。",
+   "tagline_en": "Community consensus x verified quality: six plugins picked by our algorithm.",
+   "curate": {
+    "source": "WhaleHarness 推荐度算法 v2-ext（19 信源：媒体/awesome/论坛/博客加权 → 1108 repo 推荐计数 → 验证闸门：audit 2671+五批评鉴史+沙箱）；bundle score 22.40；每款带 provenance（信源数/评分/验证）",
+    "note": "算法产出非人工；给新人用——不读推荐文，装这套就起跑。数据随管道刷新而校正。",
+    "basis": "新人画像：装完能干活（UI/多agent/记忆/搜索/报告/可观测）",
+    "members": [
+     {
+      "name": "dsh-genui",
+      "reason": "8-10 信源推荐 7.00-8.60=全网最热；UI 类目顶流；已在架",
+      "provenance": {
+       "sources": 10,
+       "score": 8.6,
+       "validation": "在架"
+      }
+     },
+     {
+      "name": "dsh-agent-teams",
+      "reason": "5-7 信源推荐 4.20-5.80；多 agent 协作顶流；批1 白箱收编",
+      "provenance": {
+       "sources": 7,
+       "score": 5.8,
+       "validation": "批1白箱"
+      }
+     },
+     {
+      "name": "dsh-context",
+      "reason": "6-7 信源推荐 5.00-5.80；上下文生命周期；批2 白箱收编",
+      "provenance": {
+       "sources": 7,
+       "score": 5.8,
+       "validation": "批2白箱"
+      }
+     },
+     {
+      "name": "dsh-telemetry-redactor",
+      "reason": "4 信源推荐 3.20；可观测/脱敏；在架",
+      "provenance": {
+       "sources": 4,
+       "score": 3.2,
+       "validation": "在架"
+      }
+     },
+     {
+      "name": "dsh-memento",
+      "reason": "4 信源推荐 3.20；跨会话记忆；在架",
+      "provenance": {
+       "sources": 4,
+       "score": 3.2,
+       "validation": "在架"
+      }
+     },
+     {
+      "name": "dsh-deep-research",
+      "reason": "3 信源推荐 2.40；深度搜索；在架",
+      "provenance": {
+       "sources": 3,
+       "score": 2.4,
+       "validation": "在架"
+      }
+     }
+    ]
+   }
   }
  ]
 }
