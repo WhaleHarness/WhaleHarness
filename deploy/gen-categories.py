@@ -26,6 +26,7 @@ from urllib.request import Request, urlopen
 # "search" is grounded in 4 real plugins (web-search providers + finder).
 KEYWORD_CAT = [
     (("sql", "database", "db", "postgres", "mysql", "sqlite", "query", "db-tools"), "database"),
+    (("voice", "语音", "asr", "tts", "speech"), "audio"),
     (("finance", "financial", "trading", "market-data", "stock", "crypto", "finreport", "财经"), "finance"),
     (("web-search", "websearch", "search-provider", "exa-search"), "search"),
     (("search", "discovery"), "search"),
@@ -142,6 +143,8 @@ DESC_CAT = [
     # description (Yahoo Finance / CoinGecko / 财经日报).
     (r"财经|finance|financial", "finance"),
     # round38-2 (outline): grounded in whale-outline 0.1.0 tarball description (An offline outline generator).
+    # round38-3 (audio): grounded in dsh-voice 0.8.0 tarball description (Full-duplex voice mode / streamed ASR -> LLM -> TTS with barge-in).
+    (r"voice|语音|asr|tts|speech", "audio"),
     (r"outline|大纲", "productivity"),
     (r"summariz", "productivity"),
     (r"archiv", "archive"),
@@ -162,6 +165,7 @@ CATS = {
     "archive": {"zh": "存档", "en": "archive"},
     "store": {"zh": "商店", "en": "store"},
     "search": {"zh": "搜索", "en": "search"},
+    "audio": {"zh": "音频", "en": "audio"},
     "database": {"zh": "数据库", "en": "database"},
     "finance": {"zh": "金融", "en": "finance"},
 }
