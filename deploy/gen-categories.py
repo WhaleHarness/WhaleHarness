@@ -27,6 +27,9 @@ from urllib.request import Request, urlopen
 KEYWORD_CAT = [
     (("sql", "database", "db", "postgres", "mysql", "sqlite", "query", "db-tools"), "database"),
     (("voice", "语音", "asr", "tts", "speech"), "audio"),
+    # round38-4 (workflow): grounded in dsh-evolve-modes 0.3.2 keywords.
+    (("agent-review", "plan-mode", "acceptance-review", "self-evolution", "taskboard"), "workflow"),
+
     (("finance", "financial", "trading", "market-data", "stock", "crypto", "finreport", "财经"), "finance"),
     (("web-search", "websearch", "search-provider", "exa-search"), "search"),
     (("search", "discovery"), "search"),
@@ -145,6 +148,9 @@ DESC_CAT = [
     # round38-2 (outline): grounded in whale-outline 0.1.0 tarball description (An offline outline generator).
     # round38-3 (audio): grounded in dsh-voice 0.8.0 tarball description (Full-duplex voice mode / streamed ASR -> LLM -> TTS with barge-in).
     (r"voice|语音|asr|tts|speech", "audio"),
+    # round38-4b (taskboard): grounded in dsh-taskboard 0.1.3 description.
+    (r"taskboard|任务板", "workflow"),
+
     (r"outline|大纲", "productivity"),
     (r"summariz", "productivity"),
     (r"archiv", "archive"),

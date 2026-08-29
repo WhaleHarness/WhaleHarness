@@ -366,7 +366,8 @@
     "dsh-telemetry-redactor",
     "dsh-memento",
     "dsh-deep-research"
-   ]
+   ],
+   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins//plugins/dsh-genui-0.8.2.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins//plugins/dsh-agent-teams-0.1.14.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins//plugins/dsh-context-0.37.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins//plugins/dsh-telemetry-redactor-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins//plugins/dsh-memento-0.2.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins//plugins/dsh-deep-research-0.1.0.tgz?src=install"
   }
  ]
 }
