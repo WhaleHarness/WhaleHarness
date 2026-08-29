@@ -11,6 +11,37 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+# [0] 双源同步校验:发布前 VPS 线上 plugins.json 必须与本机 dist/plugins.json 一致(防回退)
+VPS_PJ=$(mktemp /tmp/vps-plugins.XXXXXX.json)
+trap 'rm -f "$VPS_PJ"' EXIT
+if ! scp -F /tmp/moby-ssh.cfg wh:/srv/whaleharness/plugins.json "$VPS_PJ" 2>/dev/null; then
+  curl -s --max-time 20 "https://whaleharness.com/plugins.json" -o "$VPS_PJ" || { echo "无法拉取 VPS plugins.json,发布中止"; exit 1; }
+fi
+python3 - "$VPS_PJ" dist/plugins.json <<'PYEOF'
+import json, sys
+vps, local = json.load(open(sys.argv[1])), json.load(open(sys.argv[2]))
+v, l = vps['plugins'], local['plugins']
+vd = {e['name']: e for e in v}
+ld = {e['name']: e for e in l}
+diffs = []
+if len(v) != len(l):
+    diffs.append('count: vps=%d local=%d' % (len(v), len(l)))
+for name in sorted(set(vd) | set(ld)):
+    a, b = vd.get(name), ld.get(name)
+    if a is None:
+        diffs.append('only-local: %s' % name)
+    elif b is None:
+        diffs.append('only-vps: %s' % name)
+    elif a.get('version') != b.get('version') or a.get('sha256') != b.get('sha256'):
+        diffs.append('%s: vps=%s/%s local=%s/%s' % (name, a.get('version'), (a.get('sha256') or '')[:12], b.get('version'), (b.get('sha256') or '')[:12]))
+if diffs:
+    print('双源同步校验失败(VPS 线上与本机 dist/plugins.json 不一致),发布中止:')
+    for d in diffs:
+        print('  - ' + d)
+    sys.exit(1)
+print('双源同步校验通过: %d 款 name/version/sha256 一致' % len(v))
+PYEOF
+
 SRC=$1
 ENTRY=$2
 DRY=0
@@ -132,6 +163,10 @@ ssh -F /tmp/moby-ssh.cfg wh 'cd /srv/whaleharness && tar xzf /tmp/publish_curate
 
 echo "[7/8] sync-listings + gen-categories(派生文件同步)+CF 清缓存"
 ssh -F /tmp/moby-ssh.cfg wh 'cd /srv/whaleharness && python3 /opt/whaleharness-audit/tools/sync-listings.py --base /srv/whaleharness --out /srv/whaleharness && python3 /usr/local/bin/gen-categories.py /srv/whaleharness/plugins.json /srv/whaleharness/plugins > /tmp/categories.json && cp /tmp/categories.json /srv/whaleharness/categories.json && chmod 644 /srv/whaleharness/agent.json /srv/whaleharness/llms.txt /srv/whaleharness/sitemap.xml /srv/whaleharness/categories.json'
+
+echo "[7b/8] UNCAT 预警(分类后若仍有未分类插件则列出)"
+ssh -F /tmp/moby-ssh.cfg wh 'python3 /usr/local/bin/gen-categories-check.py /srv/whaleharness/categories.json'
+
 CF_TOKEN=$(cat cf.txt)
 curl -s --max-time 20 -X POST 'https://api.cloudflare.com/client/v4/zones/8792301b0a58d9bff1140a16c868efc6/purge_cache' -H "Authorization: Bearer $CF_TOKEN" -H 'Content-Type: application/json' -d '{"purge_everything":true}' > /dev/null
 
