@@ -308,7 +308,7 @@ def check(tarball: str, manifest_path=None, repo=None) -> int:
             # undeclared foreign loads stay FORMAT-ISSUE (security boundary kept).
             for nm in loaded:
                 if nm != pname and nm not in deps:
-                    format_issues.append(f"patch loads undeclared foreign package {nm!r}")
+                    format_issues.append(f"patch loads undeclared foreign package {nm!r} (fix: add it to dependencies, or use your own package)")
             if pname not in loaded and not any(nm in deps for nm in loaded):
                 warnings.append("patch does not reference its own name or any declared dependency")
 
@@ -358,9 +358,9 @@ def check(tarball: str, manifest_path=None, repo=None) -> int:
         suspicious = bool(SHELL_EXEC.search(fsrc) or SHELL_FLAG.search(fsrc)
                           or SHELL_C.search(fsrc) or INTERP_CMD.search(fsrc))
         if not host_declared:
-            red_lines.append(f"subprocess usage without dsh.runtime:host declaration: {path}{loc}")
+            red_lines.append(f"subprocess usage without dsh.runtime:host declaration: {path}{loc} (fix: declare \"dsh.runtime\": [\"host\"] in package.json)")
         elif suspicious:
-            red_lines.append(f"subprocess shell-string/dynamic command: {path}{loc}")
+            red_lines.append(f"subprocess shell-string/dynamic command: {path}{loc} (fix: declare dsh.runtime host + use ctx services/binary args only)")
         else:
             host_subprocess_files.append(path)
     if host_subprocess_files:
