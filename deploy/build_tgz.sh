@@ -27,12 +27,24 @@ cp "$SRC"/README.* "$TMP/package/" 2>/dev/null || true
 cp "$SRC"/LICENSE "$TMP/package/" 2>/dev/null || true
 # root main 入口（cordis 合法形态：main=index.js 在根，如 dsh-vision-any）
 cp "$SRC"/index.js "$TMP/package/" 2>/dev/null || true
+cp "$SRC"/index.mjs "$TMP/package/" 2>/dev/null || true
+cp "$SRC"/types.d.ts "$TMP/package/" 2>/dev/null || true
+cp "$SRC"/dsh-plugin.json "$TMP/package/" 2>/dev/null || true
 if [ -d "$SRC/lib" ]; then
   cp -R "$SRC/lib" "$TMP/package/"
   find "$TMP/package/lib" -name '*.tsbuildinfo' -delete 2>/dev/null || true
 fi
+if [ -d "$SRC/client" ]; then
+  cp -R "$SRC/client" "$TMP/package/"
+fi
 if [ -d "$SRC/assets" ]; then
   cp -R "$SRC/assets" "$TMP/package/"
+fi
+if [ -d "$SRC/skills" ]; then
+  cp -R "$SRC/skills" "$TMP/package/"
+fi
+if [ -d "$SRC/bin" ]; then
+  cp -R "$SRC/bin" "$TMP/package/"
 fi
 TS=$(date -u -d "@$EPOCH" +%Y%m%d%H%M.%S 2>/dev/null || date -r "$EPOCH" +%Y%m%d%H%M.%S)
 find "$TMP/package" -exec touch -t "$TS" {} +

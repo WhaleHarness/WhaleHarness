@@ -51,7 +51,29 @@
    ],
    "verified": false,
    "verify_ref": "BUNDLE-VERIFY.md",
-   "profile_url": "https://whaleharness.com/profiles/whale-agent-team-profile-0.1.0.tar.gz"
+   "profile_url": "https://whaleharness.com/profiles/whale-agent-team-profile-0.1.0.tar.gz",
+   "member_versions": {
+    "dsh-subagent-tools": {
+     "shelf": "0.1.0"
+    },
+    "dsh-plannotator": {
+     "shelf": "0.1.3"
+    },
+    "dsh-report-studio": {
+     "shelf": "0.1.0"
+    },
+    "dsh-proof": {
+     "shelf": "0.1.0"
+    },
+    "dsh-task-status": {
+     "shelf": "0.3.0"
+    },
+    "dsh-taskboard": {
+     "shelf": "0.1.3"
+    }
+   },
+   "version": "0.1.0",
+   "updated_at": "2026-08-30T03:05:00Z"
   },
   {
    "id": "knowledge-base",
@@ -86,7 +108,20 @@
    ],
    "verified": false,
    "verify_ref": "BUNDLE-VERIFY.md",
-   "profile_url": "https://whaleharness.com/profiles/whale-knowledge-base-profile-0.1.0.tar.gz"
+   "profile_url": "https://whaleharness.com/profiles/whale-knowledge-base-profile-0.1.1.tar.gz",
+   "member_versions": {
+    "dsh-deepread": {
+     "shelf": "1.0.0"
+    },
+    "dsh-memento": {
+     "shelf": "0.5.0"
+    },
+    "dsh-web-search-exa": {
+     "shelf": "0.1.3"
+    }
+   },
+   "version": "0.1.1",
+   "updated_at": "2026-08-30T07:10:00Z"
   },
   {
    "id": "ui-beauty",
@@ -121,7 +156,22 @@
    ],
    "verified": false,
    "verify_ref": "BUNDLE-VERIFY.md",
-   "profile_url": "https://whaleharness.com/profiles/whale-ui-beauty-profile-0.1.0.tar.gz"
+   "profile_url": "https://whaleharness.com/profiles/whale-ui-beauty-profile-0.1.0.tar.gz",
+   "member_versions": {
+    "dsh-skin": {
+     "shelf": "0.2.0",
+     "npm_latest": "0.4.1"
+    },
+    "dsh-hud": {
+     "shelf": "1.0.0",
+     "npm_latest": "0.1.0"
+    },
+    "dsh-whale-musume": {
+     "shelf": "1.4.1"
+    }
+   },
+   "version": "0.1.0",
+   "updated_at": "2026-08-30T03:05:00Z"
   },
   {
    "id": "newbie-productivity",
@@ -175,7 +225,29 @@
    },
    "verified": true,
    "verify_ref": "BUNDLE-VERIFY.md",
-   "profile_url": "https://whaleharness.com/profiles/whale-newbie-productivity-profile-0.1.0.tar.gz"
+   "profile_url": "https://whaleharness.com/profiles/whale-newbie-productivity-profile-0.1.1.tar.gz",
+   "member_versions": {
+    "dsh-plannotator": {
+     "shelf": "0.1.3"
+    },
+    "whale-memory": {
+     "shelf": "0.1.0"
+    },
+    "dsh-deepread": {
+     "shelf": "1.0.0"
+    },
+    "dsh-report-studio": {
+     "shelf": "0.1.0"
+    },
+    "whale-fortune": {
+     "shelf": "0.2.0"
+    },
+    "whale-praise": {
+     "shelf": "0.1.0"
+    }
+   },
+   "version": "0.1.1",
+   "updated_at": "2026-08-30T07:10:00Z"
   },
   {
    "id": "pro-workbench",
@@ -220,7 +292,26 @@
    ],
    "verified": true,
    "verify_ref": "BUNDLE-VERIFY.md",
-   "profile_url": "https://whaleharness.com/profiles/whale-pro-workbench-profile-0.1.0.tar.gz"
+   "profile_url": "https://whaleharness.com/profiles/whale-pro-workbench-profile-0.1.1.tar.gz",
+   "member_versions": {
+    "dsh-memento": {
+     "shelf": "0.5.0"
+    },
+    "dsh-usage-dashboard": {
+     "shelf": "0.5.0"
+    },
+    "dsh-context-doctor": {
+     "shelf": "0.5.0"
+    },
+    "dsh-subagent-tools": {
+     "shelf": "0.1.0"
+    },
+    "dsh-proof": {
+     "shelf": "0.1.0"
+    }
+   },
+   "version": "0.1.1",
+   "updated_at": "2026-08-30T07:10:00Z"
   },
   {
    "id": "consensus-starter",
@@ -299,8 +390,30 @@
    ],
    "one_liner": "dsh plugin --profile consensus-starter install && dsh --profile consensus-starter",
    "featured": true,
-   "profile_url": "https://whaleharness.com/profiles/whale-consensus-starter-profile-0.1.0.tar.gz",
-   "profile_install": "unpack to $DSH_HOME/profiles/consensus, then: dsh plugin --profile consensus install && dsh --profile consensus"
+   "profile_url": "https://whaleharness.com/profiles/whale-consensus-starter-profile-0.1.1.tar.gz",
+   "profile_install": "unpack to $DSH_HOME/profiles/consensus, then: dsh plugin --profile consensus install && dsh --profile consensus",
+   "member_versions": {
+    "dsh-genui": {
+     "shelf": "0.8.2"
+    },
+    "dsh-agent-teams": {
+     "shelf": "0.1.14"
+    },
+    "dsh-context": {
+     "shelf": "0.38.2"
+    },
+    "dsh-telemetry-redactor": {
+     "shelf": "0.1.0"
+    },
+    "dsh-memento": {
+     "shelf": "0.5.0"
+    },
+    "dsh-deep-research": {
+     "shelf": "0.1.0"
+    }
+   },
+   "version": "0.1.1",
+   "updated_at": "2026-08-30T07:10:00Z"
   }
  ]
 }
