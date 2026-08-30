@@ -40,17 +40,18 @@
      }
     ]
    },
-   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-subagent-tools-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-plannotator-0.1.3.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-report-studio-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-proof-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-task-status-0.3.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deep-research-0.1.0.tgz?src=install",
+   "one_liner": "dsh plugin --profile agent-team install && dsh --profile agent-team",
    "plugins": [
     "dsh-subagent-tools",
     "dsh-plannotator",
     "dsh-report-studio",
     "dsh-proof",
     "dsh-task-status",
-    "dsh-deep-research"
+    "dsh-taskboard"
    ],
    "verified": false,
-   "verify_ref": "BUNDLE-VERIFY.md"
+   "verify_ref": "BUNDLE-VERIFY.md",
+   "profile_url": "https://whaleharness.com/profiles/whale-agent-team-profile-0.1.0.tar.gz"
   },
   {
    "id": "knowledge-base",
@@ -77,14 +78,15 @@
      }
     ]
    },
-   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deepread-0.5.4.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memento-0.2.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-web-search-exa-0.1.3.tgz?src=install",
+   "one_liner": "dsh plugin --profile knowledge-base install && dsh --profile knowledge-base",
    "plugins": [
     "dsh-deepread",
     "dsh-memento",
     "dsh-web-search-exa"
    ],
    "verified": false,
-   "verify_ref": "BUNDLE-VERIFY.md"
+   "verify_ref": "BUNDLE-VERIFY.md",
+   "profile_url": "https://whaleharness.com/profiles/whale-knowledge-base-profile-0.1.0.tar.gz"
   },
   {
    "id": "ui-beauty",
@@ -111,14 +113,15 @@
      }
     ]
    },
-   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-skin-0.2.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-hud-1.0.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-whale-musume-1.4.1.tgz?src=install",
+   "one_liner": "dsh plugin --profile ui-beauty install && dsh --profile ui-beauty",
    "plugins": [
     "dsh-skin",
     "dsh-hud",
     "dsh-whale-musume"
    ],
    "verified": false,
-   "verify_ref": "BUNDLE-VERIFY.md"
+   "verify_ref": "BUNDLE-VERIFY.md",
+   "profile_url": "https://whaleharness.com/profiles/whale-ui-beauty-profile-0.1.0.tar.gz"
   },
   {
    "id": "newbie-productivity",
@@ -157,9 +160,9 @@
      }
     ]
    },
-   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-calculator-1.2.1.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-memory-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-deepread-0.5.4.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-report-studio-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-fortune-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-praise-0.1.0.tgz?src=install",
+   "one_liner": "dsh plugin --profile newbie-productivity install && dsh --profile newbie-productivity",
    "plugins": [
-    "dsh-calculator",
+    "dsh-plannotator",
     "whale-memory",
     "dsh-deepread",
     "dsh-report-studio",
@@ -171,7 +174,8 @@
     "first_task_en": "Try dsh-deepread first: tell the AI \"summarize this doc into 3 points\". Then whale-memory: say \"remember I prefer Chinese replies\" and verify next session. Finally check the dsh-calculator cost card (top-right)."
    },
    "verified": true,
-   "verify_ref": "BUNDLE-VERIFY.md"
+   "verify_ref": "BUNDLE-VERIFY.md",
+   "profile_url": "https://whaleharness.com/profiles/whale-newbie-productivity-profile-0.1.0.tar.gz"
   },
   {
    "id": "pro-workbench",
@@ -206,7 +210,7 @@
      }
     ]
    },
-   "one_liner": "dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-memento-0.2.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-usage-dashboard-0.5.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-context-doctor-0.5.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-subagent-tools-0.1.0.tgz?src=install && dsh plugin --profile web add -w https://whaleharness.com/plugins/dsh-proof-0.1.0.tgz?src=install",
+   "one_liner": "dsh plugin --profile pro-workbench install && dsh --profile pro-workbench",
    "plugins": [
     "dsh-memento",
     "dsh-usage-dashboard",
@@ -215,7 +219,8 @@
     "dsh-proof"
    ],
    "verified": true,
-   "verify_ref": "BUNDLE-VERIFY.md"
+   "verify_ref": "BUNDLE-VERIFY.md",
+   "profile_url": "https://whaleharness.com/profiles/whale-pro-workbench-profile-0.1.0.tar.gz"
   },
   {
    "id": "consensus-starter",
@@ -292,9 +297,9 @@
     "dsh-memento",
     "dsh-deep-research"
    ],
-   "one_liner": "dsh plugin --profile consensus install && dsh --profile consensus",
+   "one_liner": "dsh plugin --profile consensus-starter install && dsh --profile consensus-starter",
    "featured": true,
-   "profile_url": "https://whaleharness.com/profiles/whale-consensus-starter-0.1.0.tar.gz",
+   "profile_url": "https://whaleharness.com/profiles/whale-consensus-starter-profile-0.1.0.tar.gz",
    "profile_install": "unpack to $DSH_HOME/profiles/consensus, then: dsh plugin --profile consensus install && dsh --profile consensus"
   }
  ]
