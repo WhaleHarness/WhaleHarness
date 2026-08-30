@@ -122,6 +122,10 @@ def sync_agent(agent: dict, plugins: list[dict], skills: list[dict]) -> dict:
 
 
 def rank_section(llms: str) -> str:
+    """Append the community-consensus block, but if a previous block already
+    exists (it is appended on every 6h run), replace it IN PLACE with the fresh
+    frame instead of appending again. Before this fix the block accumulated one
+    identical copy per pipeline run (5 copies observed on live 2026-08-30)."""
     try:
         rk = json.loads(pathlib.Path("/srv/whaleharness/rankings.json").read_text())
         top = rk.get("consensus", [])[:5]
@@ -131,8 +135,15 @@ def rank_section(llms: str) -> str:
         for i, e in enumerate(top, 1):
             lines.append(f"- {i}. {e['name']} — consensus {e['rec_score']}, {e['rec_sources']} sources; verified (audit + whitebox). Full data: /rankings.json")
         lines.append("")
+        block = "\n".join(lines)
         sep = chr(10)
-        return llms + sep * 2 + sep.join(lines)
+        marker = "## 生态共识榜"
+        if marker in llms:
+            # in-place refresh: keep everything before the first block, drop all
+            # old blocks, write one fresh block at that position
+            head = llms.split(f"{sep}{marker}")[0]
+            return head + sep + block
+        return llms + sep * 2 + block
     except Exception:
         return llms
 
