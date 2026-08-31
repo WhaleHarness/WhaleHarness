@@ -1,12 +1,45 @@
 # WhaleHarness
 
-A plugin store for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH): a pod of plugins in the deep sea.
+A **verified plugin store & public ecosystem audit** for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH). Bilingual (EN/中文), built in public — every plugin is boot-verified in a real DSH session before shipping, and the wider ecosystem is audited every 6 hours.
 
-**Site: https://whaleharness.com** — bilingual (EN/中文), every plugin verified in a real DSH session before shipping.
+**Site: https://whaleharness.com** · Live stats: https://whaleharness.com/stats.html
 
-[![site](https://img.shields.io/badge/site-whaleharness.com-4fc3f7)](https://whaleharness.com) [![plugins](https://img.shields.io/badge/plugins-6-4fc3f7)](https://whaleharness.com/plugins.json)
+[![site](https://img.shields.io/badge/site-whaleharness.com-4fc3f7)](https://whaleharness.com)
+[![verified plugins](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwhaleharness.com%2Fplugins.json&query=plugins.length&label=verified%20plugins&color=4fc3f7)](https://whaleharness.com/plugins.json)
+[![audited repos](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwhaleharness.com%2Faudit.json&query=entries.length&label=audited%20repos&color=4fc3f7)](https://whaleharness.com/audit.json)
 
-## Pod members (5)
+## The store
+
+Browse: [store.html](https://whaleharness.com/store.html) · [plugins.json](https://whaleharness.com/plugins.json) (machine-readable, sha256 per tarball) · [stats.html](https://whaleharness.com/stats.html)
+
+Every plugin is:
+
+- **Verified** — built reproducibly from public source (`source.repo` + commit), boot-checked in an isolated low-privilege sandbox with a honeypot credential
+- **Pinned** — sha256 checksums in plugins.json, no silent mutation
+- **Installable in one line** — short link by plugin name:
+
+```sh
+dsh plugin --profile web add -w https://whaleharness.com/p/whale-praise
+```
+
+## Ecosystem audit
+
+Every 6 hours the pipeline audits the wider DSH plugin ecosystem (third-party repos, not just this store) and publishes machine-readable verdicts with evidence:
+
+- [audit.json](https://whaleharness.com/audit.json) — per-repo verdicts
+- [audit-fixes.html](https://whaleharness.com/audit-fixes.html) — how to fix each tier
+- [redline-audit.html](https://whaleharness.com/redline-audit.html) — the safety red lines that get plugins rejected
+- [audit-trends.html](https://whaleharness.com/audit-trends.html) — the data story over time
+
+Put your repo's audit badge in its README:
+
+```md
+[![WhaleHarness audit](https://whaleharness.com/badge/<owner>/<repo>/badge.svg)](https://whaleharness.com/audit.html)
+```
+
+## The first-party pod
+
+This repo is the first-party pod source; the live store also hosts many more third-party plugins (count is live in the badge above):
 
 | Plugin | Tool | What it does |
 |---|---|---|
@@ -15,14 +48,6 @@ A plugin store for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-ha
 | whale-submit | `whale_submit` | Package your own plugin and PUT it to the public submission box — from inside a DSH session. |
 | whale-status | `whale_status` | Site checkup: HTTPS, DNS, TLS expiry, sha256 integrity of every published tarball. |
 | whale-brand-check | `whale_brand_check` | Scores copy against the whale-brand voice rules. |
-
-## Install
-
-```sh
-dsh plugin --profile web add -w https://whaleharness.com/plugins/whale-praise-0.1.0.tgz?src=install
-```
-
-All install commands are one-liners on the site, with `?src=install` attribution and sha256 checksums in [plugins.json](dist/plugins.json).
 
 ## Skills
 
@@ -33,24 +58,32 @@ Install: `mkdir -p "$DSH_HOME/skills" && curl -fsSL https://whaleharness.com/ski
 
 ## Publish your plugin here
 
-1. Check [docs/REVIEW.md](docs/REVIEW.md) for the format and the safety red lines.
-2. Either PUT your tarball to the public submission box, or install whale-submit and do it from a session.
-3. Review is transparent: submissions are publicly readable; verdicts are posted publicly.
+The submission box is public and review is transparent — verdicts are posted publicly, and a rejection note tells you exactly what to fix.
+
+1. Read [docs/REVIEW.md](docs/REVIEW.md) and [redline-audit.html](https://whaleharness.com/redline-audit.html) for the format, the safety red lines, and the top rejection reasons.
+2. Build a valid npm-style tarball, then PUT it to the box:
+
+```sh
+curl -T my-plugin-0.1.0.tgz https://whaleharness.com/submit/whalepod2026/my-plugin-0.1.0.tgz
+```
+
+3. Watch it go through public review — real case: [kwawa-return.html](https://whaleharness.com/kwawa-return.html) (rejected → fixed → shipped within a day).
 
 ## Help improve it
 
-This store is built in public and it needs crew feedback:
+Built in public, needs crew feedback:
 
-- Ideas and questions: [Discussions](https://github.com/WhaleHarness/WhaleHarness/discussions) (Ideas / Q&A)
+- Ideas and questions: [Discussions](https://github.com/WhaleHarness/WhaleHarness/discussions)
 - Bugs and problems: [Issues](https://github.com/WhaleHarness/WhaleHarness/issues)
 - Fixes and improvements: open a PR — review is the same transparent process as plugin submissions
 - Review appeals: every rejection note lists exactly what to fix; re-submit when done
 
 ## Repository layout
 
-- `plugins/` — cordis bundle sources (three files each: package.json, cordis.patch.yml, lib/index.js)
+- `plugins/` — first-party cordis bundle sources (package.json, cordis.patch.yml, lib/index.js)
 - `skills/` — SKILL.md sources
-- `dist/plugins.json` — the live store manifest (sha256-checked)
+- `dist/plugins.json` — static repo snapshot (the live manifest is https://whaleharness.com/plugins.json)
+- `tools/` — audit & review pipeline (`review-submission.py`, listings sync, etc.)
 - `deploy/` — nginx site config, stats aggregator, press-page generator
 - `docs/REVIEW.md` — review checklist used for every submission
 - `ROUNDS.md` — the public build log: every round of work, including the mistakes
