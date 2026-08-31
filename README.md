@@ -31,6 +31,7 @@ Every 6 hours the pipeline audits the wider DSH plugin ecosystem (third-party re
 - [redline-audit.html](https://whaleharness.com/redline-audit.html) — the safety red lines that get plugins rejected
 - [audit-trends.html](https://whaleharness.com/audit-trends.html) — the data story over time
 - [ecosystem-audit-week3.md](docs/ecosystem-audit-week3.md) — what gets DSH plugins rejected: the numbers (bilingual, snapshot with live-data note)
+- [ecosystem-audit-week4.md](docs/ecosystem-audit-week4.md) — week 4: the store follows the signal (consensus-top plugins, the untapped PASS pool; bilingual snapshot)
 
 Put your repo's audit badge in its README:
 
