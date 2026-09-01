@@ -29,6 +29,9 @@ KEYWORD_CAT = [
     (("voice", "语音", "asr", "tts", "speech"), "audio"),
     # round38-4 (workflow): grounded in dsh-evolve-modes 0.3.2 keywords.
     (("agent-review", "plan-mode", "acceptance-review", "self-evolution", "taskboard"), "workflow"),
+    # round38-5 (ops): grounded in dsh-better-reasoning-effort 0.3.3 keywords.
+    (("reasoning-effort", "llm-settings", "input-modality"), "ops"),
+
 
     (("finance", "financial", "trading", "market-data", "stock", "crypto", "finreport", "财经"), "finance"),
     (("web-search", "websearch", "search-provider", "exa-search"), "search"),
