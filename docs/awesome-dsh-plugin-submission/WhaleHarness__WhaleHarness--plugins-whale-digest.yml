@@ -1,0 +1,6 @@
+url: https://github.com/WhaleHarness/WhaleHarness/tree/main/plugins/whale-digest
+name: WhaleHarness/WhaleHarness#plugins/whale-digest
+category: tools
+description:
+  en: 'Offline extractive summarizer for DeepSeek Harness: accepts Chinese or English text and returns a short summary, five frequent keywords, and the original character count. Deterministic local text processing only; no network, no subprocess, no file or credential access.'
+  zh: 'DeepSeek Harness 的离线抽取式摘要工具：接收中英文文本，返回简短摘要、五个高频关键词与原字符数。仅做确定性本地文本处理；无网络、无子进程、不读文件与凭据。'

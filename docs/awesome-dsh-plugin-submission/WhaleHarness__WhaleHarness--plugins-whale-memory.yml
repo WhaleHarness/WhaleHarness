@@ -1,0 +1,6 @@
+url: https://github.com/WhaleHarness/WhaleHarness/tree/main/plugins/whale-memory
+name: WhaleHarness/WhaleHarness#plugins/whale-memory
+category: memory
+description:
+  en: 'Explicit cross-session memory for DeepSeek Harness: the model curates named facts (whale_memory_set/get/list/delete) persisted through the official DSH storage-domain service, recalled in any later session on the same machine; limits 1000 keys, 64KB per value. No subprocess, no network, no credential access.'
+  zh: 'DeepSeek Harness 的显式跨会话记忆：模型用 whale_memory_set/get/list/delete 自主打理要记住的事实，经官方存储域服务持久化，同机后续会话可随时唤起；上限 1000 键、单值 64KB。无子进程、无网络、不读凭据。'

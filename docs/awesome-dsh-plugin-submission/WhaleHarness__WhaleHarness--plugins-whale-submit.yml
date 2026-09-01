@@ -1,0 +1,6 @@
+url: https://github.com/WhaleHarness/WhaleHarness/tree/main/plugins/whale-submit
+name: WhaleHarness/WhaleHarness#plugins/whale-submit
+category: dev
+description:
+  en: 'Packages a plugin directory into a tarball and PUTs it to the WhaleHarness public submission box (transparent review), from inside a DeepSeek Harness session. Requires a package.json in the directory; tarball must be ≤5MB.'
+  zh: '在 DeepSeek Harness 会话内把插件目录打包成 tarball，直接 PUT 到 WhaleHarness 公开投稿箱（审核公开透明）。要求目录含 package.json，tarball 不超过 5MB。'
