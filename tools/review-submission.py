@@ -36,7 +36,22 @@ DANGER = [
 ]
 # eval 独立检测(上下文区分, 见 strip_strings/strip_declare): 防 declare function 类型声明
 # 与文档/字符串里 mention eval 的误报; 真 eval 调用仍红。
+# 语义族(09-13 扩; 航 r133 实证: new Function 与 eval 等价, 只匹配 eval( 会漏真动态执行)
+# 只扩「动态执行代码」这一类; strip_strings/strip_declare 仍在上游生效, 文档提及不误报。
 EVAL_CALL = re.compile(r"\beval\s*\(")
+FUNCTION_CTOR = re.compile(r"(?<![.\w$])new\s+Function\s*\(")
+FUNCTION_CALL = re.compile(r"(?<!new\s)(?<![.\w$])Function\s*\(")
+INDIRECT_EVAL = re.compile(r"\(\s*0\s*,\s*eval\s*\)|(?:window|globalThis|self)\.eval\s*\(")
+NODE_VM = re.compile(r"""(?:require\s*\(\s*['"]node:vm['"]|from\s+['"]node:vm['"])""")
+STR_TIMER = re.compile(r"""\b(?:setTimeout|setInterval)\s*\(\s*['"]""")
+EVAL_FAMILY = (
+    ("eval", EVAL_CALL),
+    ("Function 构造器", FUNCTION_CTOR),
+    ("Function 调用", FUNCTION_CALL),
+    ("间接 eval", INDIRECT_EVAL),
+    ("node:vm", NODE_VM),
+    ("字符串定时器", STR_TIMER),
+)
 # RegExp.prototype.exec is a normal JS API — flag it as a warning, not a red line.
 RE_EXEC = re.compile(r"\.exec\(")
 # --- host exemption list ---
@@ -335,8 +350,9 @@ def check(tarball: str, manifest_path=None, repo=None) -> int:
                 red_lines.append(f"{label}: {path}:L{_line_no(fsrc, m.start())}: {_evidence(fsrc, m)}")
         # eval: 剥注释+字符串+declare 声明后只剩真调用; 文档/类型声明里的 eval 字样被跳过
         fsrc_eval = strip_declare(strip_strings(fsrc))
-        for m in EVAL_CALL.finditer(fsrc_eval):
-            red_lines.append(f"eval: {path}:L{_line_no(fsrc_eval, m.start())}: {_evidence(fsrc_eval, m)}")
+        for _label, _pat in EVAL_FAMILY:
+            for m in _pat.finditer(fsrc_eval):
+                red_lines.append(f"eval({_label}): {path}:L{_line_no(fsrc_eval, m.start())}: {_evidence(fsrc_eval, m)}")
 
     # dynamic network exfiltration: per-file, tainted data -> non-exempt sink
     for path, src in srcs.items():
