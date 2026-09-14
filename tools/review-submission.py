@@ -229,6 +229,17 @@ def strip_declare(src):
     )
 
 
+# 09-14 补(真实误报驱动): 剥赋值位置的正则字面量。反斜杠用 chr(92) 拼, 免多层转义。
+# 模式 = (?<=[=(,:[!&|?{};]) 分隔符 -> 空白 -> / ... /flags
+RE_LITERAL_SRC = '(?<=[=(,:[!&|?{};])\s*/(?:[^/\n]|\\.)+/[gimsuy]*'
+RE_LITERAL = re.compile(RE_LITERAL_SRC)
+
+def strip_regex_literals(src):
+    '''剥「赋值/分隔符位置」的 JS 正则字面量(行号守恒)。覆盖不全, 见文件头。'''
+    def _blank(m):
+        return chr(10) * m.group(0).count(chr(10))
+    return RE_LITERAL.sub(_blank, src)
+
 def _line_no(src, pos):
     """1-based line number of a character offset in src."""
     return src.count("\n", 0, pos) + 1
@@ -353,7 +364,7 @@ def check(tarball: str, manifest_path=None, repo=None) -> int:
             for m in pattern.finditer(fsrc):
                 red_lines.append(f"{label}: {path}:L{_line_no(fsrc, m.start())}: {_evidence(fsrc, m)}")
         # eval: 剥注释+字符串+declare 声明后只剩真调用; 文档/类型声明里的 eval 字样被跳过
-        fsrc_eval = strip_declare(strip_strings(fsrc))
+        fsrc_eval = strip_declare(strip_regex_literals(strip_strings(fsrc)))
         # 09-14 修: node:vm 与字符串定时器 的判据依赖字符串字面量(模块名/定时器源), 在
         # strip_strings 之后永远匹配不到(死模式, 航 r135 取证) -> 这两条改用「仅剥注释」镜像源。
         fsrc_eval_str = strip_declare(strip_comments(fsrc))
