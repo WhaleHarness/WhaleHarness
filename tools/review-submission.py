@@ -42,8 +42,12 @@ EVAL_CALL = re.compile(r"\beval\s*\(")
 FUNCTION_CTOR = re.compile(r"(?<![.\w$])new\s+Function\s*\(")
 FUNCTION_CALL = re.compile(r"(?<!new\s)(?<![.\w$])Function\s*\(")
 INDIRECT_EVAL = re.compile(r"\(\s*0\s*,\s*eval\s*\)|(?:window|globalThis|self)\.eval\s*\(")
-NODE_VM = re.compile(r"""(?:require\s*\(\s*['"]node:vm['"]|from\s+['"]node:vm['"])""")
+NODE_VM = re.compile(r"""(?:require\s*\(\s*['"]node:vm['"]|from\s+['"]node:vm['"]|import\s*\(\s*['"]node:vm['"])""")
 STR_TIMER = re.compile(r"""\b(?:setTimeout|setInterval)\s*\(\s*['"]""")
+
+# 同行对拍判据(见调用点): 真调用在剥字符串镜像源同行留下的印记
+STR_TIMER_TOKEN = re.compile(r"\b(?:setTimeout|setInterval)\s*\(")
+MODULE_HINT = re.compile(r"\b(?:import|require|from)\b")
 EVAL_FAMILY = (
     ("eval", EVAL_CALL),
     ("Function 构造器", FUNCTION_CTOR),
@@ -350,9 +354,22 @@ def check(tarball: str, manifest_path=None, repo=None) -> int:
                 red_lines.append(f"{label}: {path}:L{_line_no(fsrc, m.start())}: {_evidence(fsrc, m)}")
         # eval: 剥注释+字符串+declare 声明后只剩真调用; 文档/类型声明里的 eval 字样被跳过
         fsrc_eval = strip_declare(strip_strings(fsrc))
+        # 09-14 修: node:vm 与字符串定时器 的判据依赖字符串字面量(模块名/定时器源), 在
+        # strip_strings 之后永远匹配不到(死模式, 航 r135 取证) -> 这两条改用「仅剥注释」镜像源。
+        fsrc_eval_str = strip_declare(strip_comments(fsrc))
+        # 字符串里的提及(文档常量/错误消息/多行模板)用「同行对拍」排除: 真调用在剥字符串
+        # 镜像源的同一行仍留下调用名, 提及则整段被抹掉。两侧行号各自守恒(都保留换行数)。
+        _mirror_lines = fsrc_eval.split("\n")
         for _label, _pat in EVAL_FAMILY:
-            for m in _pat.finditer(fsrc_eval):
-                red_lines.append(f"eval({_label}): {path}:L{_line_no(fsrc_eval, m.start())}: {_evidence(fsrc_eval, m)}")
+            _scan_src = fsrc_eval_str if _label in ("node:vm", "字符串定时器") else fsrc_eval
+            for m in _pat.finditer(_scan_src):
+                if _label in ("node:vm", "字符串定时器"):
+                    _ln = _line_no(_scan_src, m.start())
+                    _line = _mirror_lines[_ln - 1] if _ln <= len(_mirror_lines) else ""
+                    _hint = STR_TIMER_TOKEN if _label == "字符串定时器" else MODULE_HINT
+                    if not _hint.search(_line):
+                        continue
+                red_lines.append(f"eval({_label}): {path}:L{_line_no(_scan_src, m.start())}: {_evidence(_scan_src, m)}")
 
     # dynamic network exfiltration: per-file, tainted data -> non-exempt sink
     for path, src in srcs.items():
